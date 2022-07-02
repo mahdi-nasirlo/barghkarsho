@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-// use Cviebrock\EloquentSluggable\Sluggable;
-// use Spatie\Tags\HasTags;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Spatie\Tags\HasTags;
 
 class Post extends Model
 {
-    // use HasTags;
+    use HasTags;
     use HasFactory;
-    // use Sluggable;
+    use Sluggable;
 
     /**
      * @var string

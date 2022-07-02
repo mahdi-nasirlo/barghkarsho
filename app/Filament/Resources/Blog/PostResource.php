@@ -14,7 +14,11 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\SpatieTagsInput;
+use Ariaieboy\FilamentJalaliDatetime\JalaliDateTimeColumn;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
+use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
 
 class PostResource extends Resource
 {
@@ -51,26 +55,20 @@ class PostResource extends Resource
                         Forms\Components\TextInput::make('title')
                             ->label("عنوان")
                             ->required()
-                            ->reactive(),
-                        // ->afterStateUpdated(fn ($state, callable $set) => $set('slug', SlugService::createSlug(Post::class, 'slug', $state == null ? "" : $state))),
+                            ->reactive()
+                            ->afterStateUpdated(fn ($state, callable $set) => $set('slug', SlugService::createSlug(Post::class, 'slug', $state == null ? "" : $state))),
                         Forms\Components\TextInput::make('slug')
                             ->label("نامک (URL)")
                             // ->disabled()
                             ->required()
                             ->unique(Post::class, 'slug', fn ($record) => $record),
-                        // Forms\Components\MarkdownEditor::make('content')
-                        //     ->label("محتوا")
-                        //     ->id('content')
-                        //     ->required()
-                        //     ->columnSpan([
-                        //         'sm' => 2,
-                        //     ]),
-                        // TinyEditor::make('content')
-                        //     ->label("محتوا")
-                        //     ->required()
-                        //     ->columnSpan([
-                        //         'sm' => 2,
-                        //     ]),
+
+                        TinyEditor::make('content')
+                            ->label("محتوا")
+                            ->required()
+                            ->columnSpan([
+                                'sm' => 2,
+                            ]),
 
                         Forms\Components\TextInput::make('read_time')
                             ->label("زمان مطالعه")
@@ -88,12 +86,12 @@ class PostResource extends Resource
                             })
                             ->searchable()
                             ->required(),
-                        // JalaliDatePicker::make('published_at')
-                        //     ->label('تاریخ انتشار')
-                        //     ->required(),
-                        // SpatieTagsInput::make('tags')
-                        //     ->label('تگ ها')
-                        //     ->required(),
+                        JalaliDatePicker::make('published_at')
+                            ->label('تاریخ انتشار')
+                            ->required(),
+                        SpatieTagsInput::make('tags')
+                            ->label('تگ ها')
+                            ->required(),
                     ])
                     ->columns([
                         'sm' => 2,
@@ -150,33 +148,31 @@ class PostResource extends Resource
                     ->label("دسته بندی")
                     ->searchable()
                     ->sortable(),
-                // JalaliDateTimeColumn::make('created_at')->date(),
-                // Tables\Columns\TextColumn::make('published_at')
-                // JalaliDateTimeColumn::make('published_at')->date()
-                //     ->label("تاریخ انتشار")
-                //     ->date(),
+                JalaliDateTimeColumn::make('published_at')->date()
+                    ->label("تاریخ انتشار")
+                    ->date(),
             ])
             ->filters([
-                // Tables\Filters\Filter::make('published_at')
-                // ->form([
-                // JalaliDatePicker::make('published_from')
-                //     ->label("منتشر شده از")
-                //     ->placeholder(fn ($state): string => Jalalian::now()->format("d M, Y")),
-                // JalaliDatePicker::make('published_until')
-                // ->label("منتشر شده_تا")
-                //     ->placeholder(fn ($state): string => Jalalian::now()->format("d M, Y")),
-                // ])
-                // ->query(function (Builder $query, array $data): Builder {
-                //     return $query
-                //         ->when(
-                //             $data['published_from'],
-                //             fn (Builder $query, $date): Builder => $query->whereDate('published_at', '>=', $date),
-                //         )
-                //         ->when(
-                //             $data['published_until'],
-                //             fn (Builder $query, $date): Builder => $query->whereDate('published_at', '<=', $date),
-                //         );
-                // }),
+                Tables\Filters\Filter::make('published_at')
+                    ->form([
+                        JalaliDatePicker::make('published_from')
+                            ->label("منتشر شده از")
+                            ->placeholder(fn ($state): string => \Morilog\Jalali\Jalalian::now()->format("d M, Y")),
+                        JalaliDatePicker::make('published_until')
+                            ->label("منتشر شده_تا")
+                            ->placeholder(fn ($state): string => \Morilog\Jalali\Jalalian::now()->format("d M, Y")),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['published_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('published_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['published_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('published_at', '<=', $date),
+                            );
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
