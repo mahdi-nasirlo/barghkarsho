@@ -36,6 +36,7 @@ class Post extends Model
         'read_time',
         'view',
         'image',
+        "blog_category_id",
         'blog_author_id'
     ];
 

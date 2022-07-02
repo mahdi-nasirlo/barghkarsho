@@ -25,7 +25,7 @@ return new class() extends Migration
 
             $table->text('content');
 
-            $table->unsignedBigInteger('parent_id')->default(0);
+            $table->unsignedBigInteger('parent_id')->nullable()->default(0);
 
             $table->timestamps();
         });

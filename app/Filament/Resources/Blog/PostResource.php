@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Blog;
 
 use App\Filament\Resources\Blog\PostResource\Pages;
-use App\Filament\Resources\Blog\PostResource\RelationManagers;
+use App\Filament\Resources\Blog\PostResource\RelationManagers\CommentRelationManager;
 use App\Models\Blog\Category;
 use App\Models\Blog\Post;
 use Filament\Forms;
@@ -19,6 +19,7 @@ use Ariaieboy\FilamentJalaliDatetime\JalaliDateTimeColumn;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
+use Illuminate\Database\Eloquent\Model;
 
 class PostResource extends Resource
 {
@@ -149,7 +150,12 @@ class PostResource extends Resource
                     ->searchable()
                     ->sortable(),
                 JalaliDateTimeColumn::make('published_at')->date()
+                    ->sortable()
                     ->label("تاریخ انتشار")
+                    ->date(),
+                JalaliDateTimeColumn::make('created_at')->date()
+                    ->sortable()
+                    ->label("تاریخ ثبت")
                     ->date(),
             ])
             ->filters([
@@ -185,7 +191,7 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            CommentRelationManager::class
         ];
     }
 
@@ -196,5 +202,30 @@ class PostResource extends Resource
             'create' => Pages\CreatePost::route('/create'),
             'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
+    }
+
+    protected static function getGlobalSearchEloquentQuery(): Builder
+    {
+        return parent::getGlobalSearchEloquentQuery()->with(['author', 'category']);
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['title', 'slug', 'author.name', 'category.name'];
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        $details = [];
+
+        if ($record->author) {
+            $details['نویسنده'] = $record->author->name;
+        }
+
+        if ($record->category) {
+            $details['دسته بندی'] = $record->category->name;
+        }
+
+        return $details;
     }
 }
