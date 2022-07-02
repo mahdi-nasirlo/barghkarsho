@@ -3,6 +3,7 @@
 namespace App\Models\Blog;
 
 use App\Models\Comment;
+use App\Models\Blog\Category;
 use Spatie\Tags\Tag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -3,8 +3,6 @@
 namespace App\Filament\Resources\Blog;
 
 use App\Filament\Resources\Blog\CategoriesResource\Pages;
-use App\Filament\Resources\Blog\CategoriesResource\RelationManagers;
-// use App\Models\Blog\Categories;
 use App\Models\Blog\Category;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -12,7 +10,6 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Ariaieboy\FilamentJalaliDatetime\JalaliDateTimeColumn;
 use Illuminate\Database\Eloquent\Model;
@@ -63,10 +60,7 @@ class CategoriesResource extends Resource
                             ]),
                         Forms\Components\Select::make('parent_id')
                             ->label('دسته بندی پدر')
-                            ->relationship('parent', 'name', fn (Builder $query, ?Category $record) => $query->whereNot('id', $record ? $record->id : null))
-                        // ->searchable()
-                        // ->placeholder('انتخاب دسته بندی پدر'),
-                        ,
+                            ->relationship('parent', 'name', fn (Builder $query, ?Category $record) => $query->whereNot('id', $record ? $record->id : null)),
                         Forms\Components\Toggle::make('is_visible')
                             ->label('قابل نمایش برای کاربران.')
                             ->onIcon('heroicon-s-eye')
@@ -138,7 +132,7 @@ class CategoriesResource extends Resource
 
     protected static function getGlobalSearchEloquentQuery(): Builder
     {
-        return parent::getGlobalSearchEloquentQuery()->with(['name', 'parent']);
+        return parent::getGlobalSearchEloquentQuery()->with(['parent']);
     }
 
     public static function getGloballySearchableAttributes(): array
