@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreign("course_id")->on("courses")->references("id")->cascadeOnDelete();
 
             $table->text("attribute");
-            $table->text("value");
 
             $table->timestamps();
         });

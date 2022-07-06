@@ -1,0 +1,175 @@
+:root {
+    --orange: #ff6c00;
+    --blue-600: #004392;
+    --blue-500: #005fd0;
+    --gray-300: #edf2f6;
+    --gray-600: #292f3a;
+}
+
+.content {
+    color: #8492a6 !important;
+    direction: rtl;
+}
+
+img,
+#h_iframe-aparat_embed_frame {
+    max-width: 100%;
+}
+
+.content p {
+    max-width: 100%;
+    direction: rtl;
+}
+
+.content p span {
+    max-width: 100%;
+    height: auto;
+}
+
+.content p span a img {
+    max-width: 100%;
+    height: auto;
+}
+
+.content p span span img {
+    max-width: 100%;
+    height: auto;
+}
+
+.text-orange {
+    color: var(--orange);
+}
+
+.text-gray-600 {
+    color: var(--gray-600);
+}
+
+.bg-orange {
+    background-color: var(--orange);
+}
+
+.bg-blue-500 {
+    background-color: var(--blue-500);
+}
+
+/* .dropdown-toggle::after {
+    content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M192 384c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L192 306.8l137.4-137.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-160 160C208.4 380.9 200.2 384 192 384z"/></svg>');
+    border: none;
+    width: 10px;
+    height: auto;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+} */
+
+/* ============ desktop view ============ */
+/* @media all and (min-width: 992px) {
+    .dropdown-menu li {
+        position: relative;
+    }
+    .nav-item .submenu {
+        display: none;
+        position: absolute;
+        right: 100%;
+        top: -7px;
+    }
+    .nav-item .submenu-left {
+        left: 100%;
+        right: auto;
+    }
+    .dropdown-menu > li:hover {
+        background-color: #f1f1f1;
+    }
+    .dropdown-menu > li:hover > .submenu {
+        display: block;
+    }
+} */
+/* ============ desktop view .end// ============ */
+
+/* ============ small devices ============ */
+/* @media (max-width: 991px) {
+    .dropdown-menu .dropdown-menu {
+        margin-left: 0.7rem;
+        margin-right: 0.7rem;
+        margin-bottom: 0.5rem;
+    }
+} */
+/*============ small devices .end// ============ */
+
+.has-submenu:hover > .submenu {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#topnav .navigation-menu > li .submenu > li .submenu {
+    right: -101%;
+    top: 0;
+    margin-right: -5px;
+    margin-top: -1px;
+}
+
+.disabled {
+    color: gray !important;
+    cursor: context-menu;
+}
+
+@media screen and (min-width: 991px) {
+    .has-submenu:hover > .submenu {
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
+
+.footer {
+    background: var(--blue-600);
+    color: white;
+}
+
+#topnav {
+    top: unset !important;
+}
+
+#topnav.nav-sticky {
+    top: 0 !important;
+}
+
+.topHeader {
+    background: var(--blue-500);
+    color: white;
+}
+
+.btn-request {
+    background: var(--orange);
+    color: white;
+}
+
+.btn-request:hover {
+    background: white !important;
+    color: var(--orange) !important;
+    border: 1px solid var(--orange);
+}
+
+.btn-cours {
+    background: var(--gray-300);
+    color: var(--gray-600);
+}
+
+.btn-cours:hover {
+    background: white !important;
+    border: 1px solid var(--blue-500);
+}
+
+.future-section {
+    background: var(--blue-500);
+    margin-top: 40px;
+    padding: 60px 0;
+}
+
+.card-img-top-index {
+    max-height: 200px;
+}
+
+@media screen and (max-width: 991px) {
+    .card-img-top-index {
+        max-height: none;
+    }
+}

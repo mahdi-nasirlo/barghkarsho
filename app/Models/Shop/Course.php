@@ -3,6 +3,7 @@
 namespace App\Models\Shop;
 
 use App\Models\Comment;
+use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,7 +19,7 @@ class Course extends Model
     use HasTags;
 
 
-    protected $fillable = ['title', "attributes", 'slug', 'desc', 'price', 'inventory', "published_at", "user_id", 'view', 'image', 'user_id'];
+    protected $fillable = ['title', "attributes", 'short_desc', 'slug', 'desc', 'price', 'inventory', "published_at", "user_id", 'view', 'image', 'user_id'];
 
     public function sluggable(): array
     {
@@ -38,7 +39,7 @@ class Course extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'blog_author_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 

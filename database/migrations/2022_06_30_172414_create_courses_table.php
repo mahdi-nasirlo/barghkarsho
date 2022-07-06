@@ -27,7 +27,7 @@ return new class extends Migration
 
             $table->text('desc');
 
-            // $table->json("attributes");
+            $table->text('short_desc');
 
             $table->integer('price');
 

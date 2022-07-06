@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources\Shop;
 
+use App\Filament\Resources\Shop\CourceResource\RelationManagers\CommentsRelationManager;
 use App\Filament\Resources\Shop\CourceResource\Pages;
-use App\Filament\Resources\Shop\CourceResource\RelationManagers;
-use App\Models\Shop\Cource;
 use App\Models\Shop\Course;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -12,9 +11,7 @@ use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -23,8 +20,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class CourceResource extends Resource
@@ -76,6 +71,10 @@ class CourceResource extends Resource
                             ->columnSpan([
                                 'sm' => 2,
                             ]),
+                        Textarea::make("short_desc")
+                            ->label("توضیح کوتاه")
+                            ->required()
+                            ->columnSpan(['sm' => 2]),
 
                         // Hidden::make("blog_author_id")->default(auth()->user()->id),
                         // Forms\Components\Select::make('blog_category_id')
@@ -98,6 +97,11 @@ class CourceResource extends Resource
                             ->helperText('این مورد برای کاربر قابل مشاهده نخواهد بود.')
                             ->numeric()
                             ->suffix('تومان')
+                            ->rules(['integer', 'min:0'])
+                            ->required(),
+                        TextInput::make('inventory')
+                            ->label('ظرفیت')
+                            ->numeric()
                             ->rules(['integer', 'min:0'])
                             ->required(),
                         SpatieTagsInput::make('tags')
@@ -137,7 +141,7 @@ class CourceResource extends Resource
                     ])
                     ->relationship()
                     ->orderable("sort")
-                    ->label("پرسش و پاسخ های متداول")
+                    ->label("پرسش متداول")
                     ->columns([
                         'sm' => 1,
                     ])
@@ -152,17 +156,14 @@ class CourceResource extends Resource
                         Repeater::make('attributes')
                             ->schema([
                                 TextInput::make('attribute')
-                                    ->label("ویژگی")
-                                    ->required(),
-                                TextInput::make('value')
-                                    ->label("مقدار")
+                                    ->label("سر فصل ها")
                                     ->required(),
                             ])
                             ->relationship()
                             ->required()
-                            ->label("جزئیات دوره")
+                            ->label("مبحث")
                             ->columns([
-                                'sm' => 2,
+                                'sm' => 1,
                             ])
                             ->columnSpan([
                                 'sm' => 2,
@@ -217,7 +218,7 @@ class CourceResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            CommentsRelationManager::class
         ];
     }
 

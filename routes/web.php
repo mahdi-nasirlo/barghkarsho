@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\articleController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
+    return view('welcome', ['posts' => $post]);
 });
+
+
+Route::get('profile', function () {
+    return view('welcome');
+})->name("profile");
+
+// Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])->name("auth.google");
+// Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
+
+Route::get('/article/{post:slug}', [articleController::class, 'show'])->name('article.single');
+Route::get('/articles/category/{category:slug}', [articleController::class, 'list'])->name('article.list');
+
+Route::get('/course/{course:id}', [CourseController::class, 'show'])->name('cours.single');
+
+
+Route::post('/comment/stor', [articleController::class, 'storComment'])->name('comment.stor');

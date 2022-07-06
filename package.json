@@ -10,11 +10,12 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "@tailwindcss/forms": "^0.4",
-        "@tailwindcss/typography": "^0.5",
+        "@tailwindcss/forms": "^0.4.1",
+        "@tailwindcss/typography": "^0.5.2",
         "alpinejs": "^3.4",
         "laravel-mix": "^6.0.6",
         "postcss": "^8.1.14",
-        "tailwindcss": "^3.0"
+        "tailwindcss": "^3.1.4",
+        "tippy.js": "^6.3.7"
     }
 }

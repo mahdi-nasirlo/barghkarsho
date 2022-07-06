@@ -19,7 +19,7 @@ return new class() extends Migration
             $table->foreign('blog_author_id')->references('id')->on('users');
 
             $table->foreignId('blog_category_id')->nullable()->nullOnDelete();
-            $table->foreign("blog_category_id")->references('id')->on('blog_categories');
+            $table->foreign("blog_category_id")->references('id')->on('blog_categories')->cascadeOnDelete();
 
             $table->string('title');
             $table->string('slug')->unique();

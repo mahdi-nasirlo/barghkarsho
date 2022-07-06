@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Blog;
 
 use App\Filament\Resources\Blog\CategoriesResource\Pages;
+use App\Filament\Resources\Blog\CategoryResource\RelationManagers\PostsRelationManager;
 use App\Models\Blog\Category;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -126,7 +127,7 @@ class CategoriesResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PostsRelationManager::class
         ];
     }
 
