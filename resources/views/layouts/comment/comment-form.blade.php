@@ -21,7 +21,7 @@
                   <div id="successMs" style="display: none" class="md:flex rounded text-white bg-green-400 p-2 mt-3">
                       <div class=" w-full font-semibold">دیدگاه شما با موفقیت ثبت شد !</div>
                   </div>
-                  <form id="comment_form" class="mt-3" method="POST" action="{{ route('comment.stor') }}">
+                  <form class="mt-3" method="POST" action="{{ route('comment.stor') }}">
 
                       @csrf
 

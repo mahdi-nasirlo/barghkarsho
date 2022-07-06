@@ -137,7 +137,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button id="send_comments" class="btn btn-primary">ارسال
+                                    <button id="send_replay_comments" class="btn btn-primary">ارسال
                                         دیدگاه</button>
                                 </div>
                             </div>

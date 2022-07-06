@@ -15,6 +15,11 @@
     @include('home.course.content')
     @include('home.course.common-question')
     @include('home.course.similar', ['papular' => \App\Models\Shop\Course::all()->take(6)])
-    @include('layouts.comment.comment-form', ['commentable' => $cours])
-    @include('layouts.comment.index', ['comments' => $cours->comments, 'commentable' => $cours])
+    <div class="container-xxl">
+        @include('layouts.comment.comment-form', ['commentable' => $cours])
+        @include('layouts.comment.index', [
+            'comments' => $cours->comments->where('is_visible', true),
+            'commentable' => $cours,
+        ])
+    </div>
 @endsection

@@ -61,15 +61,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // end if innerWidth
 
-    const send_comment = () => {
-        console.log("clickit");
-        // document.getElementById("comment_form").submit();
+    var send_comment = function send_comment() {
+        document.getElementById("comment_form").submit();
     };
 
-    if (document.getElementById("send_comments")) {
-        console.log("lkj");
+    if (document.getElementById("send_replay_comments")) {
         document
-            .getElementById("send_comments")
+            .getElementById("send_replay_comments")
             .addEventListener("click", send_comment);
     }
 });

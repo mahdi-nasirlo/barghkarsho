@@ -54,12 +54,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   var send_comment = function send_comment() {
-    console.log("clickit"); // document.getElementById("comment_form").submit();
+    document.getElementById("comment_form").submit();
   };
 
-  if (document.getElementById("send_comments")) {
-    console.log("lkj");
-    document.getElementById("send_comments").addEventListener("click", send_comment);
+  if (document.getElementById("send_replay_comments")) {
+    document.getElementById("send_replay_comments").addEventListener("click", send_comment);
   }
 }); // DOMContentLoaded  end
 /******/ })()
