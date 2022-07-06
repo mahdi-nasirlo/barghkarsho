@@ -6,17 +6,18 @@
                     <i class="uil uil-phone"></i>
                     تلفن پشتیبانی
                 </span>
-                <span class="d-none d-sm-flex">
-                    09228027825 -
+                <span class="d-none d-sm-flex px-1">
+                    {{ $information['mobile_support']['content'] }}
+                    -
                 </span>
             </div>
-            <div class="px-2" style="direction: rtl">
-                02166303530
+            <div class="px-1" style="direction: rtl">
+                {{ $information['phone_support']['content'] }}
             </div>
         </div>
 
         <div class="">
-            <a class="text-white d-flex" href="">
+            <a class="text-white d-flex" href="{{ $information['location']['content'] }}">
                 <i class="uil uil-location-point"></i>
                 نشانی
                 <span class="d-none d-sm-flex">

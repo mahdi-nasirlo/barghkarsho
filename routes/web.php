@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\articleController;
 use App\Http\Controllers\CourseController;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
+
+
+
+    // dd(config(');
+
     return view('welcome', ['posts' => $post]);
 });
 
@@ -31,7 +37,7 @@ Route::get('profile', function () {
 Route::get('/article/{post:slug}', [articleController::class, 'show'])->name('article.single');
 Route::get('/articles/category/{category:slug}', [articleController::class, 'list'])->name('article.list');
 
-Route::get('/course/{course:id}', [CourseController::class, 'show'])->name('cours.single');
+Route::get('/course/{course:slug}', [CourseController::class, 'show'])->name('cours.single');
 
 
 Route::post('/comment/stor', [articleController::class, 'storComment'])->name('comment.stor');

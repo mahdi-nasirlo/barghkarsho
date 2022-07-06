@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
 use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +27,16 @@ class AppServiceProvider extends ServiceProvider
     {
         Filament::serving(function () {
             Filament::registerTheme(mix('css/app.css'));
+        });
+
+
+        $data = Setting::all(['name', 'content'])
+            // ->whereIn("name", ['location'])
+            ->keyBy("name")
+            ->toArray();
+
+        view()->composer('*', function ($view) use ($data) {
+            $view->with('information', $data);
         });
     }
 }

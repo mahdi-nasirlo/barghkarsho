@@ -10,10 +10,8 @@
                 <h1 class="heading mb-3">مرکز تخصصی <span class="text-orange typewrite" data-period="2000"
                         data-type="[ &quot;خدمات&quot;, &quot;تعمیرات&quot;, &quot;آموزش&quot]"><span class="wrap">
                             خدمات و تعمیرات</span></span> برق ساختمان </h1>
-                <p class="para-desc text-muted">
-                    کمپین خود را راه اندازی کنید و از تخصص ما در زمینه طراحی و مدیریت صفحه بوت
-                    استرپ
-                    v5 html تبدیل محور بهره مند شوید.
+                <p style="line-height: 12px" class="para-desc text-muted">
+                    {!! $information['index_short_desc']['content'] !!}
                 </p>
                 <div class="mt-4 d-flex justify-content-center justify-content-sm-end">
                     <a href="javascript:void(0)" class="p-2 me-2 btn-cours rounded">
@@ -58,8 +56,7 @@
                     <div class="text-center text-white font-weight-bold">تعمیرات تخصصی</div>
 
                     <div style="" class="text-white px-4 pt-3">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها
-                        و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                        {!! $information['index_section_2_1']['content'] !!}
                     </div>
 
                 </div>
@@ -73,8 +70,7 @@
                     <div class="text-center text-white font-weight-bold">آموزش برق ساختمان</div>
 
                     <div style="" class="text-white px-4 pt-3">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها
-                        و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                        {!! $information['index_section_2_2']['content'] !!}
                     </div>
 
                 </div>
@@ -101,8 +97,7 @@
                             <div class="col-12 d-flex flex-column">
                                 <strong class="text-gray-600 text-center text-center">جک درب پارکینگی</strong>
                                 <div class="text-center" style="font-size: 12px">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                    است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                                    {!! $information['index_section_3_1']['content'] !!}
                                 </div>
                             </div>
                         </div>
@@ -118,8 +113,7 @@
                             <div class="col-12 d-flex flex-column">
                                 <strong class="text-gray-600 text-center"> مداربسته</strong>
                                 <div class="text-center" style="font-size: 12px">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                    است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                                    {!! $information['index_section_3_2']['content'] !!}
                                 </div>
                             </div>
                         </div>
@@ -136,9 +130,7 @@
                             <div class="col-12 d-flex flex-column">
                                 <strong class="text-gray-600 text-center">دزدگیر و اماکن</strong>
                                 <div class="text-center" style="font-size: 12px">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                    گرافیک
-                                    است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                                    {!! $information['index_section_3_3']['content'] !!}
                                 </div>
                             </div>
                         </div>
@@ -154,9 +146,7 @@
                             <div class="col-12 d-flex flex-column">
                                 <strong class="text-gray-600 text-center"> درب بازکن تصویری </strong>
                                 <div class="text-center" style="font-size: 12px">
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                    گرافیک
-                                    است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                                    {!! $information['index_section_3_4']['content'] !!}
                                 </div>
                             </div>
                         </div>

@@ -173,3 +173,7 @@ img,
         max-height: none;
     }
 }
+
+p {
+    margin: 5px !important;
+}
