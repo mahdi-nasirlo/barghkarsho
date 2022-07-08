@@ -44,6 +44,8 @@ class articleController extends Controller
 
         auth()->user()->comments()->create($data);
 
+        Alert::success('دیدگاه شما با موفقیت ثبت شد');
+
         return back();
     }
 }

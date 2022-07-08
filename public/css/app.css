@@ -5147,6 +5147,12 @@ html {
 .z-40{
   z-index: 40;
 }
+.order-2{
+  order: 2;
+}
+.order-1{
+  order: 1;
+}
 .col-span-2{
   grid-column: span 2 / span 2;
 }
@@ -5313,6 +5319,9 @@ html {
 }
 .mt-10{
   margin-top: 2.5rem;
+}
+.mt-60{
+  margin-top: 15rem;
 }
 .block{
   display: block;
@@ -9453,6 +9462,12 @@ select{
 .z-40{
   z-index: 40;
 }
+.order-2{
+  order: 2;
+}
+.order-1{
+  order: 1;
+}
 .col-span-2{
   grid-column: span 2 / span 2;
 }
@@ -9619,6 +9634,9 @@ select{
 }
 .mt-10{
   margin-top: 2.5rem;
+}
+.mt-60{
+  margin-top: 15rem;
 }
 .block{
   display: block;

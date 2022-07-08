@@ -26,13 +26,15 @@
         <div style=" justify-content: end" id="navigation">
             <!-- Navigation Menu-->
             <ul class="navigation-menu justify-content-end">
-                <li class="has-submenu parent-parent-menu-item">
-                    <a class="px-0" href="javascript:void(0)">
-                        <span class="border px-2 py-1 rounded">
-                            درخواست تعمیرکار
-                        </span>
-                    </a>
-                </li>
+                @if (!request()->routeIs('home'))
+                    <li class="has-submenu parent-parent-menu-item">
+                        <a class="px-0" href="{{ route('service') }}">
+                            <span class="border px-2 py-1 rounded">
+                                درخواست تعمیرکار
+                            </span>
+                        </a>
+                    </li>
+                @endif
                 @if (count($categoreis) > 0)
                     <li class="has-submenu parent-parent-menu-item">
                         <a href="javascript:void(0)">مجله تخصصی تعمیرات </a><span class="menu-arrow"></span>

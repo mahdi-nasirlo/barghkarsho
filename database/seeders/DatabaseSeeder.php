@@ -47,6 +47,12 @@ class DatabaseSeeder extends Seeder
                     "content" => "",
                 ],
                 [
+                    'display_name' => "نشانی دفتر برق کارشو به صورت متن",
+                    "name" => "location_text",
+                    'desc' => '',
+                    "content" => "",
+                ],
+                [
                     'display_name' => "توضیحات کوتاه زیر عنوان در صفحه خانه",
                     "name" => "index_short_desc",
                     'desc' => '',

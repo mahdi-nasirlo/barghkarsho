@@ -10,7 +10,7 @@
                 <h1 class="heading mb-3">مرکز تخصصی <span class="text-orange typewrite" data-period="2000"
                         data-type="[ &quot;خدمات&quot;, &quot;تعمیرات&quot;, &quot;آموزش&quot]"><span class="wrap">
                             خدمات و تعمیرات</span></span> برق ساختمان </h1>
-                <p style="line-height: 12px" class="para-desc text-muted">
+                <p style="line-height: 12px" class="para-desc text-muted text-light">
                     {!! $information['index_short_desc']['content'] !!}
                 </p>
                 <div class="mt-4 d-flex justify-content-center justify-content-sm-end">
@@ -18,7 +18,7 @@
                         دوره برق ساختمان
                         <i class="uil uil-video"></i>
                     </a>
-                    <a href="javascript:void(0)" class="p-2 btn-request rounded">
+                    <a href="{{ route('service') }}" class="p-2 btn-request rounded">
                         درخواست تعمیر کار
                     </a>
                 </div>

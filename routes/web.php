@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\articleController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ServiceController;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,7 @@ Route::get('/', function () {
     // dd(config(');
 
     return view('welcome', ['posts' => $post]);
-});
+})->name('home');
 
 
 Route::get('profile', function () {
@@ -41,3 +42,6 @@ Route::get('/course/{course:slug}', [CourseController::class, 'show'])->name('co
 
 
 Route::post('/comment/stor', [articleController::class, 'storComment'])->name('comment.stor');
+
+Route::get('/service', [ServiceController::class, 'index'])->name('service');
+Route::post('/service', [ServiceController::class, 'sort'])->name('service.sort');

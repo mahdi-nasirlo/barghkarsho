@@ -18,7 +18,8 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
         "mohamedsabil83/filament-forms-tinyeditor": "^1.6",
-        "morilog/jalali": "3.*"
+        "morilog/jalali": "3.*",
+        "realrashid/sweet-alert": "^5.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

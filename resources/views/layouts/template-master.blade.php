@@ -54,6 +54,7 @@
     <script src="/theme/js/app.js"></script>
     <script src="{{ asset('/js/home.js') }}"></script>
     <!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
+    @include('sweetalert::alert')
 </body>
 
 </html>
