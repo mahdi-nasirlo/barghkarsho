@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-4 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
                 <a href="#" class="logo-footer">
-                    <img src="images/logo-light.png" alt="" height="24">
+                    {{-- <img src="images/logo-light.png" alt="" height="24"> --}}
                 </a>
                 <p class="mt-4">
                     {!! $information['footer_gooal']['content'] !!}
