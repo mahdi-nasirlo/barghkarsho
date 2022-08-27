@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "3x1io/filament-browser": "^1.0",
         "ariaieboy/filament-jalali-datetime": "^1.0",
         "ariaieboy/filament-jalali-datetimepicker": "^1.0",
         "cviebrock/eloquent-sluggable": "^9.0",
