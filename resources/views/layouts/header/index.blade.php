@@ -60,10 +60,22 @@
                     </a><span class="menu-arrow"></span>
                 </li>
                 <li class="has-submenu parent-menu-item d-flex">
-                    <i style="transform: scaleX(-1)" class="uil uil-arrow-right d-flex align-items-center"></i>
-                    <a class="px-1" href="javascript:void(0)">
-                        ورود
-                    </a>
+                    @auth
+                        <button style="background: none;color: black;border: none"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            خروج
+                        </button>
+
+                        <form id="logout-form" action="{{ route('filament.auth.logout') }}" method="POST"
+                            style="display: none;">
+                            @csrf
+                        </form>
+                    @else
+                        <i style="transform: scaleX(-1)" class="uil uil-arrow-right d-flex align-items-center"></i>
+                        <a class="px-1" href="{{ route('filament.auth.login') }}">
+                            ورود
+                        </a>
+                    @endauth
                 </li>
             </ul>
         </div>

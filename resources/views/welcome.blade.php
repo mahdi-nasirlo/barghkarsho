@@ -31,7 +31,7 @@
         as $admin)
                             {{ $admin->avater }}
                             <div class="avatar mx-auto bg-white">
-                                <a href="">
+                                <a href="tel:{{ $admin->mobile }}">
                                     <img width="30"
                                         src="{{ $admin->avatar ? $admin->avatar : asset('/theme/images/support-img.png') }}"
                                         class="rounded-circle img-fluid" />
