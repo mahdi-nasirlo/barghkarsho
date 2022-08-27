@@ -5,7 +5,7 @@
         x-cloak="-lg"
         x-bind:class="$store.sidebar.isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0 rtl:lg:-translate-x-0 rtl:translate-x-full'" @endif
     @class([
-        'fixed inset-y-0 left-0 rtl:left-auto rtl:right-0 z-20 flex flex-col h-screen overflow-hidden shadow transition-all bg-white filament-sidebar lg:border-r w-[var(--sidebar-width)] lg:z-0',
+        'fixed inset-y-0 left-0 rtl:left-auto rtl:right-0 z-20 flex flex-col h-screen overflow-hidden shadow transition-all bg-white filament-sidebar lg:border-r rtl:lg:border-r-0 rtl:lg:border-l w-[var(--sidebar-width)] lg:z-0',
         'lg:translate-x-0' => !config(
             'filament.layout.sidebar.is_collapsible_on_desktop'
         ),
@@ -36,13 +36,28 @@
         <x-filament::layouts.app.sidebar.start />
         {{ \Filament\Facades\Filament::renderHook('sidebar.start') }}
 
+        @php
+            $navigation = \Filament\Facades\Filament::getNavigation();
+            
+            $collapsedNavigationGroupLabels = collect($navigation)
+                ->filter(fn(\Filament\Navigation\NavigationGroup $group): bool => $group->isCollapsed())
+                ->map(fn(\Filament\Navigation\NavigationGroup $group): string => $group->getLabel())
+                ->values();
+        @endphp
+
+        <script>
+            if (localStorage.getItem('collapsedGroups') === null) {
+                localStorage.setItem('collapsedGroups', JSON.stringify(@js($collapsedNavigationGroupLabels)))
+            }
+        </script>
+
         <ul class="px-6 space-y-6">
-            @foreach (\Filament\Facades\Filament::getNavigation() as $group => ['items' => $items, 'collapsible' => $collapsible])
-                <x-filament::layouts.app.sidebar.group :label="$group" :collapsible="$collapsible">
-                    @foreach ($items as $item)
+            @foreach ($navigation as $group)
+                <x-filament::layouts.app.sidebar.group :label="$group->getLabel()" :icon="$group->getIcon()" :collapsible="$group->isCollapsible()">
+                    @foreach ($group->getItems() as $item)
                         <x-filament::layouts.app.sidebar.item :active="$item->isActive()" :icon="$item->getIcon()" :url="$item->getUrl()"
-                            :badge="$item->getBadge()" :shouldOpenUrlInNewTab="$item->shouldOpenUrlInNewTab()">
-                            {{ rtrim($item->getLabel(), 'S') }}
+                            :badge="$item->getBadge()" :badgeColor="$item->getBadgeColor()" :shouldOpenUrlInNewTab="$item->shouldOpenUrlInNewTab()">
+                            {{ $item->getLabel() }}
                         </x-filament::layouts.app.sidebar.item>
                     @endforeach
                 </x-filament::layouts.app.sidebar.group>

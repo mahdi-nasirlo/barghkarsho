@@ -9,16 +9,19 @@
     ])>
         @foreach ($breadcrumbs as $url => $label)
             <li>
-                <a href="{{ is_int($url) ? '#' : $url }}" @class([
-                    'dark:text-gray-300' => !$loop->last && config('filament.dark_mode'),
-                    'text-gray-500' => $loop->last,
-                    'dark:text-gray-400' => $loop->last && config('filament.dark_mode'),
-                ])>
-                    {{ rtrim($label, 'S') }}
+                <a
+                    href="{{ is_int($url) ? '#' : $url }}"
+                    @class([
+                        'text-gray-500' => $loop->last && (! $loop->first),
+                        'dark:text-gray-300' => ((! $loop->last) || $loop->first) && config('filament.dark_mode'),
+                        'dark:text-gray-400' => $loop->last && (! $loop->first) && config('filament.dark_mode'),
+                    ])
+                >
+                    {{ $label }}
                 </a>
             </li>
 
-            @if (!$loop->last)
+            @if (! $loop->last)
                 <li @class([
                     'h-6 border-r border-gray-300 -skew-x-12',
                     'dark:border-gray-500' => config('filament.dark_mode'),

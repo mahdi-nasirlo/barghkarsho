@@ -95,7 +95,7 @@ return [
     |--------------------------------------------------------------------------
     | Enable sanctum api token management.
     */
-    "enable_sanctum" => false,
+    "enable_sanctum" => true,
     /*
     |--------------------------------------------------------------------------
     | Sanctum permissions
