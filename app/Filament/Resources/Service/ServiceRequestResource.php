@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Actions\Action;
 use Filament\Notifications\Notification;
+use Filament\Tables\Actions\BulkAction;
+use Illuminate\Database\Eloquent\Collection;
 
 class ServiceRequestResource extends Resource
 {
@@ -84,9 +86,6 @@ class ServiceRequestResource extends Resource
 
                         $record->update(['status' => true]);
                     })->requiresConfirmation()
-            ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
@@ -101,7 +100,6 @@ class ServiceRequestResource extends Resource
     {
         return [
             'index' => Pages\ListServiceRequests::route('/'),
-            'edit' => Pages\EditServiceRequest::route('/{record}/edit'),
         ];
     }
 }

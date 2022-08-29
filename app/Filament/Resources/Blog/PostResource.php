@@ -87,6 +87,35 @@ class PostResource extends Resource
                             ->options(function (callable $get) {
                                 return Category::all()->pluck("name", "id")->toArray();
                             })
+                            ->relationship("category", "name")
+                            ->createOptionForm([
+                                Forms\Components\Grid::make()
+                                    ->schema([
+                                        Forms\Components\TextInput::make('name')
+                                            ->label('عنوان')
+                                            ->required()
+                                            ->reactive()
+                                            ->afterStateUpdated(fn ($state, callable $set) => $set('slug', SlugService::createSlug(Category::class, 'slug', $state == null ? "" : $state))),
+                                        Forms\Components\TextInput::make('slug')
+                                            ->label('نامک')
+                                            ->disabled()
+                                            ->required()
+                                            ->unique(Category::class, 'slug', fn ($record) => $record),
+                                    ]),
+                                Forms\Components\Select::make('parent_id')
+                                    ->label('دسته بندی پدر')
+                                    ->relationship('parent', 'name', fn (Builder $query, ?Category $record) => $query->whereNot('id', $record ? $record->id : null)),
+                                Forms\Components\Toggle::make('is_visible')
+                                    ->label('قابل نمایش برای کاربران.')
+                                    ->onIcon('heroicon-s-eye')
+                                    ->offIcon('heroicon-s-eye-off')
+                                    ->default(true),
+                                TinyEditor::make('description')
+                                    ->label("محتوا")
+                                    ->columnSpan([
+                                        'sm' => 2,
+                                    ]),
+                            ])
                             ->searchable()
                             ->required(),
                         JalaliDatePicker::make('published_at')
