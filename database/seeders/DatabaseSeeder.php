@@ -29,6 +29,12 @@ class DatabaseSeeder extends Seeder
         DB::table('settings')->insert(
             [
                 [
+                    "display_name" => "توضیحات مربوط به سئو",
+                    "name" => "seo_default_desc",
+                    "desc" => "این توضیحات برای زمانی در نظر گرفته میشود که توضیحاتی لطاظ نشده باشد",
+                    "content" => ""
+                ],
+                [
                     'display_name' => "شماره موبایل پشتیبانی ( بالای منو )",
                     "name" => "mobile_support",
                     'desc' => "",

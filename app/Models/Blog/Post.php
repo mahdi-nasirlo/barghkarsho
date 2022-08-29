@@ -11,11 +11,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Cviebrock\EloquentSluggable\Sluggable;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use Spatie\Tags\HasTags;
 
 class Post extends Model
 {
     use HasTags;
+    use HasSEO;
     use HasFactory;
     use Sluggable;
 

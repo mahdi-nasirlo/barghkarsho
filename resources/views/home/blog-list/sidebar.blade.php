@@ -22,7 +22,7 @@
                     @foreach ($cats as $cat)
                         @if ($cat->posts->count() > 0)
                             <li>
-                                <a href="jvascript:void(0)">
+                                <a href="{{ route('article.list', $cat) }}">
                                     {{ $cat->name }}
                                 </a>
                                 <span class="float-end">

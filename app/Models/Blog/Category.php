@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cviebrock\EloquentSluggable\Sluggable;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use Spatie\FlareClient\Flare;
 
 class Category extends Model
 {
     use HasFactory;
     use sluggable;
+    use HasSEO;
 
 
     /**
@@ -121,5 +123,20 @@ class Category extends Model
             } else
                 array_push($arr, $child->id);
         }
+    }
+
+    public function tags($array = null)
+    {
+        $posts = $this->posts;
+        $tags = [];
+
+        foreach ($posts as  $post) {
+            foreach ($post->tags->toArray() as $tag) {
+                $tag['name'] = $tag['name']['fa'];
+                array_push($tags, $array ? $tag['name'] : $tag);
+            }
+        }
+
+        return $tags;
     }
 }

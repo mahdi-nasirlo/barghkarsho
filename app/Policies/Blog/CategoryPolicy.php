@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Blog;
 
 use App\Models\User;
-use App\Models\Setting;
+use App\Models\Blog\Category;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SettingPolicy
+class CategoryPolicy
 {
     use HandlesAuthorization;
 
@@ -18,55 +18,55 @@ class SettingPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('view_any_setting');
+        return $user->can('view_any_blog::categories');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Setting $setting)
+    public function view(User $user, Category $category)
     {
-        return $user->can('view_setting');
+        return $user->can('view_blog::categories');
     }
 
     /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user)
     {
-        return $user->can('create_setting');
+        return $user->can('create_blog::categories');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Setting $setting)
+    public function update(User $user, Category $category)
     {
-        return $user->can('update_setting');
+        return $user->can('update_blog::categories');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Setting $setting)
+    public function delete(User $user, Category $category)
     {
-        return $user->can('delete_setting');
+        return $user->can('delete_blog::categories');
     }
 
     /**
@@ -77,19 +77,19 @@ class SettingPolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->can('delete_any_setting');
+        return $user->can('delete_any_blog::categories');
     }
 
     /**
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Setting $setting)
+    public function forceDelete(User $user, Category $category)
     {
-        return $user->can('force_delete_setting');
+        return $user->can('force_delete_blog::categories');
     }
 
     /**
@@ -100,19 +100,19 @@ class SettingPolicy
      */
     public function forceDeleteAny(User $user)
     {
-        return $user->can('force_delete_any_setting');
+        return $user->can('force_delete_any_blog::categories');
     }
 
     /**
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Setting $setting)
+    public function restore(User $user, Category $category)
     {
-        return $user->can('restore_setting');
+        return $user->can('restore_blog::categories');
     }
 
     /**
@@ -123,31 +123,31 @@ class SettingPolicy
      */
     public function restoreAny(User $user)
     {
-        return $user->can('restore_any_setting');
+        return $user->can('restore_any_blog::categories');
     }
 
     /**
      * Determine whether the user can bulk restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, Setting $setting)
+    public function replicate(User $user, Category $category)
     {
-        return $user->can('replicate_setting');
+        return $user->can('replicate_blog::categories');
     }
 
     /**
      * Determine whether the user can reorder.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user, Setting $setting)
+    public function reorder(User $user, Category $category)
     {
-        return $user->can('reorder_setting');
+        return $user->can('reorder_blog::categories');
     }
 
 }

@@ -20,6 +20,7 @@ use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
 use Illuminate\Database\Eloquent\Model;
+use RalphJSmit\Filament\SEO\SEO;
 
 class PostResource extends Resource
 {
@@ -106,6 +107,7 @@ class PostResource extends Resource
                             ->required()
                             ->label('عکس شاخص')
                             ->image(),
+                        SEO::make(),
 
                         Forms\Components\Placeholder::make('created_at')
                             ->label('ساخته شده :')

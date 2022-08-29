@@ -12,6 +12,7 @@
         "3x1io/filament-user": "^1.1",
         "ariaieboy/filament-jalali-datetime": "^1.0",
         "ariaieboy/filament-jalali-datetimepicker": "^1.0",
+        "artesaos/seotools": "^0.22.1",
         "bezhansalleh/filament-shield": "^2.1",
         "cviebrock/eloquent-sluggable": "^9.0",
         "dutchcodingcompany/filament-socialite": "^0.2.2",
@@ -27,6 +28,8 @@
         "livewire/livewire": "^2.10",
         "mohamedsabil83/filament-forms-tinyeditor": "^1.6",
         "morilog/jalali": "3.*",
+        "ralphjsmit/laravel-filament-seo": "^1.0",
+        "ralphjsmit/laravel-seo": "^1.0",
         "realrashid/sweet-alert": "^5.1",
         "saade/filament-laravel-log": "^1.1"
     },
@@ -74,7 +77,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
