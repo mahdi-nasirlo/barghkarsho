@@ -4,7 +4,7 @@ return [
     /**
      * Secure the page behind a custom policy.
      */
-    'authorization' => false,
+    'authorization' => true,
 
     /**
      * The directory(ies) containing the log files.
@@ -59,5 +59,6 @@ return [
     /**
      * Editor font size.
      */
-    'fontSize' => 14
+    'fontSize' => 14,
+
 ];

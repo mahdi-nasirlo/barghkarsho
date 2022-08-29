@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Setting;
+use App\Models\User;
 use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
+use Saade\FilamentLaravelLog\Pages\ViewLog;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
             Filament::registerTheme(mix('css/app.css'));
         });
 
+        // ViewLog::can(function (User $user) {
+        //     return $user->role === Role::Admin;
+        // });
 
         $data = Setting::all(['name', 'content'])
             // ->whereIn("name", ['location'])

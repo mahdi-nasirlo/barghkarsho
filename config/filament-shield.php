@@ -58,10 +58,12 @@ return [
 
         'pages' => [
             'Dashboard',
+            "Browser",
+            "MyProfile"
         ],
 
         'widgets' => [
-            'AccountWidget','FilamentInfoWidget',
+            'AccountWidget', 'FilamentInfoWidget',
         ],
 
         'resources' => [],

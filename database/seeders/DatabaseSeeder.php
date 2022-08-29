@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\User::factory()->create([
-            'name' => 'mahdi',
-            'email' => 'm.nwordpress1223@gmail.com',
-            "password" => Hash::make(66303530),
-            "is_supperUser" => true
-        ]);
+        // \App\Models\User::factory()->create([
+        //     'name' => 'mahdi',
+        //     'email' => 'm.nwordpress1223@gmail.com',
+        //     "password" => Hash::make(66303530),
+        //     "is_supperUser" => true
+        // ]);
 
         DB::table('settings')->insert(
             [
