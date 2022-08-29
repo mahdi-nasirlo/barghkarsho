@@ -4,8 +4,8 @@ namespace App\Filament\Resources\Blog;
 
 use App\Filament\Resources\Blog\PostResource\Pages;
 use App\Filament\Resources\Blog\PostResource\RelationManagers\CommentRelationManager;
-use App\Models\Category;
-use App\Models\Post;
+use App\Models\Blog\Category;
+use App\Models\Blog\Post;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;

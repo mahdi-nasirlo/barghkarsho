@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Shop;
 
 use App\Models\Comment;
 use App\Models\User;
@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Spatie\Permission\Traits\HasRoles;
 use Spatie\Tags\HasTags;
 use Spatie\Tags\Tag;
 
@@ -18,7 +17,7 @@ class Course extends Model
     use HasFactory;
     use Sluggable;
     use HasTags;
-    use HasRoles;
+
 
     protected $fillable = ['title', "attributes", 'short_desc', 'slug', 'desc', 'price', 'inventory', "published_at", "user_id", 'view', 'image', 'user_id'];
 

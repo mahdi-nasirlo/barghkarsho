@@ -4,7 +4,7 @@ namespace App\Filament\Resources\Shop;
 
 use App\Filament\Resources\Shop\CourceResource\RelationManagers\CommentsRelationManager;
 use App\Filament\Resources\Shop\CourceResource\Pages;
-use App\Models\Course;
+use App\Models\Shop\Course;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Filament\Forms;

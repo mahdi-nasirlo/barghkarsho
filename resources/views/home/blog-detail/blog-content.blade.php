@@ -25,8 +25,8 @@
        </div>
 
        @include('home.blog-detail.related', [
-           'related' => \App\Models\Post::all()->where('blog_category_id', $article->category->id)->take(2),
-           'lastArticles' => \App\Models\Post::latest()->take(5)->get(),
+           'related' => \App\Models\Blog\Post::all()->where('blog_category_id', $article->category->id)->take(2),
+           'lastArticles' => \App\Models\Blog\Post::latest()->take(5)->get(),
        ])
 
        @include('layouts.comment.index', [

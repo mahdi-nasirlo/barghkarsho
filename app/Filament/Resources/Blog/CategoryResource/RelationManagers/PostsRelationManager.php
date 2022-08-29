@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Blog\CategoryResource\RelationManagers;
 
-use App\Models\Category;
-use App\Models\Post;
+use App\Models\Blog\Category;
+use App\Models\Blog\Post;
 use Ariaieboy\FilamentJalaliDatetime\JalaliDateTimeColumn;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
 use Cviebrock\EloquentSluggable\Services\SlugService;

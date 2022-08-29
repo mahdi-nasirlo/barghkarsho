@@ -4,7 +4,7 @@ namespace App\Filament\Resources\Blog;
 
 use App\Filament\Resources\Blog\CategoriesResource\Pages;
 use App\Filament\Resources\Blog\CategoryResource\RelationManagers\PostsRelationManager;
-use App\Models\Category;
+use App\Models\Blog\Category;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
