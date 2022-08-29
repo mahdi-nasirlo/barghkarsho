@@ -13,7 +13,8 @@ class Service extends Model
         'name',
         'mobile',
         'message',
-        'item_id'
+        'item_id',
+        "status"
     ];
 
 

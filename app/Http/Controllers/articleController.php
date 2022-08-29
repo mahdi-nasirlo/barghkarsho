@@ -19,7 +19,7 @@ class articleController extends Controller
         SEOMeta::setTitle($post->seo->title ?? $post->title)
             ->addMeta("article:published_time", $post->created_at)
             ->addMeta("revised", $post->updated_at)
-            ->addMeta("author", $post->user->name . " ," . $post->user->email)
+            ->addMeta("author",  $post->seo->author ??  $post->user->name . " ," . $post->user->email)
             ->addMeta("designer", env("DESIGNER"))
             ->addMeta("owner", $post->user->name)
             ->addMeta("category", $post->category->name);

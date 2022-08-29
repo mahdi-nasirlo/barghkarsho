@@ -29,6 +29,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Filament::serving(function () {
             Filament::registerTheme(mix('css/app.css'));
+            Filament::registerNavigationGroups([
+                'سطوح دسترسی',
+                'فروشگاه',
+                'بلاگ',
+                'خدمات'
+            ]);
         });
 
         // ViewLog::can(function (User $user) {

@@ -21,6 +21,7 @@ use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
 use Illuminate\Database\Eloquent\Model;
 use RalphJSmit\Filament\SEO\SEO;
+use Filament\Tables\Actions\Action;
 
 class PostResource extends Resource
 {
@@ -184,6 +185,9 @@ class PostResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('نمایش')
+                    ->url(fn (Post $record): string => route('article.single', $record))
+                    ->openUrlInNewTab()
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

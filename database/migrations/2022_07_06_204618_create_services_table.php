@@ -25,6 +25,8 @@ return new class extends Migration
             $table->bigInteger('mobile');
             $table->text("message")->nullable()->max(1500);
 
+            $table->boolean("status")->default(false);
+
             $table->timestamps();
         });
     }

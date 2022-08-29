@@ -43,6 +43,12 @@ class CustomerResource extends Resource
         return "کاربران";
     }
 
+
+    protected static function getNavigationBadge(): ?string
+    {
+        return User::all()->count();
+    }
+
     public static function form(Form $form): Form
     {
         return $form

@@ -55,7 +55,7 @@ return [
         "request_another" => "برای درخواست یکی دیگر اینجا را کلیک کنید",
     ],
     "profile" => [
-        "account" => "حساب کاربری",
+        "account" => "سطوح دسترسی",
         "profile" => "پروفایل",
         "my_profile" => "پروفایل",
         "personal_info" => [

@@ -3,8 +3,10 @@
 use App\Http\Controllers\articleController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ServiceController;
+use App\Models\Service;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
+use League\OAuth1\Client\Server\Server;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,13 @@ Route::get('/', function () {
 
 
     // dd(config(');
+    $service = Service::get()[0];
+
+    $service->update([
+        "status" => true
+    ]);
+
+    dd($service->status);
 
     return view('welcome', ['posts' => $post]);
 })->name('home');

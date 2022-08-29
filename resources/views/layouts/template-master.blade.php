@@ -8,7 +8,6 @@
 
     {!! SEO::generate() !!}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="30">
     <meta name="copyright" content="برق کارشو - brarghkarsho" />
     <meta name="language" content="fa" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
