@@ -29,12 +29,13 @@
            'lastArticles' => \App\Models\Blog\Post::latest()->take(5)->get(),
        ])
 
-       @include('layouts.comment.index', [
+       {{-- @include('layouts.comment.index', [
            'comments' => $article->comments->where('is_visible', true)->where('parent_id', 0),
            'commentable' => $article,
-       ])
+       ]) --}}
 
-       @include('layouts.comment.comment-form', ['commentable' => $article])
+       @livewire('comment', ['model' => $article], key($article->id))
+       {{-- @include('layouts.comment.comment-form', ['commentable' => $article]) --}}
 
    </div>
 

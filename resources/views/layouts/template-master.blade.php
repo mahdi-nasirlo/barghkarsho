@@ -26,6 +26,7 @@
     <link href="/theme/css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt" />
     <link href="/theme/css/colors/default.css" rel="stylesheet" id="color-opt">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    @livewireStyles
 
 </head>
 
@@ -54,7 +55,15 @@
     <script src="/theme/js/app.js"></script>
     <script src="{{ asset('/js/home.js') }}"></script>
     <!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
-    @include('sweetalert::alert')
+    {{-- @include('sweetalert::alert') --}}
+    @livewireScripts
+
+    {{-- <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
+    <x-livewire-alert::flash />
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <x-livewire-alert::scripts /> --}}
 </body>
 
 </html>
