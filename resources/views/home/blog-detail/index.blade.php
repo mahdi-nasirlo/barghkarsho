@@ -19,7 +19,7 @@
                 @include('home.blog-detail.blog-content')
 
                 @include('home.blog-detail.sidebar', [
-                    'cats' => \App\Models\Blog\Category::latest()->get(),
+                    'cats' => \App\Models\Category::latest()->get(),
                 ])
 
             </div>

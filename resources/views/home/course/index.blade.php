@@ -14,7 +14,7 @@
     @include('home.course.price')
     @include('home.course.content')
     @include('home.course.common-question')
-    @include('home.course.similar', ['papular' => \App\Models\Shop\Course::all()->take(6)])
+    @include('home.course.similar', ['papular' => \App\Models\Course::all()->take(6)])
     <div class="container-xxl">
         @include('layouts.comment.comment-form', ['commentable' => $cours])
         @include('layouts.comment.index', [

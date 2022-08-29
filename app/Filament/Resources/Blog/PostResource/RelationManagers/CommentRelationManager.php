@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Blog\PostResource\RelationManagers;
 
-use App\Models\Blog\Post;
+use App\Models\Post;
 use App\Models\Comment;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models\Blog;
+namespace App\Models;
 
 use App\Models\Comment;
-use App\Models\Blog\Category;
+use App\Models\Category;
 use Spatie\Tags\Tag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -14,7 +14,7 @@
 
 
                 @include('home.blog-list.sidebar', [
-                    'cats' => \App\Models\Blog\Category::latest()->get(),
+                    'cats' => \App\Models\Category::latest()->get(),
                 ])
 
             </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Shop;
+namespace App\Models;
 
 // use App\Models\Address;
 // use App\Models\Comment;

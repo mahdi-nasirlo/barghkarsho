@@ -38,7 +38,7 @@
              <!-- Categories -->
 
              <!-- پست های اخیر -->
-             @if ($lastArticles = App\Models\Blog\Post::latest()->take(3))
+             @if ($lastArticles = App\Models\Post::latest()->take(3))
                  <div class="widget mb-4 pb-2">
                      <h5 class="widget-title">پست های اخیر</h5>
                      <div class="mt-4">

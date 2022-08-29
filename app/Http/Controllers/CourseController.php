@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Blog\Category;
-use App\Models\Shop\Course;
+use App\Models\Category;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
