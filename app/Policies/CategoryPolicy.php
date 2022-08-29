@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Policies\Shop;
+namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CoursePolicy
+class CategoryPolicy
 {
     use HandlesAuthorization;
 
@@ -17,7 +17,7 @@ class CoursePolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('view_any_shop::cource');
+        return $user->can('view_any_blog::categories');
     }
 
     /**
@@ -28,7 +28,7 @@ class CoursePolicy
      */
     public function view(User $user)
     {
-        return $user->can('view_shop::cource');
+        return $user->can('view_blog::categories');
     }
 
     /**
@@ -39,7 +39,7 @@ class CoursePolicy
      */
     public function create(User $user)
     {
-        return $user->can('create_shop::cource');
+        return $user->can('create_blog::categories');
     }
 
     /**
@@ -50,7 +50,7 @@ class CoursePolicy
      */
     public function update(User $user)
     {
-        return $user->can('update_shop::cource');
+        return $user->can('update_blog::categories');
     }
 
     /**
@@ -61,7 +61,7 @@ class CoursePolicy
      */
     public function delete(User $user)
     {
-        return $user->can('delete_shop::cource');
+        return $user->can('delete_blog::categories');
     }
 
     /**
@@ -72,7 +72,7 @@ class CoursePolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->can('delete_any_shop::cource');
+        return $user->can('delete_any_blog::categories');
     }
 
     /**
@@ -83,7 +83,7 @@ class CoursePolicy
      */
     public function forceDelete(User $user)
     {
-        return $user->can('force_delete_shop::cource');
+        return $user->can('force_delete_blog::categories');
     }
 
     /**
@@ -94,7 +94,7 @@ class CoursePolicy
      */
     public function forceDeleteAny(User $user)
     {
-        return $user->can('force_delete_any_shop::cource');
+        return $user->can('force_delete_any_blog::categories');
     }
 
     /**
@@ -105,7 +105,7 @@ class CoursePolicy
      */
     public function restore(User $user)
     {
-        return $user->can('restore_shop::cource');
+        return $user->can('restore_blog::categories');
     }
 
     /**
@@ -116,7 +116,7 @@ class CoursePolicy
      */
     public function restoreAny(User $user)
     {
-        return $user->can('restore_any_shop::cource');
+        return $user->can('restore_any_blog::categories');
     }
 
     /**
@@ -127,7 +127,7 @@ class CoursePolicy
      */
     public function replicate(User $user)
     {
-        return $user->can('replicate_shop::cource');
+        return $user->can('replicate_blog::categories');
     }
 
     /**
@@ -138,7 +138,6 @@ class CoursePolicy
      */
     public function reorder(User $user)
     {
-        return $user->can('reorder_shop::cource');
+        return $user->can('reorder_blog::categories');
     }
-
 }

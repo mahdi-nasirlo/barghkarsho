@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Policies\Blog;
+namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PostPolicy
+class CoursePolicy
 {
     use HandlesAuthorization;
 
@@ -17,7 +17,7 @@ class PostPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('view_any_blog::post');
+        return $user->can('view_any_shop::cource');
     }
 
     /**
@@ -28,7 +28,7 @@ class PostPolicy
      */
     public function view(User $user)
     {
-        return $user->can('view_blog::post');
+        return $user->can('view_shop::cource');
     }
 
     /**
@@ -39,7 +39,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        return $user->can('create_blog::post');
+        return $user->can('create_shop::cource');
     }
 
     /**
@@ -50,7 +50,7 @@ class PostPolicy
      */
     public function update(User $user)
     {
-        return $user->can('update_blog::post');
+        return $user->can('update_shop::cource');
     }
 
     /**
@@ -61,7 +61,7 @@ class PostPolicy
      */
     public function delete(User $user)
     {
-        return $user->can('delete_blog::post');
+        return $user->can('delete_shop::cource');
     }
 
     /**
@@ -72,7 +72,7 @@ class PostPolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->can('delete_any_blog::post');
+        return $user->can('delete_any_shop::cource');
     }
 
     /**
@@ -83,7 +83,7 @@ class PostPolicy
      */
     public function forceDelete(User $user)
     {
-        return $user->can('force_delete_blog::post');
+        return $user->can('force_delete_shop::cource');
     }
 
     /**
@@ -94,7 +94,7 @@ class PostPolicy
      */
     public function forceDeleteAny(User $user)
     {
-        return $user->can('force_delete_any_blog::post');
+        return $user->can('force_delete_any_shop::cource');
     }
 
     /**
@@ -105,7 +105,7 @@ class PostPolicy
      */
     public function restore(User $user)
     {
-        return $user->can('restore_blog::post');
+        return $user->can('restore_shop::cource');
     }
 
     /**
@@ -116,7 +116,7 @@ class PostPolicy
      */
     public function restoreAny(User $user)
     {
-        return $user->can('restore_any_blog::post');
+        return $user->can('restore_any_shop::cource');
     }
 
     /**
@@ -127,7 +127,7 @@ class PostPolicy
      */
     public function replicate(User $user)
     {
-        return $user->can('replicate_blog::post');
+        return $user->can('replicate_shop::cource');
     }
 
     /**
@@ -138,7 +138,6 @@ class PostPolicy
      */
     public function reorder(User $user)
     {
-        return $user->can('reorder_blog::post');
+        return $user->can('reorder_shop::cource');
     }
-
 }
