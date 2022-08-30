@@ -38,6 +38,7 @@
     </div>
     @yield('content')
 
+
     {{-- <div style="margin-top: 300px"> --}}
     @include('layouts.footer.index')
     {{-- </div> --}}

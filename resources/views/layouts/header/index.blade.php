@@ -3,7 +3,7 @@
     <div class="container-xl">
         <!-- Logo container-->
         <div>
-            <a class="logo" href="index.html">
+            <a class="logo" href="/">
                 <img src="/theme/images/logo-dark.png" height="24" alt="">
             </a>
         </div>

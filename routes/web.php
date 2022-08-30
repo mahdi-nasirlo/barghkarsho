@@ -3,6 +3,7 @@
 use App\Http\Controllers\articleController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Livewire\Profile\Profile;
 use App\Models\Service;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
@@ -22,24 +23,11 @@ use League\OAuth1\Client\Server\Server;
 Route::get('/', function () {
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
-
-
-    // dd(config(');
-    $service = Service::get()[0];
-
-    $service->update([
-        "status" => true
-    ]);
-
-    dd($service->status);
-
     return view('welcome', ['posts' => $post]);
 })->name('home');
 
 
-Route::get('profile', function () {
-    return view('welcome');
-})->name("profile");
+Route::get('profile', Profile::class)->middleware('auth')->name("profile");
 
 // Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])->name("auth.google");
 // Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
