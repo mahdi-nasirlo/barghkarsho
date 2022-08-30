@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Livewire\Profile\Profile;
 use App\Models\Service;
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use League\OAuth1\Client\Server\Server;
 
