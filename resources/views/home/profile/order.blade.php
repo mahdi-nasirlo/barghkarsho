@@ -51,9 +51,46 @@
                         </td>
                         <td>{{ $order->price }} هزار تومان <span class="text-muted">برای
                                 {{ $order->courses()->count() }} موارد</span></td>
-                        <td><a href="javascript:void(0)" class="text-primary">
-                                نمایش <i class="uil uil-arrow-right"></i></a>
+                        <td>
+                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#LoginForm"
+                                class="text-primary">
+                                نمایش <i class="uil uil-arrow-right"></i>
+                            </a>
 
+                            <!-- Modal Content Start -->
+                            <div class="modal fade" id="LoginForm" tabindex="-1" aria-labelledby="LoginForm-title"
+                                style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content rounded shadow border-0">
+                                        <div class="modal-header border-bottom">
+                                            <h5 class="modal-title" id="LoginForm-title"> نمایش جزئیات </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="بستن"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="bg-white p-3 rounded box-shadow">
+                                                @foreach ($order->courses as $course)
+                                                    <a href="{{ route('cours.single', $course) }}"
+                                                        class="d-flex align-items-center">
+                                                        <img src="{{ asset('/storage/' . $course->image) }}"
+                                                            class="shadow rounded" style="max-height: 100px;"
+                                                            alt="">
+                                                        <div class="flex-1 text-start ms-3">
+                                                            <h6 class="text-dark mb-0">{{ $course->title }}
+                                                            </h6>
+                                                            {{-- <p class="text-muted mb-0">230 هزار تومان</p> --}}
+                                                        </div>
+                                                        <h6 class="text-dark mb-0">
+                                                            {{ number_format((int) $course->price) }} تومان
+                                                        </h6>
+                                                    </a>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal Content End -->
                         </td>
                     </tr>
                 @endforeach
