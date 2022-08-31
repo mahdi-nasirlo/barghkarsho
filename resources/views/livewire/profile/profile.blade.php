@@ -21,51 +21,7 @@
                     <div class="tab-content" id="pills-tabContent">
                         @include('home.profile.dashboard')
 
-                        <div class="tab-pane fade bg-white shadow rounded p-4 {{ activeClassProfile('order') }}"
-                            id="orders" role="tabpanel" aria-labelledby="order-history">
-                            <div class="table-responsive bg-white shadow rounded">
-                                <table class="table mb-0 table-center table-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="border-bottom">شماره سفارش </th>
-                                            <th scope="col" class="border-bottom">تاریخ </th>
-                                            <th scope="col" class="border-bottom">وضعیت</th>
-                                            <th scope="col" class="border-bottom">مجموع</th>
-                                            <th scope="col" class="border-bottom">اقدام</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">7107</th>
-                                            <td>اردیبهشت 1400</td>
-                                            <td class="text-success">تحویل داده شده </td>
-                                            <td>320 هزار تومان <span class="text-muted">برای 2 موارد</span></td>
-                                            <td><a href="javascript:void(0)" class="text-primary">نمایش <i
-                                                        class="uil uil-arrow-right"></i></a></td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="row">8007</th>
-                                            <td>اردیبهشت 1400</td>
-                                            <td class="text-muted">در حال پردازش </td>
-                                            <td>800 هزار تومان <span class="text-muted">برای 1موارد</span></td>
-                                            <td><a href="javascript:void(0)" class="text-primary">نمایش <i
-                                                        class="uil uil-arrow-right"></i></a></td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="row">8008</th>
-                                            <td>اردیبهشت 1400</td>
-                                            <td class="text-danger">لغو شده </td>
-                                            <td>800 هزار تومان <span class="text-muted">برای 1موارد</span></td>
-                                            <td><a href="javascript:void(0)" class="text-primary">نمایش <i
-                                                        class="uil uil-arrow-right"></i></a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!--end teb pane-->
+                        @include('home.profile.order')
 
                         <livewire:profile.profile-address />
 

@@ -36,7 +36,7 @@
                             </table>
                         </div>
                         <div class="mt-4 pt-2 text-end">
-                            <a href="shop-checkouts.html" class="btn btn-primary">ادامه به پرداخت </a>
+                            <button wire:click='payment' class="btn btn-primary">ادامه به پرداخت </button>
                             <a href="javascript:void(0)" class="btn btn-soft-primary ms-2">بروز رسانی سبد</a>
                         </div>
                     </div>

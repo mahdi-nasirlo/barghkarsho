@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\articleController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Livewire\Cart\Cart;
 use App\Http\Livewire\Profile\Profile;
+use App\Models\Order;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\Shop\Course;
@@ -27,11 +29,10 @@ use League\OAuth1\Client\Server\Server;
 Route::get('/', function () {
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
-    // dd(FacadesCart::getDetails());
     return view('welcome', ['posts' => $post]);
 })->name('home');
 
-Route::prefix("cart")->name("cart.")->group(function () {
+Route::prefix("cart")->middleware("auth")->name("cart.")->group(function () {
     Route::get('/', Cart::class);
 });
 
@@ -50,3 +51,6 @@ Route::post('/comment/stor', [articleController::class, 'storComment'])->name('c
 
 Route::get('/service', [ServiceController::class, 'index'])->name('service');
 Route::post('/service', [ServiceController::class, 'sort'])->name('service.sort');
+
+Route::get('/payment/order/{order}', [CartController::class, 'payment'])->name('payment');
+Route::get('/payment/callback', [CartController::class, 'callback'])->name('payment.callback');

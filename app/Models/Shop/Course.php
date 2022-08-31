@@ -3,6 +3,7 @@
 namespace App\Models\Shop;
 
 use App\Models\Comment;
+use App\Models\Order;
 use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -68,5 +69,10 @@ class Course extends Model implements UseCartable
     public function attributes(): HasMany
     {
         return $this->hasMany(Attribute::class, 'course_id');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
     }
 }

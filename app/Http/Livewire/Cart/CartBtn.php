@@ -16,9 +16,7 @@ class CartBtn extends Component
     {
         $this->course = $course;
 
-        if (Cart::name('shopping')->getItems([
-            'model' => $this->course,
-        ])) {
+        if (Cart::name("shopping")->getItems(['id' => $this->course->id])) {
             $this->btnText = 'ثبت و نهایی سازی خرید     <span style="font-size: 18px">&#10003;</span>';
             $this->link = route("cart.");
         }
@@ -28,11 +26,12 @@ class CartBtn extends Component
     public function addToCart()
     {
 
-        if (empty(Cart::name("shopping")->getItems(['model' => $this->course]))) {
+        if (empty(Cart::name("shopping")->getItems(['id' => $this->course->id]))) {
             session()->flash('message', 'Post successfully updated.');
             $cart = $this->course->addToCart(
                 'shopping',
                 [
+                    "id" => $this->course->id,
                     "price" => $this->course->price,
                     'quantity' => 1
                 ]

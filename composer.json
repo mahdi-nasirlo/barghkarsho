@@ -32,7 +32,8 @@
         "ralphjsmit/laravel-filament-seo": "^1.0",
         "ralphjsmit/laravel-seo": "^1.0",
         "realrashid/sweet-alert": "^5.1",
-        "saade/filament-laravel-log": "^1.1"
+        "saade/filament-laravel-log": "^1.1",
+        "shetabit/payment": "^4.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

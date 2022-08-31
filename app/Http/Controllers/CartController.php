@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Shetabit\Multipay\Invoice;
+use Shetabit\Payment\Facade\Payment;
+use App\Models\Payment as MyPayment;
+use Illuminate\Support\Facades\Auth;
+use Shetabit\Multipay\Exceptions\InvalidPaymentException;
+use Alert;
+use App\Models\MyPayment as ModelsMyPayment;
+use App\Models\Order;
+use Illuminate\Routing\Route;
+
+class CartController extends Controller
+{
+
+    public function payment(Order $order)
+    {
+        $payment_id = md5(uniqid());
+
+        $invoice = new Invoice();
+        $invoice->amount($order->price);
+
+        $payment = Payment::callBackUrl(route('payment.callback', ['payment' => $payment_id]));
+
+        // dd($payment);
+        $payment->purchase($invoice, function ($driver, $transactionId) use ($order, $payment_id) {
+            $order->payments()->create([
+                'resnumber' => $transactionId,
+                'verify_code' => $payment_id
+            ]);
+        });
+
+        return ($payment->pay()->render());
+    }
+
+    public function callback(Request $request)
+    {
+        $payment  = ModelsMyPayment::where('verify_code', $request->payment)->first();
+
+        if (is_null($payment)) {
+            return view('error');
+        }
+
+
+        if ($payment->order->user->id !== Auth::id()) {
+            return view('error');
+        }
+
+
+        // You need to verify the payment to ensure the invoice has been paid successfully.
+        // We use transaction id to verify payments
+        // It is a good practice to add invoice amount as well.
+        try {
+            $receipt = Payment::amount($payment->order->price)->transactionId($payment->resnumber)->verify();
+
+
+            // You can show payment referenceId to the user.
+
+            $payment->update([
+                'status' => true
+            ]);
+
+            $payment->order->update([
+                'status' => 'paid'
+            ]);
+
+            session()->flash("message", "پرداخت با موفقیت انجام شد , خرید شما حداکثر 2 تا 3 روز کاری دیگر ارسال خواهد شد .");
+            return redirect(Route("profile", ['tab' => "order"]));
+        } catch (InvalidPaymentException $exception) {
+            /**
+        when payment is not verified, it will throw an exception.
+        We can catch the exception to handle invalid payments.
+        getMessage method, returns a suitable message that can be used in user interface.
+             **/
+            echo $exception->getMessage();
+        }
+    }
+}
