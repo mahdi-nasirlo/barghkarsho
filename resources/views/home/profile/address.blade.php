@@ -1,5 +1,5 @@
  <div class="tab-pane fade bg-white shadow rounded p-4" id="address" role="tabpanel" aria-labelledby="addresses">
-     <h6 class="text-muted mb-0">به طور پیش فرض آدرس های زیر در صفحه پرداخت استفاده می شود.</h6>
+     <h6 class="text-muted mb-0">به طور پیش فرض آدرس زیر در صفحه پرداخت استفاده می شود.</h6>
 
      <div class="row">
          <div class="col-lg-6 mt-4 pt-2">

@@ -22,8 +22,7 @@
                                 {{ $cours->short_desc }}
                             </p>
                             <div class="mt-4">
-                                <a href="javascript:void(0)" class="btn btn-outline-primary rounded"><i
-                                        class="uil uil-store"></i> ثبت نام در دروه </a>
+                                <livewire:cart.cart-btn :course="$cours">
                             </div>
                         </div>
                     </div>

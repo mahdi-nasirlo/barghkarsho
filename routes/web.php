@@ -3,11 +3,13 @@
 use App\Http\Controllers\articleController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Livewire\Cart\Cart;
 use App\Http\Livewire\Profile\Profile;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Jackiedo\Cart\Facades\Cart as FacadesCart;
 use League\OAuth1\Client\Server\Server;
 
 /*
@@ -24,9 +26,13 @@ use League\OAuth1\Client\Server\Server;
 Route::get('/', function () {
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
+
     return view('welcome', ['posts' => $post]);
 })->name('home');
 
+Route::prefix("cart")->name("cart.")->group(function () {
+    Route::get('/', Cart::class);
+});
 
 Route::get('profile', Profile::class)->middleware('auth')->name("profile");
 

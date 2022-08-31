@@ -21,8 +21,8 @@
                     <div class="tab-content" id="pills-tabContent">
                         @include('home.profile.dashboard')
 
-                        <div class="tab-pane fade bg-white shadow rounded p-4" id="orders" role="tabpanel"
-                            aria-labelledby="order-history">
+                        <div class="tab-pane fade bg-white shadow rounded p-4 {{ activeClassProfile('order') }}"
+                            id="orders" role="tabpanel" aria-labelledby="order-history">
                             <div class="table-responsive bg-white shadow rounded">
                                 <table class="table mb-0 table-center table-nowrap">
                                     <thead>

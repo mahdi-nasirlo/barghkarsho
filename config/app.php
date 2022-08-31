@@ -192,6 +192,7 @@ return [
         App\Providers\AppServiceProvider::class,
         // App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
+        Jackiedo\Cart\CartServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
@@ -211,6 +212,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
+        'Cart' => Jackiedo\Cart\Facades\Cart::class,
     ])->toArray(),
 
 ];

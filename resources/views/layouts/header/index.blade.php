@@ -59,17 +59,32 @@
                     <a href="javascript:void(0)">راهنمای
                     </a><span class="menu-arrow"></span>
                 </li>
+
                 <li class="has-submenu parent-menu-item d-flex">
                     @auth
-                        <button style="background: none;color: black;border: none"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            خروج
-                        </button>
-
-                        <form id="logout-form" action="{{ route('filament.auth.logout') }}" method="POST"
-                            style="display: none;">
-                            @csrf
-                        </form>
+                        <div class="dropdown dropdown-primary">
+                            <button type="button" class="btn my-3 btn-soft-primary px-3 py-1" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="uil uil-user align-middle icons"></i>
+                            </button>
+                            <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3"
+                                style="width: 200px; margin: 0px;">
+                                <a class="dropdown-item text-dark" href="{{ route('profile', ['tab' => 'dashboard']) }}"><i
+                                        class="uil uil-user align-middle me-1"></i> حساب کاربری</a>
+                                <a class="dropdown-item text-dark" href="{{ route('profile', ['tab' => 'order']) }}"><i
+                                        class="uil uil-clipboard-notes align-middle me-1"></i> سفارشات من </a>
+                                <a class="dropdown-item text-dark" href="{{ route('profile', ['tab' => 'address']) }}">
+                                    <i class="uil uil-map-marker h5 align-middle me-2 mb-0"></i> آدرس </a>
+                                <div class="dropdown-divider my-3 border-top"></div>
+                                <button class="dropdown-item text-dark"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+                                        class="uil uil-sign-out-alt align-middle me-1"></i> خروج </button>
+                                <form id="logout-form" action="{{ route('filament.auth.logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
                     @else
                         <i style="transform: scaleX(-1)" class="uil uil-arrow-right d-flex align-items-center"></i>
                         <a class="px-1" href="{{ route('filament.auth.login') }}">
@@ -77,6 +92,9 @@
                         </a>
                     @endauth
                 </li>
+
+                <livewire:cart.cart-header />
+
             </ul>
         </div>
         <!--end navigation-->

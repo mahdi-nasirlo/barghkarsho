@@ -20,6 +20,7 @@
         "filament/forms": "^2.13",
         "filament/spatie-laravel-tags-plugin": "^2.13",
         "guzzlehttp/guzzle": "^7.2",
+        "jackiedo/cart": "^3.0",
         "jantinnerezo/livewire-alert": "^2.2",
         "jeffgreco13/filament-breezy": "^1.3",
         "laravel/framework": "^9.19",
@@ -52,7 +53,10 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": [

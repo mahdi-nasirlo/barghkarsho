@@ -1,5 +1,6 @@
-<div class="tab-pane fade bg-white shadow rounded p-4" id="address" role="tabpanel" aria-labelledby="addresses">
-    <h6 class="text-muted mb-0">به طور پیش فرض آدرس های زیر در صفحه پرداخت استفاده و قابل اصلاح می شود.</h6>
+<div class="tab-pane fade bg-white shadow rounded p-4 {{ activeClassProfile('address') }}" id="address" role="tabpanel"
+    aria-labelledby="addresses">
+    <h6 class="text-muted mb-0">به طور پیش فرض آدرس زیر در صفحه پرداخت استفاده و قابل اصلاح می شود.</h6>
 
     <div class="row">
         <div class="col-12 mt-4 pt-2">

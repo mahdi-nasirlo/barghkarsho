@@ -12,8 +12,12 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\Tags\HasTags;
 use Spatie\Tags\Tag;
 
-class Course extends Model
+use Jackiedo\Cart\Contracts\UseCartable; // Interface
+use Jackiedo\Cart\Traits\CanUseCart;     // Trait
+
+class Course extends Model implements UseCartable
 {
+    use CanUseCart;
     use HasFactory;
     use Sluggable;
     use HasTags;
