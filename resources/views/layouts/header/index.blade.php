@@ -69,6 +69,14 @@
                             </button>
                             <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3"
                                 style="width: 200px; margin: 0px;">
+
+                                @if (auth()->user()->canAccessFilament())
+                                    <a class="dropdown-item border border-danger rounded text-danger"
+                                        href="{{ route('filament.pages.dashboard') }}">
+                                        <i class="text-danger uil uil-user align-middle me-1">
+                                        </i> پنل مدیریت</a>
+                                @endif
+
                                 <a class="dropdown-item text-dark" href="{{ route('profile', ['tab' => 'dashboard']) }}"><i
                                         class="uil uil-user align-middle me-1"></i> حساب کاربری</a>
                                 <a class="dropdown-item text-dark" href="{{ route('profile', ['tab' => 'order']) }}"><i

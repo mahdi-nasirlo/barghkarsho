@@ -26,7 +26,6 @@ use League\OAuth1\Client\Server\Server;
 Route::get('/', function () {
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
-
     return view('welcome', ['posts' => $post]);
 })->name('home');
 

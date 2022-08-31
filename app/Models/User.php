@@ -47,16 +47,7 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessFilament(): bool
     {
-        // $roles = auth()->user()->roles;
-        // return $roles->doesntContain(function ($role) {
-        //     return $role->name == "filament_user";
-        // });
-
-        // if just has filament user role should return false
-        // ******
-        // 1- return user has filament user role or not   **** if not has return
-
-        return true;
+        return auth()->user()->roles()->count() > 0;
     }
 
     public function comments()

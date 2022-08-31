@@ -7,6 +7,7 @@ use App\Models\User;
 use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
 use Saade\FilamentLaravelLog\Pages\ViewLog;
+use Filament\Http\Responses\Auth\Contracts\LoginResponse as LoginResponseContract;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,6 +41,8 @@ class AppServiceProvider extends ServiceProvider
         // ViewLog::can(function (User $user) {
         //     return $user->role === Role::Admin;
         // });
+
+        $this->app->bind(LoginResponseContract::class, \App\Http\Responses\LoginResponse::class);
 
         $data = Setting::all(['name', 'content'])
             // ->whereIn("name", ['location'])
