@@ -239,12 +239,19 @@
                                         class="text-danger">X</a>
                                 </td>
                                 <td class="d-flex">
-                                    <img src="{{ asset('/storage/' . $cartItem->getModel()->image) }}"
-                                        class="shadow rounded" style="max-width: 200px;" alt="">
+                                    <a href="{{ route('cours.single', $cartItem->getModel()) }}">
+                                        <img src="{{ asset('/storage/' . $cartItem->getModel()->image) }}"
+                                            class="shadow rounded" style="max-width: 200px;"
+                                            alt="{{ $cartItem->getModel()->title }}">
+                                    </a>
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-start">
-                                        <h6 class="mb-0 me-3"> {{ $cartItem->getModel()->title }} </h6>
+                                        <h6 class="mb-0 me-3">
+                                            <a href="{{ route('cours.single', $cartItem->getModel()) }}">
+                                                {{ $cartItem->getModel()->title }}
+                                            </a>
+                                        </h6>
                                     </div>
                                 </td>
                                 <td class="text-center fw-bold">{{ number_format($cartItem->getModel()->price) }} تومان

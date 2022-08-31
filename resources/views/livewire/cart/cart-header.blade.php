@@ -44,7 +44,7 @@
                 @if ($countOfCart)
                     <div class="pb-4">
                         @foreach ($carts as $cart)
-                            <a href="javascript:void(0)" class="d-flex align-items-center">
+                            <a href="{{ route('cours.single', $cart->getModel()) }}" class="d-flex align-items-center">
                                 <img src="{{ asset('/storage/' . $cart->getModel()->image) }}" class="shadow rounded"
                                     style="max-height: 30px;" alt="">
                                 <div class="flex-1 text-start ms-3">

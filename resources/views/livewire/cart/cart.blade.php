@@ -23,7 +23,7 @@
                                         <td class="text-center fw-bold">{{ number_format($cartTotalPrice) }} تومان</td>
                                     </tr>
                                     <tr>
-                                        <td class="h6">پست </td>
+                                        <td class="h6">هزینه پست </td>
                                         <td class="text-center fw-bold">{{ number_format(env('DELIVERY_PRICE')) }} تومان
                                         </td>
                                     </tr>
