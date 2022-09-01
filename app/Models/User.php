@@ -24,6 +24,13 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        "last_name",
+        "mobile",
+        "state",
+        "city",
+        "post",
+        "address",
+        "last_name"
     ];
 
     /**
@@ -57,6 +64,6 @@ class User extends Authenticatable implements FilamentUser
 
     public function orders()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class)->latest();
     }
 }

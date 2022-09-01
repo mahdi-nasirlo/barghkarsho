@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Cart;
 
+use App\Models\Order;
 use Jackiedo\Cart\Facades\Cart as FacadesCart;
 use Livewire\Component;
 
@@ -28,9 +29,9 @@ class Cart extends Component
 
         FacadesCart::clearItems();
 
-        return redirect(route('payment', $order));
+        $this->emit('addressUpdate');
 
-        // $this->emit('addressUpdate');
+        return redirect(route("cart.address", $order));
     }
 
     public function render()

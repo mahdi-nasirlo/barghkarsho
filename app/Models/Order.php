@@ -32,4 +32,14 @@ class Order extends Model
     {
         return $this->hasMany(MyPayment::class);
     }
+
+    public function canAccessToPayment()
+    {
+        return $this->status == "unpaid" or !$this->orderHasPayment();
+    }
+
+    public function orderHasPayment()
+    {
+        return $this->payments->isNotEmpty();
+    }
 }

@@ -5,6 +5,12 @@
             {{ session('message') }}
         </div>
     @endif
+
+    @if (session()->has('error'))
+        <div style="margin-top: 10px" class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="table-responsive bg-white shadow rounded">
         <table class="table mb-0 table-center table-nowrap">
             <thead>
@@ -27,7 +33,11 @@
                         <td>
                             @switch($key = $order->status)
                                 @case($key == 'unpaid')
-                                    <span class="text-danger"> پرداخت ناموفق </span>
+                                    @if ($order->canAccessToPayment())
+                                        <span class="text-danger"> در انتظار پرداخت </span>
+                                    @else
+                                        <span class="text-danger"> پرداخت ناموفق </span>
+                                    @endif
                                 @break
 
                                 @case($key == 'paid')
@@ -52,10 +62,18 @@
                         <td>{{ $order->price }} هزار تومان <span class="text-muted">برای
                                 {{ $order->courses()->count() }} موارد</span></td>
                         <td>
+
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#LoginForm"
                                 class="text-primary">
                                 نمایش <i class="uil uil-arrow-right"></i>
                             </a>
+
+                            @if ($order->canAccessToPayment())
+                                <a href="{{ route('cart.address', $order) }}" class="text-success pe-2">
+                                    پرداخت
+                                </a>
+                            @endif
+
 
                             <!-- Modal Content Start -->
                             <div class="modal fade" id="LoginForm" tabindex="-1" aria-labelledby="LoginForm-title"

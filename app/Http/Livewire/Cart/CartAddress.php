@@ -2,14 +2,19 @@
 
 namespace App\Http\Livewire\Cart;
 
+use App\Models\Order;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Illuminate\Support\Facades\Gate;
+
 
 class CartAddress extends Component
 {
     use LivewireAlert;
 
-    protected $listeners = ['addressUpdate' => 'saveinformation'];
+    protected $listeners = ['checkUserInfo' => 'payment'];
 
     public $name = "";
     public $city = "";
@@ -17,7 +22,7 @@ class CartAddress extends Component
     public $address = "";
     public $post = "";
     public $mobile = "";
-    public $checkDelivery;
+
 
     protected $rules = [
         'name' => 'required|min:8',
@@ -25,58 +30,51 @@ class CartAddress extends Component
         'city' => 'required',
         'address' => 'required',
         'post' => 'required',
-        'mobile' => 'required',
+        'mobile' => ['required'],
     ];
 
-    public function mount($checkDelivery)
+    public function payment(Order $order)
     {
-        $this->checkDelivery = $checkDelivery;
-        if (auth()->user()) {
-            $informaion = auth()->user()->address;
+        $this->validate();
 
-            if ($informaion) {
-                $this->name = $informaion->name;
-                $this->state = $informaion->state;
-                $this->city = $informaion->city;
-                $this->address = $informaion->address;
-                $this->post = $informaion->post;
-                $this->mobile = $informaion->mobile;
-            }
-        }
+        return redirect(route("payment", $order));
+    }
+
+
+    public function mount()
+    {
+        $user = auth()->user();
+
+        $this->name = $user->last_name;
+        $this->state = $user->state;
+        $this->city = $user->city;
+        $this->address = $user->address;
+        $this->post = $user->post;
+        $this->mobile = $user->mobile;
     }
 
     public function saveinformation()
     {
         $this->validate();
 
-        if (auth()->user()) {
-            auth()->user()->address()->updateOrCreate(
-                [
-                    'user_id' => auth()->user()->id
-                ],
-                [
-                    'name' => $this->name,
-                    'state' => $this->state,
-                    'city' => $this->city,
-                    'address' => $this->address,
-                    'post' => $this->post,
-                    'mobile' => $this->mobile
-                ]
-            );
+        auth()->user()->update(
+            [
+                'last_name' => $this->name,
+                'state' => $this->state,
+                'city' => $this->city,
+                'address' => $this->address,
+                'post' => $this->post,
+                'mobile' => $this->mobile
+            ]
+        );
 
-            $this->alert('success', 'اطلاعات شما با موفقیت ذخیره شد.', [
-                'position' => 'bottom-start',
-                'timer' => 3000,
-                'toast' => true,
-                'timerProgressBar' => true,
-                'text' => '',
-                'width' => '6000',
-            ]);
-        }
+        session()->flash("message", "اطلاعات با موفقیت ثبت شد.");
     }
 
     public function render()
     {
-        return view('livewire.cart.cart-address');
+        return view('livewire.cart.cart-address')
+            ->extends('layouts.template-master')
+            ->section('content');
     }
 }

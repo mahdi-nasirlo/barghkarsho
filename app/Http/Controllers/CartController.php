@@ -12,13 +12,16 @@ use Alert;
 use App\Models\MyPayment as ModelsMyPayment;
 use App\Models\Order;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Gate;
 
 class CartController extends Controller
 {
 
     public function payment(Order $order)
     {
-        $payment_id = md5(uniqid());
+        // dd($order->orderHasPayment() ? $order->payments[0]->verify_code : md5(uniqid()) . "*****");
+        $payment_id = false ? $order->payments[0]->verify_code : md5(uniqid());
+        // dd($payment_id, $order->orderHasPayment());
 
         $invoice = new Invoice();
         $invoice->amount($order->price);
@@ -27,10 +30,13 @@ class CartController extends Controller
 
         // dd($payment);
         $payment->purchase($invoice, function ($driver, $transactionId) use ($order, $payment_id) {
-            $order->payments()->create([
-                'resnumber' => $transactionId,
-                'verify_code' => $payment_id
-            ]);
+            if ($order->orderHasPayment())
+                $order->payments[0]->update(['verify_code' => $payment_id]);
+            else
+                $order->payments()->create([
+                    'resnumber' => $transactionId,
+                    'verify_code' => $payment_id
+                ]);
         });
 
         return ($payment->pay()->render());
@@ -75,7 +81,17 @@ class CartController extends Controller
         We can catch the exception to handle invalid payments.
         getMessage method, returns a suitable message that can be used in user interface.
              **/
-            echo $exception->getMessage();
+            // echo $exception->getMessage();
+
+            session()->flash("error", $exception->getMessage() . " ( پرداخت ناموفق ) ");
+
+            return redirect(route("profile", ['tab' => "order"]));
         }
+    }
+    public function paymentPage(Order $order)
+    {
+        Gate::authorize("view-payment", $order);
+
+        return view("home.cart.payment", ['order' => $order]);
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Livewire\Cart\Cart;
+use App\Http\Livewire\Cart\CartAddress;
 use App\Http\Livewire\Profile\Profile;
 use App\Models\Order;
 use App\Models\Service;
@@ -29,11 +30,14 @@ use League\OAuth1\Client\Server\Server;
 Route::get('/', function () {
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
+    $order =  Order::find(1);
+    dd($order->orderHasPayment());
     return view('welcome', ['posts' => $post]);
 })->name('home');
 
 Route::prefix("cart")->middleware("auth")->name("cart.")->group(function () {
     Route::get('/', Cart::class);
+    Route::get("/order/{order}", [CartController::class, 'paymentPage'])->name("address");
 });
 
 Route::get('profile', Profile::class)->middleware('auth')->name("profile");
