@@ -33,10 +33,10 @@
                         <td>
                             @switch($key = $order->status)
                                 @case($key == 'unpaid')
-                                    @if ($order->canAccessToPayment())
-                                        <span class="text-danger"> در انتظار پرداخت </span>
-                                    @else
+                                    @if ($order->orderHasPayment())
                                         <span class="text-danger"> پرداخت ناموفق </span>
+                                    @else
+                                        <span class="text-danger"> در انتظار پرداخت </span>
                                     @endif
                                 @break
 

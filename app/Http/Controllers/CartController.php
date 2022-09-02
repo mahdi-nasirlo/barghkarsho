@@ -13,15 +13,14 @@ use App\Models\MyPayment as ModelsMyPayment;
 use App\Models\Order;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
 
     public function payment(Order $order)
     {
-        // dd($order->orderHasPayment() ? $order->payments[0]->verify_code : md5(uniqid()) . "*****");
-        $payment_id = false ? $order->payments[0]->verify_code : md5(uniqid());
-        // dd($payment_id, $order->orderHasPayment());
+        $payment_id = $order->orderHasPayment() ? $order->payments[0]->verify_code : md5(uniqid());
 
         $invoice = new Invoice();
         $invoice->amount($order->price);
@@ -30,8 +29,9 @@ class CartController extends Controller
 
         // dd($payment);
         $payment->purchase($invoice, function ($driver, $transactionId) use ($order, $payment_id) {
+            Log::debug("call back  ::  " . $transactionId . "    ******    " . $payment_id);
             if ($order->orderHasPayment())
-                $order->payments[0]->update(['verify_code' => $payment_id]);
+                $order->payments[0]->update(['resnumber' => $transactionId]);
             else
                 $order->payments()->create([
                     'resnumber' => $transactionId,
@@ -46,6 +46,7 @@ class CartController extends Controller
     {
         $payment  = ModelsMyPayment::where('verify_code', $request->payment)->first();
 
+
         if (is_null($payment)) {
             return view('error');
         }
@@ -54,6 +55,9 @@ class CartController extends Controller
         if ($payment->order->user->id !== Auth::id()) {
             return view('error');
         }
+
+
+        Log::debug("call back  ::  " . $payment->resnumber . "    ******    " . $request->payment);
 
 
         // You need to verify the payment to ensure the invoice has been paid successfully.

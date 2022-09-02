@@ -30,15 +30,13 @@ use League\OAuth1\Client\Server\Server;
 Route::get('/', function () {
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
-    $order =  Order::find(1);
-    dd($order->orderHasPayment());
+    // $order =  Order::find(1);
+    // dd($order->orderHasPayment());
     return view('welcome', ['posts' => $post]);
 })->name('home');
 
-Route::prefix("cart")->middleware("auth")->name("cart.")->group(function () {
-    Route::get('/', Cart::class);
-    Route::get("/order/{order}", [CartController::class, 'paymentPage'])->name("address");
-});
+Route::get("/cart", Cart::class)->name("cart.");
+Route::get("/cart/order/{order}", [CartController::class, "paymentPage"])->name("cart.address")->middleware("auth");
 
 Route::get('profile', Profile::class)->middleware('auth')->name("profile");
 

@@ -36,7 +36,12 @@
                             </table>
                         </div>
                         <div class="mt-4 pt-2 text-end">
-                            <button wire:click='payment' class="btn btn-primary">ادامه به پرداخت </button>
+                            @auth
+                                <button wire:click='payment' class="btn btn-primary">ادامه به پرداخت </button>
+                            @endauth
+                            @guest
+                                <a href="#" class="btn btn-primary"> لطفا وارد شوید </a>
+                            @endguest
                             <a href="javascript:void(0)" class="btn btn-soft-primary ms-2">بروز رسانی سبد</a>
                         </div>
                     </div>
