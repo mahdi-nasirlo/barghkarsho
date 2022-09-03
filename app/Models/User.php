@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Blog\Post;
+use App\Models\Shop\Course;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,7 +32,6 @@ class User extends Authenticatable implements FilamentUser
         "city",
         "post",
         "address",
-        "last_name"
     ];
 
     /**
@@ -65,5 +66,15 @@ class User extends Authenticatable implements FilamentUser
     public function orders()
     {
         return $this->hasMany(Order::class)->latest();
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class)->latest();
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }

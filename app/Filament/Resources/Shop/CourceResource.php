@@ -6,6 +6,7 @@ use App\Filament\Resources\Shop\CourceResource\RelationManagers\CommentsRelation
 use App\Filament\Resources\Shop\CourceResource\Pages;
 use App\Filament\Resources\Shop\CourceResource\RelationManagers\OrdersRelationManager;
 use App\Models\Shop\Course;
+use Ariaieboy\FilamentJalaliDatetime\JalaliDateTimeColumn;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Filament\Forms;
@@ -21,7 +22,11 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Morilog\Jalali\Jalalian;
 
 class CourceResource extends Resource
 {
@@ -196,17 +201,32 @@ class CourceResource extends Resource
                     ->label("نامک")
                     ->searchable()
                     ->sortable(),
-                // Tables\Columns\TextColumn::make('author.name')
-                //     ->label("نویسنده")
-                //     ->searchable()
-                //     ->sortable(),
-                // Tables\Columns\TextColumn::make('category.name')
-                //     ->label("دسته بندی")
-                //     ->searchable()
-                //     ->sortable(),
+                TextColumn::make("inventory")->label("ظرفیت"),
+
+                JalaliDateTimeColumn::make('published_at')->date()->label("منتشر شده"),
+                JalaliDateTimeColumn::make('created_at')->date()->label("ساخته شده")
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('published_at')
+                    ->form([
+                        JalaliDatePicker::make('published_from')
+                            ->label(" تاریخ انتشار از ")
+                            ->placeholder(fn ($state): string => Jalalian::now()->format("d M, Y")),
+                        JalaliDatePicker::make('published_until')
+                            ->label("تاریخ انتشار از")
+                            ->placeholder(fn ($state): string => Jalalian::now()->format("d M, Y")),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['published_from'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['published_until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -223,6 +243,28 @@ class CourceResource extends Resource
             CommentsRelationManager::class
         ];
     }
+
+    public static function getGlobalSearchResultTitle(Model $record): string
+    {
+        return $record->title;
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['title', 'slug', 'user.name', 'price', 'inventory'];
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return [
+            'نویسنده' => $record->user->name,
+        ];
+    }
+
+    // protected static function getGlobalSearchEloquentQuery(): Builder
+    // {
+    //     return parent::getGlobalSearchEloquentQuery()->with(['author', 'category']);
+    // }
 
     public static function getPages(): array
     {

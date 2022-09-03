@@ -49,10 +49,10 @@ class SettingResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label('موقعیت محتوا'),
-                TextColumn::make('display_name')->label('موقعیت محتوا'),
-                TextColumn::make('content')->html()->label('محتوا')->limit(50),
-                TextColumn::make('desc')->label('توضیحات')->html(),
+                TextColumn::make('name')->label('موقعیت محتوا')->searchable()->sortable(),
+                TextColumn::make('display_name')->label('موقعیت محتوا')->searchable()->sortable(),
+                TextColumn::make('content')->html()->label('محتوا')->limit(50)->sortable()->searchable(),
+                TextColumn::make('desc')->label('توضیحات')->html()->sortable()->searchable(),
             ])
             ->filters([
                 //

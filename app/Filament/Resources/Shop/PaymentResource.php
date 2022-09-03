@@ -58,13 +58,13 @@ class PaymentResource extends Resource
         return $table
             ->columns([
                 TextColumn::make("resnumber")
-                    ->label("کد رهگیری بانک"),
-                TextColumn::make("order.price")->label("مبلغ")
+                    ->label("کد رهگیری بانک")->searchable(),
+                TextColumn::make("order.price")->label("مبلغ")->searchable()->sortable()
                     ->formatStateUsing(fn (string $state): string => number_format($state) . " تومان"),
                 TextColumn::make("order.user.name")
                     ->label("کاربر")
                     ->url(fn (MyPayment $record): string => route("filament.resources.shop/customers.edit", $record->order->user)),
-                BooleanColumn::make("status")->label("وضعیت پرداخت")
+                BooleanColumn::make("status")->label("وضعیت پرداخت")->sortable()
 
             ])
             ->filters([

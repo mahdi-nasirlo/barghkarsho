@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Shop;
 
 use App\Filament\Resources\Shop\OrderResource\Pages;
 use App\Filament\Resources\Shop\OrderResource\Pages\ViewOrder;
+use App\Filament\Resources\Shop\OrderResource\RelationManagers\CoursesRelationManager;
 use App\Filament\Resources\Shop\OrderResource\RelationManagers\MyPaymentsRelationManager;
 use App\Models\Order;
 use Filament\Forms;
@@ -21,7 +22,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
-
+use Filament\Tables\Filters\SelectFilter;
 
 class OrderResource extends Resource
 {
@@ -68,28 +69,8 @@ class OrderResource extends Resource
                         'preparation' => 'آماده سازی',
                         "posted" => "ارسال شده",
                         "received" => "دریافت شده"
-                    ])
-                    ->visibleOn('edit'),
-                TextInput::make("tracking_serial")->label("کد پیگیری پست")->visible("edit"),
-
-                Fieldset::make("جزئیات سفارش")
-                    ->schema([
-                        Repeater::make('courses')
-                            ->label("دوره ها")
-                            ->relationship()
-                            ->schema([
-                                TextInput::make('title')->label("عنوان دوره"),
-                                TextInput::make("price")->label("قیمت دوره در حال حاضر")
-                                    ->mask(
-                                        fn (Mask $mask) => $mask
-                                            ->numeric()
-                                            ->thousandsSeparator(','), // Add a separator for thousands.
-                                    ),
-                                FileUpload::make("image")->label("کاور"),
-                            ])
-                    ])
-                    ->columns(2)
-                    ->visibleOn("view")
+                    ]),
+                TextInput::make("tracking_serial")->label("کد پیگیری پست"),
             ]);
     }
 
@@ -97,9 +78,10 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make("tracking_serial")->label("کد پیگیری پست"),
-                TextColumn::make("user.name")->label("کاربر"),
+                TextColumn::make("tracking_serial")->label("کد پیگیری پست")->searchable(),
+                TextColumn::make("user.name")->label("کاربر")->searchable(),
                 TextColumn::make("price")
+                    ->searchable()
                     ->label("مبلغ")
                     ->formatStateUsing(fn (string $state): string => number_format($state) . " تومان"),
                 TextColumn::make("status")
@@ -119,6 +101,16 @@ class OrderResource extends Resource
                     ->label("استان"),
                 TextColumn::make("user.address")
                     ->label("آدرس")
+            ])
+            ->filters([
+                SelectFilter::make('status')->label("وضعیت")
+                    ->options([
+                        'unpaid' => 'درحال پرداخت',
+                        'paid' => 'پرداخت موفق',
+                        'preparation' => 'آماده سازی',
+                        "posted" => "ارسال شده",
+                        "received" => "دریافت شده"
+                    ])
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label("تغییر وضعیت"),
@@ -144,7 +136,8 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            MyPaymentsRelationManager::class
+            CoursesRelationManager::class,
+            MyPaymentsRelationManager::class,
         ];
     }
 

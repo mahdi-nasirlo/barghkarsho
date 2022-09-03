@@ -24,7 +24,7 @@ class Course extends Model implements UseCartable
     use HasTags;
 
 
-    protected $fillable = ['title', "attributes", 'short_desc', 'slug', 'desc', 'price', 'inventory', "published_at", "user_id", 'view', 'image', 'user_id'];
+    protected $fillable = ['title', "attributes", 'short_desc', 'slug', 'desc', 'price', 'inventory', "published_at", 'view', 'image', 'user_id'];
 
     public function sluggable(): array
     {

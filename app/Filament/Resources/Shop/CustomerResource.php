@@ -19,6 +19,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\BooleanColumn;
+use Illuminate\Database\Eloquent\Model;
 use Morilog\Jalali\Jalalian;
 
 class CustomerResource extends Resource
@@ -154,6 +155,17 @@ class CustomerResource extends Resource
         ];
     }
 
+
+    public static function getGlobalSearchResultTitle(Model $record): string
+    {
+        return $record->name;
+    }
+
+    protected static function getGlobalSearchEloquentQuery(): Builder
+    {
+        return parent::getGlobalSearchEloquentQuery()->with(['courses', "posts"]);
+    }
+
     public static function getPages(): array
     {
         return [
@@ -164,6 +176,6 @@ class CustomerResource extends Resource
 
     public static function getGloballySearchableAttributes(): array
     {
-        return ['name', 'email'];
+        return ['name', 'email', 'address', 'city', 'state', 'mobile', 'post'];
     }
 }

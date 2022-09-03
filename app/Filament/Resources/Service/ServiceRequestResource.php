@@ -23,7 +23,7 @@ class ServiceRequestResource extends Resource
 {
     protected static ?string $model = Service::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?string $navigationIcon = 'heroicon-o-ticket';
 
     protected static ?string $slug = 'service/items/request';
 
@@ -60,11 +60,11 @@ class ServiceRequestResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make("name")->label("نام"),
-                TextColumn::make("mobile")->label("شماره همراه"),
-                TextColumn::make("items.name")->label("سرویس"),
-                TextColumn::make("message")->label("پیام"),
-                BooleanColumn::make("status")->label("وضعیت رسیدگی")
+                TextColumn::make("name")->label("نام")->searchable(),
+                TextColumn::make("mobile")->label("شماره همراه")->searchable(),
+                TextColumn::make("items.name")->label("سرویس")->searchable(),
+                TextColumn::make("message")->label("پیام")->searchable(),
+                BooleanColumn::make("status")->label("وضعیت رسیدگی")->sortable()
             ])
             ->filters([
                 //

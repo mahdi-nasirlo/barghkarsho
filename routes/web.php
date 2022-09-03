@@ -30,8 +30,7 @@ use League\OAuth1\Client\Server\Server;
 Route::get('/', function () {
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
-    // $order =  Order::find(1);
-    // dd($order->orderHasPayment());
+    // dd(auth()->user()->courses);
     return view('welcome', ['posts' => $post]);
 })->name('home');
 

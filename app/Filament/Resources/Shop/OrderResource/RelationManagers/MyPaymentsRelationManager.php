@@ -19,6 +19,17 @@ class MyPaymentsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'resnumber';
 
+    public static function getModelLabel(): string
+    {
+        return "تراکنش";
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return "تراکنش ها";
+    }
+
+
     public static function form(Form $form): Form
     {
         return $form
