@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Shop;
 
 use App\Filament\Resources\Shop\CustomerResource\Pages;
 use App\Filament\Resources\Shop\CustomerResource\RelationManagers;
+use App\Filament\Resources\Shop\CustomerResource\RelationManagers\OrdersRelationManager;
 use App\Models\User;
 use Ariaieboy\FilamentJalaliDatetime\JalaliDateTimeColumn;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
@@ -147,6 +148,7 @@ class CustomerResource extends Resource
             // ]),
 
             RelationGroup::make('دیدگاه ها', [
+                OrdersRelationManager::class,
                 RelationManagers\CommentsRelationManager::class,
             ]),
         ];
