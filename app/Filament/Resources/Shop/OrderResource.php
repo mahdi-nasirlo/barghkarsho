@@ -9,8 +9,10 @@ use Filament\Forms;
 use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TextInput\Mask;
 use Filament\Resources\Form;
@@ -67,6 +69,8 @@ class OrderResource extends Resource
                         "received" => "دریافت شده"
                     ])
                     ->visibleOn('edit'),
+                TextInput::make("tracking_serial")->label("کد پیگیری پست")->visible("edit"),
+
                 Fieldset::make("جزئیات سفارش")
                     ->schema([
                         Repeater::make('courses')
@@ -107,8 +111,13 @@ class OrderResource extends Resource
                             "posted" => "ارسال شده",
                             "received" => "دریافت شده"
                         ]
-                    )
-
+                    ),
+                TextColumn::make("user.city")
+                    ->label("شهر"),
+                TextColumn::make("user.state")
+                    ->label("استان"),
+                TextColumn::make("user.address")
+                    ->label("آدرس")
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label("تغییر وضعیت"),
@@ -116,8 +125,11 @@ class OrderResource extends Resource
                     ->label("جزئیات")
                     ->color('info')
                     ->icon('heroicon-o-eye')
-                    ->url(fn (Order $record): string => route('filament.resources.shop/orders.view', $record))
-                    ->openUrlInNewTab()
+                    ->url(fn (Order $record): string => route('filament.resources.shop/orders.view', $record)),
+                Action::make('address')
+                    ->label("اطلاعات پست")
+                    ->color('success')
+                    ->url(fn (Order $record): string => route("filament.resources.shop/customers.edit", $record->user))
             ]);
     }
 

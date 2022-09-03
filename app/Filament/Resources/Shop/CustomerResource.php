@@ -9,6 +9,7 @@ use Ariaieboy\FilamentJalaliDatetime\JalaliDateTimeColumn;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDateTimePicker;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Resources\Form;
@@ -63,6 +64,11 @@ class CustomerResource extends Resource
                             ->required()
                             ->email()
                             ->unique(User::class, 'email', fn ($record) => $record),
+                        TextInput::make("address")->label("آدرس")->disabled()->columnSpan(2),
+                        TextInput::make("city")->label("شهر")->disabled(),
+                        TextInput::make("state")->label("استان")->disabled(),
+                        TextInput::make("post")->label("کد پستی")->disabled(),
+                        TextInput::make("mobile")->label("موبایل")->disabled(),
                     ])
                     ->columns([
                         'sm' => 2,
