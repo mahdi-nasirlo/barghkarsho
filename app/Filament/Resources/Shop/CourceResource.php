@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Shop;
 
 use App\Filament\Resources\Shop\CourceResource\RelationManagers\CommentsRelationManager;
 use App\Filament\Resources\Shop\CourceResource\Pages;
+use App\Filament\Resources\Shop\CourceResource\RelationManagers\OrdersRelationManager;
 use App\Models\Shop\Course;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -218,6 +219,7 @@ class CourceResource extends Resource
     public static function getRelations(): array
     {
         return [
+            OrdersRelationManager::class,
             CommentsRelationManager::class
         ];
     }

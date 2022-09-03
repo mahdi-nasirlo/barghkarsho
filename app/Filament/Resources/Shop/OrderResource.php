@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Shop;
 
 use App\Filament\Resources\Shop\OrderResource\Pages;
 use App\Filament\Resources\Shop\OrderResource\Pages\ViewOrder;
+use App\Filament\Resources\Shop\OrderResource\RelationManagers\MyPaymentsRelationManager;
 use App\Models\Order;
 use Filament\Forms;
 use Filament\Tables\Actions\Action;
@@ -143,7 +144,7 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            MyPaymentsRelationManager::class
         ];
     }
 
