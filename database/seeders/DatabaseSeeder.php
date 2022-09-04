@@ -26,6 +26,19 @@ class DatabaseSeeder extends Seeder
         //     "is_supperUser" => true
         // ]);
 
+        DB::table("courses")->insert(
+            [
+                "user_id" => 1,
+                "title" => "jkllkasdf",
+                "slug" => "sdlkjfsdlkj",
+                "image" => "lkfdasjlfkjdslkfj",
+                "desc" => "lkdjflsdf",
+                "short_desc" => "lkjlkjljkljklj",
+                "price" => 100000,
+                "inventory" => 10,
+            ]
+        );
+
         DB::table('settings')->insert(
             [
                 [

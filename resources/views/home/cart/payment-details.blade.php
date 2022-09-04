@@ -23,7 +23,7 @@
                     </tr>
                 </tbody>
             </table>
-
+            <livewire:cart.discount />
 
             <div class="mt-4 pt-2">
                 <livewire:cart.payment-btn :order="$order" />

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Shop\Course;
+use App\Models\Shop\Discount;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,8 +17,35 @@ class Order extends Model
         'status',
         'price',
         'user_id',
-        'course_id'
+        'course_id',
+        'discount_percent'
     ];
+
+    protected $appends = [
+        'price_without_delivery',
+        'amount_of_discount',
+        'total_price',
+    ];
+
+    public function getTotalPriceAttribute()
+    {
+        return $this->attributes['price'] - $this->amount_of_discount;
+    }
+
+    public function getPriceWithoutDeliveryAttribute()
+    {
+        return $this->attributes['price'] - env("DELIVERY_PRICE");
+    }
+
+    public function getAmountOfDiscountAttribute()
+    {
+
+        $percent = $this->attributes['discount_percent'] === null
+            ? 0
+            : $this->attributes['discount_percent'] / 100;
+
+        return $percent * $this->price_without_delivery;
+    }
 
     public function user()
     {
@@ -41,5 +70,10 @@ class Order extends Model
     public function orderHasPayment()
     {
         return $this->payments->isNotEmpty();
+    }
+
+    public function discount()
+    {
+        return $this->belongsTo(Discount::class);
     }
 }

@@ -59,8 +59,16 @@
                                 @default
                             @endswitch
                         </td>
-                        <td>{{ $order->price }} هزار تومان <span class="text-muted">برای
-                                {{ $order->courses()->count() }} موارد</span></td>
+                        <td>
+                            @if ($order->discount_percent)
+                                <del class="text-danger text-sm">{{ $order->price }}</del>
+                                {{ $order->total_price }} هزار تومان
+                            @else
+                                {{ $order->total_price }} هزار تومان
+                            @endif
+                            <span class="text-muted">برای
+                                {{ $order->courses()->count() }} موارد</span>
+                        </td>
                         <td>
 
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#LoginForm"

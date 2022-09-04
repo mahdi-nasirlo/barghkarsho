@@ -29,7 +29,7 @@
                     </div>
                     <!--end col-->
 
-                    @include('home.cart.payment-details')
+                    <livewire:cart.discount :order='$order'>
                 </div>
             </div>
             <!--end row-->

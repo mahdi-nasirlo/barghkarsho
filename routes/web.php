@@ -13,6 +13,7 @@ use App\Models\Setting;
 use App\Models\Shop\Course;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Jackiedo\Cart\Facades\Cart as CartCart;
 use Jackiedo\Cart\Facades\Cart as FacadesCart;
 use League\OAuth1\Client\Server\Server;
 
@@ -30,7 +31,7 @@ use League\OAuth1\Client\Server\Server;
 Route::get('/', function () {
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
-    // dd(auth()->user()->courses);
+
     return view('welcome', ['posts' => $post]);
 })->name('home');
 

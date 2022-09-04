@@ -23,7 +23,7 @@ class CartController extends Controller
         $payment_id = $order->orderHasPayment() ? $order->payments[0]->verify_code : md5(uniqid());
 
         $invoice = new Invoice();
-        $invoice->amount($order->price);
+        $invoice->amount($order->total_price);
 
         $payment = Payment::callBackUrl(route('payment.callback', ['payment' => $payment_id]));
 
@@ -64,7 +64,7 @@ class CartController extends Controller
         // We use transaction id to verify payments
         // It is a good practice to add invoice amount as well.
         try {
-            $receipt = Payment::amount($payment->order->price)->transactionId($payment->resnumber)->verify();
+            $receipt = Payment::amount($payment->order->total_price)->transactionId($payment->resnumber)->verify();
 
 
             // You can show payment referenceId to the user.
