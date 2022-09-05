@@ -1,10 +1,7 @@
 <?php
 
-namespace App\Filament\Resources\Shop;
+namespace App\Filament\Resources\Shop\DiscountItemResource\RelationManagers;
 
-use App\Filament\Resources\Shop\CourceResource\RelationManagers\CommentsRelationManager;
-use App\Filament\Resources\Shop\CourceResource\Pages;
-use App\Filament\Resources\Shop\CourceResource\RelationManagers\OrdersRelationManager;
 use App\Models\Shop\Course;
 use Ariaieboy\FilamentJalaliDatetime\JalaliDateTimeColumn;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
@@ -14,37 +11,26 @@ use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TextInput\Mask;
 use Filament\Resources\Form;
-use Filament\Resources\Resource;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use Morilog\Jalali\Jalalian;
 
-class CourceResource extends Resource
+class CourseRelationManager extends RelationManager
 {
-    protected static ?string $model = Course::class;
-
-    protected static ?string $slug = 'shop/courses';
+    protected static string $relationship = 'courses';
 
     protected static ?string $recordTitleAttribute = 'title';
-
-    protected static ?string $navigationGroup = 'فروشگاه';
-
-    protected static ?string $navigationIcon = 'heroicon-o-video-camera';
-
-    protected static ?int $navigationSort = 2;
-
-    protected static ?string $inverseRelationship = 'section';
 
     public static function getModelLabel(): string
     {
@@ -55,6 +41,7 @@ class CourceResource extends Resource
     {
         return "دوره ها";
     }
+
 
     public static function form(Form $form): Form
     {
@@ -91,7 +78,7 @@ class CourceResource extends Resource
                                     ->thousandsSeparator(','), // Add a separator for thousands.
                             )
                             ->label('قیمت')
-                            ->helperText(fn (Course $record) => $record->discountItems ? " قیمت دوره با اعمال تخفیف " . number_format($record->discounted_price) . " تومان می باشد. " : "")
+                            ->helperText(fn (Course $record) => $record->discount ? " قیمت دوره با اعمال تخفیف " . number_format($record->discounted_price) . " تومان می باشد. " : "")
                             ->numeric()
                             ->suffix('تومان')
                             ->rules(['integer', 'min:0'])
@@ -99,7 +86,7 @@ class CourceResource extends Resource
 
                         Forms\Components\Select::make('discount_id')
                             ->label("تخفیف")
-                            ->relationship('discountItems', 'percent')
+                            ->relationship('discount', 'percent')
                             ->nullable()
                             ->createOptionForm([
                                 Forms\Components\Grid::make()
@@ -219,7 +206,6 @@ class CourceResource extends Resource
                 Tables\Columns\TextColumn::make('view')
                     ->label("بازدید")
                     ->sortable(),
-
                 TextColumn::make("price")
                     ->label("قیمت")
                     ->html()
@@ -260,50 +246,18 @@ class CourceResource extends Resource
                             );
                     }),
             ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+                Tables\Actions\AssociateAction::make(),
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DissociateAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
+                Tables\Actions\DissociateBulkAction::make(),
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            OrdersRelationManager::class,
-            CommentsRelationManager::class
-        ];
-    }
-
-    public static function getGlobalSearchResultTitle(Model $record): string
-    {
-        return $record->title;
-    }
-
-    public static function getGloballySearchableAttributes(): array
-    {
-        return ['title', 'slug', 'user.name', 'price', 'inventory'];
-    }
-
-    public static function getGlobalSearchResultDetails(Model $record): array
-    {
-        return [
-            'نویسنده' => $record->user->name,
-        ];
-    }
-
-    // protected static function getGlobalSearchEloquentQuery(): Builder
-    // {
-    //     return parent::getGlobalSearchEloquentQuery()->with(['author', 'category']);
-    // }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListCources::route('/'),
-            'create' => Pages\CreateCource::route('/create'),
-            'edit' => Pages\EditCource::route('/{record}/edit'),
-        ];
     }
 }

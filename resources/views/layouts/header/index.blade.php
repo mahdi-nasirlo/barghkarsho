@@ -23,6 +23,16 @@
             </div>
         </div>
 
+        @php
+            
+            $courses = \App\Models\Shop\Course::all()
+                ->where('inventory', '>', 0)
+                ->where('published_at', '<', now());
+            
+            $categoreis = \App\Models\Blog\Category::all()
+                ->where('is_visible', true)
+                ->where('parent_id', 0);
+        @endphp
         <div style=" justify-content: end" id="navigation">
             <!-- Navigation Menu-->
             <ul class="navigation-menu justify-content-end">

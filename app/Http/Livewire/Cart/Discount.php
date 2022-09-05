@@ -29,22 +29,21 @@ class Discount extends Component
     {
         $this->validate();
 
-        // if ($this->discount) {
-        //     session()->flash("discountError", " کد تخفیف قبلا اعمال شده است.");
-        // } else {
-        //     $discount = ShopDiscount::where("code", $this->code)->whereDate('expired_at', ">", date("Y-m-d h:i:s"));
+        if ($this->discount) {
+            session()->flash("discountError", " کد تخفیف قبلا اعمال شده است.");
+        } else {
+            $discount = ShopDiscount::where("code", $this->code)->whereDate('expired_at', ">", date("Y-m-d h:i:s"));
 
+            if ($discount->count() > 0) {
 
-        //     if ($discount->count() > 0) {
+                $this->order->update([
+                    'discount_percent' => $discount->first()->percent
+                ]);
 
-        //         $this->order->update([
-        //             'discount_percent' => $discount->first()->percent
-        //         ]);
-
-        //         $this->discount = $discount->first();
-        //         session()->flash("discount", $discount->first()->percent . " درصد تخفیف تایید شد.");
-        //     }
-        // }
+                $this->discount = $discount->first()->percent;
+            } else
+                session()->flash("discountError", "کد تایید قابل استفاده نمی باشد.");
+        }
     }
     public function render()
     {

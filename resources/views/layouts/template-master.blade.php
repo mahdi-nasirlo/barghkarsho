@@ -31,10 +31,7 @@
 
 <body>
     <div class="mb-5">
-        @include('layouts.header.index', [
-            'courses' => \App\Models\Shop\Course::all()->where('inventory', '>', 0)->where('published_at', '<', now()),
-            'categoreis' => \App\Models\Blog\Category::all()->where('is_visible', true)->where('parent_id', 0),
-        ])
+        @include('layouts.header.index')
     </div>
     @yield('content')
 

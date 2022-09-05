@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\Shop;
 
-use App\Filament\Resources\Shop\DiscountResource\Pages;
-use App\Filament\Resources\Shop\DiscountResource\RelationManagers;
-use App\Models\Shop\Discount;
+use App\Filament\Resources\Shop\DiscountItemResource\Pages;
+use App\Filament\Resources\Shop\DiscountItemResource\RelationManagers;
+use App\Filament\Resources\Shop\DiscountItemResource\RelationManagers\CourseRelationManager;
+use App\Models\Shop\DiscountItem;
 use Ariaieboy\FilamentJalaliDatetime\JalaliDateTimeColumn;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDateTimePicker;
 use Filament\Forms;
@@ -17,27 +18,27 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class DiscountResource extends Resource
+class DiscountItemResource extends Resource
 {
-    protected static ?string $model = Discount::class;
+    protected static ?string $model = DiscountItem::class;
 
 
-    protected static ?string $recordTitleAttribute = 'code';
+
+    protected static ?string $recordTitleAttribute = 'percent';
 
     protected static ?string $navigationGroup = 'تخفیف %';
 
-    protected static ?string $navigationIcon = 'heroicon-o-gift';
-
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
 
     public static function getModelLabel(): string
     {
-        return "کد تخفیف";
+        return "تخفیف";
     }
 
     public static function getPluralModelLabel(): string
     {
-        return "کدهای تخفیف";
+        return "تخفیفات موردی";
     }
 
     public static function form(Form $form): Form
@@ -46,7 +47,6 @@ class DiscountResource extends Resource
             ->schema([
                 Forms\Components\Card::make()
                     ->schema([
-                        TextInput::make("code")->label("کد تخفیف"),
                         TextInput::make("percent")
                             ->label("درصد")
                             ->numeric()
@@ -70,9 +70,6 @@ class DiscountResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make("code")
-                    ->label("کد تخفیف")
-                    ->searchable(),
                 TextColumn::make("percent")
                     ->label("درصد")
                     ->sortable(),
@@ -88,20 +85,19 @@ class DiscountResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-
     public static function getRelations(): array
     {
         return [
-            //
+            CourseRelationManager::class
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDiscounts::route('/'),
-            'create' => Pages\CreateDiscount::route('/create'),
-            'edit' => Pages\EditDiscount::route('/{record}/edit'),
+            'index' => Pages\ListDiscountItems::route('/'),
+            'create' => Pages\CreateDiscountItem::route('/create'),
+            'edit' => Pages\EditDiscountItem::route('/{record}/edit'),
         ];
     }
 }

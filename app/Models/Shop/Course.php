@@ -5,6 +5,7 @@ namespace App\Models\Shop;
 use App\Models\Comment;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Shop\DiscountItem;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,6 +26,15 @@ class Course extends Model implements UseCartable
 
 
     protected $fillable = ['title', "attributes", 'short_desc', 'slug', 'desc', 'price', 'inventory', "published_at", 'view', 'image', 'user_id'];
+
+    protected $appends = [
+        'discounted_price'
+    ];
+
+    public function getDiscountedPriceAttribute()
+    {
+        return $this->discountItems ? (int) $this->attributes['price'] - ($this->attributes['price'] *  ($this->discountItems->percent / 100)) : $this->attributes['price'];
+    }
 
     public function sluggable(): array
     {
@@ -74,5 +84,10 @@ class Course extends Model implements UseCartable
     public function orders()
     {
         return $this->belongsToMany(Order::class);
+    }
+
+    public function discountItems()
+    {
+        return $this->belongsTo(DiscountItem::class, "discount_id");
     }
 }

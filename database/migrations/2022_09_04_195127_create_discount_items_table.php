@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->integer("discount_percent")->nullable();
+        Schema::create('discount_items', function (Blueprint $table) {
+            $table->id();
+            $table->dateTime("expired_at");
+            $table->integer("percent")->max(100)->min(0);
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('discount_items');
     }
 };
