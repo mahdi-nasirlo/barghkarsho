@@ -46,15 +46,19 @@ class DiscountResource extends Resource
             ->schema([
                 Forms\Components\Card::make()
                     ->schema([
-                        TextInput::make("code")->label("کد تخفیف"),
+                        TextInput::make("code")
+                            ->label("کد تخفیف")
+                            ->required(),
                         TextInput::make("percent")
                             ->label("درصد")
                             ->numeric()
                             ->maxValue(100)
+                            ->required()
                             ->minValue(0)
                             ->suffix('%')
                             ->default(0),
                         JalaliDateTimePicker::make("expired_at")
+                            ->required()
                             ->label("تاریخ انقضا")
                     ])
                     ->columns([

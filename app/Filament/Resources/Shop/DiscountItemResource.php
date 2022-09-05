@@ -48,6 +48,7 @@ class DiscountItemResource extends Resource
                 Forms\Components\Card::make()
                     ->schema([
                         TextInput::make("percent")
+                            ->required()
                             ->label("درصد")
                             ->numeric()
                             ->maxValue(100)
@@ -55,6 +56,7 @@ class DiscountItemResource extends Resource
                             ->suffix('%')
                             ->default(0),
                         JalaliDateTimePicker::make("expired_at")
+                            ->required()
                             ->label("تاریخ انقضا")
                     ])
                     ->columns([

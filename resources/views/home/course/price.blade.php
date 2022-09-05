@@ -10,7 +10,12 @@
         <tbody>
             <tr>
                 <td>{{ $cours->title }}</td>
-                <td>{{ number_format($cours->price) }} تومان</td>
+                <td>
+                    @if ($cours->discountItem)
+                        <del class="text-danger">{{ number_format($cours->price) }}</del>
+                    @endif
+                    {{ number_format($cours->discounted_price) }} تومان
+                </td>
                 <td>{{ $cours->user->name }}</td>
             </tr>
         </tbody>

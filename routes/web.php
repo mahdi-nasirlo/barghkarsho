@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 use Jackiedo\Cart\Facades\Cart as CartCart;
 use Jackiedo\Cart\Facades\Cart as FacadesCart;
 use League\OAuth1\Client\Server\Server;
+use Jackiedo\Cart\Facades\Cart as CartShop;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +34,6 @@ use League\OAuth1\Client\Server\Server;
 Route::get('/', function () {
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
-    dd(Course::all()->first()->discounted_price);
     return view('welcome', ['posts' => $post]);
 })->name('home');
 

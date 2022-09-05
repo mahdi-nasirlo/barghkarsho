@@ -211,7 +211,7 @@ class CourseRelationManager extends RelationManager
                     ->html()
                     ->getStateUsing(function (Course $record) {
 
-                        return $record->discountItems
+                        return $record->discountItem
                             ?  '<del style="color: red;" >' . number_format($record->price) . "</del>  " . number_format($record->discounted_price)
                             : number_format($record->price);
                     }),

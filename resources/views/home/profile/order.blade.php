@@ -61,10 +61,10 @@
                         </td>
                         <td>
                             @if ($order->discount_percent)
-                                <del class="text-danger text-sm">{{ $order->price }}</del>
-                                {{ $order->total_price }} هزار تومان
+                                <del class="text-danger text-sm">{{ number_format($order->price) }}</del>
+                                {{ number_format($order->total_price) }} هزار تومان
                             @else
-                                {{ $order->total_price }} هزار تومان
+                                {{ number_format($order->total_price) }} هزار تومان
                             @endif
                             <span class="text-muted">برای
                                 {{ $order->courses()->count() }} موارد</span>
@@ -104,10 +104,15 @@
                                                         <div class="flex-1 text-start ms-3">
                                                             <h6 class="text-dark mb-0">{{ $course->title }}
                                                             </h6>
-                                                            {{-- <p class="text-muted mb-0">230 هزار تومان</p> --}}
+                                                            @if ($course->discountItem)
+                                                                <p class="text-muted mb-0">
+                                                                    {{ number_format((int) $course->price) }}
+                                                                    هزار
+                                                                    تومان</p>
+                                                            @endif
                                                         </div>
                                                         <h6 class="text-dark mb-0">
-                                                            {{ number_format((int) $course->price) }} تومان
+                                                            {{ number_format((int) $course->discounted_price) }} تومان
                                                         </h6>
                                                     </a>
                                                 @endforeach

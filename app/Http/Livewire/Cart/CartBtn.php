@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Cart;
 
-use Illuminate\Support\Facades\Log;
 use Jackiedo\Cart\Facades\Cart;
 use Livewire\Component;
 
@@ -27,7 +26,7 @@ class CartBtn extends Component
     {
 
         if (empty(Cart::name("shopping")->getItems(['id' => $this->course->id]))) {
-            session()->flash('message', 'Post successfully updated.');
+
             $cart = $this->course->addToCart(
                 'shopping',
                 [
@@ -36,6 +35,16 @@ class CartBtn extends Component
                     'quantity' => 1
                 ]
             );
+
+            if ($this->course->discountItem) {
+                $cart = Cart::name('shopping');
+
+                $action = $cart->applyAction([
+                    'id' => $this->course->id,
+                    'title' => 'Discount 10%',
+                    'value' => '-18%'
+                ]);
+            }
         }
 
         $this->btnText = 'ثبت و نهایی سازی خرید     <span style="font-size: 18px">&#10003;</span>';

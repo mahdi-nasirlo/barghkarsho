@@ -91,7 +91,7 @@ class CourceResource extends Resource
                                     ->thousandsSeparator(','), // Add a separator for thousands.
                             )
                             ->label('قیمت')
-                            ->helperText(fn (Course $record) => $record->discountItems ? " قیمت دوره با اعمال تخفیف " . number_format($record->discounted_price) . " تومان می باشد. " : "")
+                            ->helperText(fn (Course $record) => $record->discountItem ? " قیمت دوره با اعمال تخفیف " . number_format($record->discounted_price) . " تومان می باشد. " : "")
                             ->numeric()
                             ->suffix('تومان')
                             ->rules(['integer', 'min:0'])
@@ -99,7 +99,7 @@ class CourceResource extends Resource
 
                         Forms\Components\Select::make('discount_id')
                             ->label("تخفیف")
-                            ->relationship('discountItems', 'percent')
+                            ->relationship('discountItem', 'percent')
                             ->nullable()
                             ->createOptionForm([
                                 Forms\Components\Grid::make()
@@ -214,6 +214,7 @@ class CourceResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->label("عنوان")
                     ->searchable()
+                    ->url(fn (Course $record) => route("cours.single", $record))
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('view')
@@ -225,7 +226,7 @@ class CourceResource extends Resource
                     ->html()
                     ->getStateUsing(function (Course $record) {
 
-                        return $record->discountItems
+                        return $record->discountItem
                             ?  '<del style="color: red;" >' . number_format($record->price) . "</del>  " . number_format($record->discounted_price)
                             : number_format($record->price);
                     }),

@@ -4,11 +4,28 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-7">
                         <div class="title-heading mt-4">
-                            {{-- <div class="alert alert-white alert-pills shadow" role="alert">
-                                <span class="badge rounded-pill bg-danger me-1">ورژن 3.1.1 </span>
-                                <span class="content"> ساخته شده برای <span class="text-primary">همه ی مشاغل </span> شما
-                                    به لنـدریــک نیاز دارید..</span>
-                            </div> --}}
+                            <div class="alert alert-white alert-pills shadow mb-1" role="alert">
+                                @if ($cours->discountItem)
+                                    <span class="badge rounded-pill bg-danger me-1">% {{ $cours->discountItem->percent }}
+                                    </span>
+                                    <span class="content">
+                                        <del class="mx-2">
+                                            {{ number_format($cours->price) }}
+                                        </del>
+                                        <span class="text-primary">
+                                            {{ number_format($cours->discounted_price) }}
+                                        </span>
+                                        تومان
+                                    </span>
+                                @else
+                                    <span class="content">
+                                        <span class="text-primary">
+                                            {{ number_format($cours->discounted_price) }}
+                                        </span>
+                                        تومان
+                                    </span>
+                                @endif
+                            </div>
                             <h1 class="heading mb-3">
                                 {{ $cours->title }}
                                 {{-- پیشرو در تجارت دیجیتال برای --}}

@@ -254,7 +254,9 @@
                                         </h6>
                                     </div>
                                 </td>
-                                <td class="text-center fw-bold">{{ number_format($cartItem->getModel()->price) }} تومان
+                                <td class="text-center fw-bold">
+                                    <del class="text-danger">{{ number_format($cartItem->getModel()->price) }}</del>
+                                    {{ number_format($cartItem->getModel()->discounted_price) }} تومان
                                 </td>
                             </tr>
                         @endforeach
