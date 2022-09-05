@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Blog\Post;
+use App\Models\Shop\Discount;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PostPolicy
+class DiscountPolicy
 {
     use HandlesAuthorization;
 
@@ -18,55 +18,55 @@ class PostPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('view_any_blog::post');
+        return $user->can('view_any_shop::discount');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Shop\Discount  $discount
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Post $post)
+    public function view(User $user, Discount $discount)
     {
-        return $user->can('view_blog::post');
+        return $user->can('view_shop::discount');
     }
 
     /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Shop\Discount  $discount
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user)
     {
-        return $user->can('create_blog::post');
+        return $user->can('create_shop::discount');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Shop\Discount  $discount
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Post $post)
+    public function update(User $user, Discount $discount)
     {
-        return $user->can('update_blog::post');
+        return $user->can('update_shop::discount');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Shop\Discount  $discount
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Post $post)
+    public function delete(User $user, Discount $discount)
     {
-        return $user->can('delete_blog::post');
+        return $user->can('delete_shop::discount');
     }
 
     /**
@@ -77,19 +77,19 @@ class PostPolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->can('delete_any_blog::post');
+        return $user->can('delete_any_shop::discount');
     }
 
     /**
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Shop\Discount  $discount
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Post $post)
+    public function forceDelete(User $user, Discount $discount)
     {
-        return $user->can('force_delete_blog::post');
+        return $user->can('force_delete_shop::discount');
     }
 
     /**
@@ -100,19 +100,19 @@ class PostPolicy
      */
     public function forceDeleteAny(User $user)
     {
-        return $user->can('force_delete_any_blog::post');
+        return $user->can('force_delete_any_shop::discount');
     }
 
     /**
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Shop\Discount  $discount
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Post $post)
+    public function restore(User $user, Discount $discount)
     {
-        return $user->can('restore_blog::post');
+        return $user->can('restore_shop::discount');
     }
 
     /**
@@ -123,30 +123,30 @@ class PostPolicy
      */
     public function restoreAny(User $user)
     {
-        return $user->can('restore_any_blog::post');
+        return $user->can('restore_any_shop::discount');
     }
 
     /**
      * Determine whether the user can bulk restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Shop\Discount  $discount
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, Post $post)
+    public function replicate(User $user, Discount $discount)
     {
-        return $user->can('replicate_blog::post');
+        return $user->can('replicate_shop::discount');
     }
 
     /**
      * Determine whether the user can reorder.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Shop\Discount  $discount
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user, Post $post)
+    public function reorder(User $user, Discount $discount)
     {
-        return $user->can('reorder_blog::post');
+        return $user->can('reorder_shop::discount');
     }
 }

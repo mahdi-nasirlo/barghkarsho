@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Setting;
+use App\Models\Infographic;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SettingPolicy
+class InfographicPolicy
 {
     use HandlesAuthorization;
 
@@ -18,55 +18,55 @@ class SettingPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('view_any_setting');
+        return $user->can('view_any_infographic');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Infographic  $infographic
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Setting $setting)
+    public function view(User $user, Infographic $infographic)
     {
-        return $user->can('view_setting');
+        return $user->can('view_infographic');
     }
 
     /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Infographic  $infographic
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user)
     {
-        return $user->can('create_setting');
+        return $user->can('create_infographic');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Infographic  $infographic
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Setting $setting)
+    public function update(User $user, Infographic $infographic)
     {
-        return $user->can('update_setting');
+        return $user->can('update_infographic');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Infographic  $infographic
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Setting $setting)
+    public function delete(User $user, Infographic $infographic)
     {
-        return $user->can('delete_setting');
+        return $user->can('delete_infographic');
     }
 
     /**
@@ -77,19 +77,19 @@ class SettingPolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->can('delete_any_setting');
+        return $user->can('delete_any_infographic');
     }
 
     /**
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Infographic  $infographic
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Setting $setting)
+    public function forceDelete(User $user, Infographic $infographic)
     {
-        return $user->can('force_delete_setting');
+        return $user->can('force_delete_infographic');
     }
 
     /**
@@ -100,19 +100,19 @@ class SettingPolicy
      */
     public function forceDeleteAny(User $user)
     {
-        return $user->can('force_delete_any_setting');
+        return $user->can('force_delete_any_infographic');
     }
 
     /**
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Infographic  $infographic
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Setting $setting)
+    public function restore(User $user, Infographic $infographic)
     {
-        return $user->can('restore_setting');
+        return $user->can('restore_infographic');
     }
 
     /**
@@ -123,31 +123,31 @@ class SettingPolicy
      */
     public function restoreAny(User $user)
     {
-        return $user->can('restore_any_setting');
+        return $user->can('restore_any_infographic');
     }
 
     /**
      * Determine whether the user can bulk restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Infographic  $infographic
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, Setting $setting)
+    public function replicate(User $user, Infographic $infographic)
     {
-        return $user->can('replicate_setting');
+        return $user->can('replicate_infographic');
     }
 
     /**
      * Determine whether the user can reorder.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Infographic  $infographic
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user, Setting $setting)
+    public function reorder(User $user, Infographic $infographic)
     {
-        return $user->can('reorder_setting');
+        return $user->can('reorder_infographic');
     }
 
 }

@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Blog\Post;
+use App\Models\Page;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PostPolicy
+class PagePolicy
 {
     use HandlesAuthorization;
 
@@ -18,55 +18,55 @@ class PostPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('view_any_blog::post');
+        return $user->can('view_any_page');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Post $post)
+    public function view(User $user, Page $page)
     {
-        return $user->can('view_blog::post');
+        return $user->can('view_page');
     }
 
     /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user)
     {
-        return $user->can('create_blog::post');
+        return $user->can('create_page');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Post $post)
+    public function update(User $user, Page $page)
     {
-        return $user->can('update_blog::post');
+        return $user->can('update_page');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Post $post)
+    public function delete(User $user, Page $page)
     {
-        return $user->can('delete_blog::post');
+        return $user->can('delete_page');
     }
 
     /**
@@ -77,19 +77,19 @@ class PostPolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->can('delete_any_blog::post');
+        return $user->can('delete_any_page');
     }
 
     /**
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Post $post)
+    public function forceDelete(User $user, Page $page)
     {
-        return $user->can('force_delete_blog::post');
+        return $user->can('force_delete_page');
     }
 
     /**
@@ -100,19 +100,19 @@ class PostPolicy
      */
     public function forceDeleteAny(User $user)
     {
-        return $user->can('force_delete_any_blog::post');
+        return $user->can('force_delete_any_page');
     }
 
     /**
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Post $post)
+    public function restore(User $user, Page $page)
     {
-        return $user->can('restore_blog::post');
+        return $user->can('restore_page');
     }
 
     /**
@@ -123,30 +123,31 @@ class PostPolicy
      */
     public function restoreAny(User $user)
     {
-        return $user->can('restore_any_blog::post');
+        return $user->can('restore_any_page');
     }
 
     /**
      * Determine whether the user can bulk restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, Post $post)
+    public function replicate(User $user, Page $page)
     {
-        return $user->can('replicate_blog::post');
+        return $user->can('replicate_page');
     }
 
     /**
      * Determine whether the user can reorder.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Post  $post
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user, Post $post)
+    public function reorder(User $user, Page $page)
     {
-        return $user->can('reorder_blog::post');
+        return $user->can('reorder_page');
     }
+
 }

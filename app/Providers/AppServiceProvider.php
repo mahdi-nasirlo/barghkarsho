@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Infographic;
 use App\Models\Setting;
 use App\Models\User;
 use Filament\Facades\Filament;
@@ -44,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(LoginResponseContract::class, \App\Http\Responses\LoginResponse::class);
 
-        $data = Setting::all(['name', 'content'])
+        $data = Infographic::all(['name', 'content'])
             // ->whereIn("name", ['location'])
             ->keyBy("name")
             ->toArray();

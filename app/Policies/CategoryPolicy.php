@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
+use App\Models\Blog\Category;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CategoryPolicy
@@ -24,9 +25,10 @@ class CategoryPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user)
+    public function view(User $user, Category $category)
     {
         return $user->can('view_blog::categories');
     }
@@ -35,6 +37,7 @@ class CategoryPolicy
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user)
@@ -46,9 +49,10 @@ class CategoryPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user)
+    public function update(User $user, Category $category)
     {
         return $user->can('update_blog::categories');
     }
@@ -57,9 +61,10 @@ class CategoryPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user)
+    public function delete(User $user, Category $category)
     {
         return $user->can('delete_blog::categories');
     }
@@ -79,9 +84,10 @@ class CategoryPolicy
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user)
+    public function forceDelete(User $user, Category $category)
     {
         return $user->can('force_delete_blog::categories');
     }
@@ -101,9 +107,10 @@ class CategoryPolicy
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user)
+    public function restore(User $user, Category $category)
     {
         return $user->can('restore_blog::categories');
     }
@@ -123,9 +130,10 @@ class CategoryPolicy
      * Determine whether the user can bulk restore.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user)
+    public function replicate(User $user, Category $category)
     {
         return $user->can('replicate_blog::categories');
     }
@@ -134,9 +142,10 @@ class CategoryPolicy
      * Determine whether the user can reorder.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user)
+    public function reorder(User $user, Category $category)
     {
         return $user->can('reorder_blog::categories');
     }

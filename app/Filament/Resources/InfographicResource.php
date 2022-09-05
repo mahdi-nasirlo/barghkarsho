@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SettingResource\Pages;
-use App\Models\Setting;
+use App\Filament\Resources\InfographicResource\Pages;
+use App\Filament\Resources\InfographicResource\Pages\EditInfographic;
+use App\Filament\Resources\InfographicResource\Pages\ListInfographics;
+use App\Models\Infographic;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\TextInput;
@@ -14,9 +16,9 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
-class SettingResource extends Resource
+class InfographicResource extends Resource
 {
-    protected static ?string $model = Setting::class;
+    protected static ?string $model = Infographic::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-cog';
 
@@ -35,7 +37,7 @@ class SettingResource extends Resource
         return $form
             ->schema([
                 Card::make()->schema([
-                    Placeholder::make('name')->label("موقعیت محتوا")->content(fn (Setting $record) => $record ? $record->display_name : "_"),
+                    Placeholder::make('name')->label("موقعیت محتوا")->content(fn (Infographic $record) => $record ? $record->display_name : "_"),
                     TinyEditor::make("desc")->label('توضیحات')->simple()->disabled()
                 ]),
                 TinyEditor::make('content')->label("محتوا")->columnSpan([
@@ -75,8 +77,8 @@ class SettingResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSettings::route('/'),
-            'edit' => Pages\EditSetting::route('/{record}/edit'),
+            'index' => ListInfographics::route('/'),
+            'edit' => EditInfographic::route('/{record}/edit'),
         ];
     }
 }

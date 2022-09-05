@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
+use App\Models\Shop\Course;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CoursePolicy
@@ -24,9 +25,10 @@ class CoursePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Shop\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user)
+    public function view(User $user, Course $course)
     {
         return $user->can('view_shop::cource');
     }
@@ -35,6 +37,7 @@ class CoursePolicy
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Shop\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user)
@@ -46,9 +49,10 @@ class CoursePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Shop\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user)
+    public function update(User $user, Course $course)
     {
         return $user->can('update_shop::cource');
     }
@@ -57,9 +61,10 @@ class CoursePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Shop\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user)
+    public function delete(User $user, Course $course)
     {
         return $user->can('delete_shop::cource');
     }
@@ -79,9 +84,10 @@ class CoursePolicy
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Shop\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user)
+    public function forceDelete(User $user, Course $course)
     {
         return $user->can('force_delete_shop::cource');
     }
@@ -101,9 +107,10 @@ class CoursePolicy
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Shop\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user)
+    public function restore(User $user, Course $course)
     {
         return $user->can('restore_shop::cource');
     }
@@ -123,9 +130,10 @@ class CoursePolicy
      * Determine whether the user can bulk restore.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Shop\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user)
+    public function replicate(User $user, Course $course)
     {
         return $user->can('replicate_shop::cource');
     }
@@ -134,9 +142,10 @@ class CoursePolicy
      * Determine whether the user can reorder.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Shop\Course  $course
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user)
+    public function reorder(User $user, Course $course)
     {
         return $user->can('reorder_shop::cource');
     }
