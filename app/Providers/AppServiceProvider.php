@@ -37,6 +37,9 @@ class AppServiceProvider extends ServiceProvider
                 'بلاگ',
                 'خدمات'
             ]);
+            Filament::registerStyles([
+                asset('css/font.css'),
+            ]);
         });
 
         // ViewLog::can(function (User $user) {

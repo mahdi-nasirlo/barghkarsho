@@ -8,6 +8,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Livewire\Cart\Cart;
 use App\Http\Livewire\Cart\CartAddress;
 use App\Http\Livewire\Profile\Profile;
+use App\Models\Blog\Post;
 use App\Models\Order;
 use App\Models\Service;
 use App\Models\Setting;
@@ -35,6 +36,7 @@ use Jackiedo\Cart\Facades\Cart as CartShop;
 Route::get('/', function () {
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
+    dd(asset("/storage/" . Post::all()->first()->image));
     return view('welcome', ['posts' => $post]);
 })->name('home');
 

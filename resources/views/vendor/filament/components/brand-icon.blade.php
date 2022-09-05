@@ -1,4 +1,4 @@
-@if (filled($brand = config('filament.brand')))
+{{-- @if (filled($brand = config('filament.brand')))
     <div @class([
         'text-xl font-bold tracking-tight filament-brand',
         'dark:text-white' => config('filament.dark_mode'),
@@ -13,4 +13,7 @@
                 ->implode('')
         }}
     </div>
-@endif
+@endif --}}
+
+<img src="http://localhost:8000/theme/4lKigFHb7apnVK4fIAijoXeoFusyhJ-metaZWxjdHJvbWFfcGFnZS0wMDAxLnBuZw==-.png"
+    alt="Logo" class="h-10">
