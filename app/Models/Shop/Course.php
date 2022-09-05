@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\Tags\HasTags;
 use Spatie\Tags\Tag;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
 
 use Jackiedo\Cart\Contracts\UseCartable; // Interface
 use Jackiedo\Cart\Traits\CanUseCart;     // Trait
@@ -23,6 +24,7 @@ class Course extends Model implements UseCartable
     use HasFactory;
     use Sluggable;
     use HasTags;
+    use HasSEO;
 
 
     protected $fillable = ['title', "attributes", 'short_desc', 'slug', 'desc', 'price', 'inventory', "published_at", 'view', 'image', 'user_id'];

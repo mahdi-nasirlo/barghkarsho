@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Cart;
 
 use App\Models\Order;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Jackiedo\Cart\Facades\Cart as FacadesCart;
 use Livewire\Component;
 
@@ -36,6 +37,9 @@ class Cart extends Component
 
     public function render()
     {
+        SEOMeta::setTitle("سبد خرید")
+            ->addMeta("designer", env("DESIGNER"));
+
         return view('livewire.cart.cart')
             ->extends('layouts.template-master')
             ->section('content');

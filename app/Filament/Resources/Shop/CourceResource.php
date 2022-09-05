@@ -24,6 +24,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use RalphJSmit\Filament\SEO\SEO;
 use Filament\Tables\Columns\TextColumn;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use Illuminate\Database\Eloquent\Builder;
@@ -148,6 +149,8 @@ class CourceResource extends Resource
                             ->required()
                             ->label('عکس شاخص')
                             ->image(),
+
+                        SEO::make(),
 
                         Forms\Components\Placeholder::make('created_at')
                             ->label('ساخته شده :')

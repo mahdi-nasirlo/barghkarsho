@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -10,6 +11,9 @@ class ServiceController extends Controller
 {
     public function index()
     {
+        SEOMeta::setTitle("درخواست خدمات")
+            ->addMeta("designer", env("DESIGNER"));
+
         return view('home.service.index');
     }
 

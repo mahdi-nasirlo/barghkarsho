@@ -15,6 +15,7 @@ use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Ariaieboy\FilamentJalaliDatetime\JalaliDateTimeColumn;
 use Illuminate\Database\Eloquent\Model;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
+use RalphJSmit\Filament\SEO\SEO;
 
 class CategoriesResource extends Resource
 {
@@ -78,6 +79,7 @@ class CategoriesResource extends Resource
                     ]),
                 Forms\Components\Card::make()
                     ->schema([
+                        SEO::make(),
                         Forms\Components\Placeholder::make('created_at')
                             ->label('ساخته شده :')
                             ->content(fn (?Category $record): string => $record ? $record->created_at->diffForHumans() : '-'),

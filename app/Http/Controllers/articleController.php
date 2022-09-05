@@ -7,6 +7,7 @@ use App\Models\Blog\Post;
 use App\Models\Comment;
 use App\Models\Setting;
 use App\Models\Tag;
+use Artesaos\SEOTools\Contracts\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,20 @@ class articleController extends Controller
             ->addMeta("author",  $post->seo->author ??  $post->user->name . " ," . $post->user->email)
             ->addMeta("designer", env("DESIGNER"))
             ->addMeta("owner", $post->user->name)
+            ->addKeyword($post->tags()->pluck("name")->toArray())
             ->addMeta("category", $post->category->name);
+
+        OpenGraph::setTitle($post->seo->title ?? $post->title)
+            ->setDescription($post->seo->description)
+            ->setType('article')
+            ->setArticle([
+                'published_time' => $post->created_at,
+                'modified_time' => $post->updated_at,
+                'author' => $post->seo->author ??  $post->user->name,
+                'tag' => $post->tags()->pluck("name")->toArray()
+            ]);
+
+        OpenGraph::addImage(asset('storage/' . $post->image));
 
         $post->update(['view' => $post->view + 1]);
 

@@ -11,6 +11,7 @@ use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 use Alert;
 use App\Models\MyPayment as ModelsMyPayment;
 use App\Models\Order;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
@@ -98,6 +99,9 @@ class CartController extends Controller
     }
     public function paymentPage(Order $order)
     {
+        SEOMeta::setTitle("صندوق")
+            ->addMeta("designer", env("DESIGNER"));
+
         Gate::authorize("view-payment", $order);
 
         return view("home.cart.payment", ['order' => $order]);
