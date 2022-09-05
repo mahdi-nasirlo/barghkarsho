@@ -7,7 +7,7 @@ use App\Models\Blog\Post;
 use App\Models\Comment;
 use App\Models\Setting;
 use App\Models\Tag;
-use Artesaos\SEOTools\Contracts\OpenGraph;
+use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog\Category;
 use App\Models\Shop\Course;
-use Artesaos\SEOTools\Contracts\OpenGraph;
+use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
