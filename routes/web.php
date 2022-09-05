@@ -3,6 +3,7 @@
 use App\Http\Controllers\articleController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Livewire\Cart\Cart;
 use App\Http\Livewire\Cart\CartAddress;
@@ -58,3 +59,5 @@ Route::post('/service', [ServiceController::class, 'sort'])->name('service.sort'
 
 Route::get('/payment/order/{order}', [CartController::class, 'payment'])->name('payment');
 Route::get('/payment/callback', [CartController::class, 'callback'])->name('payment.callback');
+
+Route::get('/page/{page:slug}', [PageController::class, "index"])->name("pages");

@@ -67,7 +67,18 @@
                 @endif
                 <li class="has-submenu parent-menu-item">
                     <a href="javascript:void(0)">راهنمای
-                    </a><span class="menu-arrow"></span>
+                    </a>
+                    <span class="menu-arrow"></span>
+                    @php
+                        $pages = \App\Models\Page::all();
+                    @endphp
+                    <ul class="submenu">
+                        @foreach ($pages as $page)
+                            <li class="has-submenu parent-menu-item">
+                                <a href="{{ route('pages', $page) }}"> {{ $page->name }} </a>
+                            </li>
+                        @endforeach
+                    </ul>
                 </li>
 
                 <li class="has-submenu parent-menu-item d-flex">

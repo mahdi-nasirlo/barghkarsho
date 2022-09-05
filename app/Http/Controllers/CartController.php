@@ -67,7 +67,11 @@ class CartController extends Controller
             $receipt = Payment::amount($payment->order->total_price)->transactionId($payment->resnumber)->verify();
 
 
-            // You can show payment referenceId to the user.
+            $payment->order->courses->map(function ($course) {
+                $course->update([
+                    'inventory' => $course->inventory - 1
+                ]);
+            });
 
             $payment->update([
                 'status' => true

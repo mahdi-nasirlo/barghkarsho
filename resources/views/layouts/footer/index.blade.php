@@ -43,25 +43,25 @@
             </div>
             <!--end col-->
 
+            @php
+                $categoreis = \App\Models\Blog\Category::all()
+                    ->where('is_visible', true)
+                    ->where('parent_id', 0)
+                    ->take(5);
+            @endphp
+
             <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                <h5 class="text-light footer-head">شرکت </h5>
+                <h5 class="text-light footer-head">بلاگ </h5>
                 <ul class="list-unstyled footer-list mt-4">
-                    <li><a href="page-aboutus.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> درباره
-                            ما </a></li>
-                    <li><a href="page-services.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> خدمات
-                        </a></li>
-                    <li><a href="page-team.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> تیم </a>
-                    </li>
-                    <li><a href="page-pricing.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> قیمت
-                            گذاری </a></li>
-                    <li><a href="page-portfolio-modern.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i>
-                            پروژه </a></li>
-                    <li><a href="page-jobs.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> مشاغل
-                        </a></li>
-                    <li><a href="page-blog-grid.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i>
-                            وبلاگ </a></li>
-                    <li><a href="auth-cover-login.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i>
-                            ورود </a></li>
+
+                    @foreach ($categoreis as $category)
+                        <li>
+                            <a href="{{ route('article.list', $category) }}" class="text-foot">
+                                <i class="uil uil-angle-left-b me-1"></i>
+                                {{ $category->name }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <!--end col-->
@@ -69,16 +69,17 @@
             <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
                 <h5 class="text-light footer-head">لینک های مفید </h5>
                 <ul class="list-unstyled footer-list mt-4">
-                    <li><a href="page-terms.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> خدمات
-                            سایت </a></li>
-                    <li><a href="page-privacy.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> حریم
-                            خصوصی </a></li>
-                    <li><a href="documentation.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i>
-                            مستند </a></li>
-                    <li><a href="changelog.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> تغییرات
-                        </a></li>
-                    <li><a href="components.html" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> اجزاء
-                        </a></li>
+                    @php
+                        $pages = \App\Models\Page::all();
+                    @endphp
+                    @foreach ($pages as $page)
+                        <li>
+                            <a href="{{ route('pages', $page) }}" class="text-foot">
+                                <i class="uil uil-angle-left-b me-1"></i>
+                                {{ $page->name }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <!--end col-->
@@ -109,8 +110,8 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="d-grid">
-                                <input type="submit" id="submitsubscribe" name="send"
-                                    class="btn btn-soft-primary" value="خبرنامه">
+                                <input type="submit" id="submitsubscribe" name="send" class="btn btn-soft-primary"
+                                    value="خبرنامه">
                             </div>
                         </div>
                     </div>
