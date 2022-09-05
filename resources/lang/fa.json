@@ -558,6 +558,7 @@
     "Team Name": "نام تیم",
     "Team Owner": "مالک تیم",
     "Team Settings": "تنظیمات تیم",
+    "Settings": "تنظیمات",
     "Terms of Service": "شرایط استفاده از خدمات",
     "Thailand": "تایلند",
     "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.": "از ثبت نام شما متشکریم! قبل از شروع ، آیا می توانید آدرس ایمیل خود را با کلیک بر روی لینکی که برای شما از طریق ایمیل ارسال کردیم تأیید کنید؟ اگر ایمیل را دریافت نکردید ، ایمل دیگری را برای شما ارسال خواهیم کرد.",
@@ -709,5 +710,7 @@
     "Zambia": "زامبیا",
     "Zimbabwe": "زیمباوه",
     "Zip / Postal Code": "کد پستی",
-    "Åland Islands": "جزایر الند"
+    "Åland Islands": "جزایر الند",
+    "Site Map": "سایت مپ",
+    "Sitemap Generated Success": "سایت مپ با موفقیت ایجاد شد."
 }

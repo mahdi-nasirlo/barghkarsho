@@ -10,7 +10,6 @@
     "require": {
         "php": "^8.0.2",
         "3x1io/filament-sitemap": "^1.0",
-        "3x1io/filament-themes": "^1.0",
         "3x1io/filament-user": "^1.1",
         "ariaieboy/filament-jalali-datetime": "^1.0",
         "ariaieboy/filament-jalali-datetimepicker": "^1.0",
@@ -52,7 +51,6 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Themes\\": "resources/views/themes//",
             "Database\\Factories\\": "database/factories//",
             "Database\\Seeders\\": "database/seeders//"
         }
