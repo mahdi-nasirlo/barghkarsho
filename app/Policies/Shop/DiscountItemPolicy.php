@@ -142,10 +142,9 @@ class DiscountItemPolicy
      * Determine whether the user can reorder.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Shop\DiscountItem  $discountItem
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user, DiscountItem $discountItem)
+    public function reorder(User $user)
     {
         return $user->can('reorder_shop::discount::item');
     }

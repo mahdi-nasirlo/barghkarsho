@@ -22,6 +22,9 @@ class InfographicResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-cog';
 
+    protected static ?string $navigationGroup = 'تنظیمات';
+
+
     public static function getModelLabel(): string
     {
         return "تنظیمات";

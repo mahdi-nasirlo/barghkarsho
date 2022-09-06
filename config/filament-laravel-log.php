@@ -24,7 +24,7 @@ return [
     /**
      * Navigation group.
      */
-    'navigationGroup' => '',
+    'navigationGroup' => 'تنظیمات',
 
     /**
      * Navigation sort.

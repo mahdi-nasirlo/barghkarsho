@@ -59,7 +59,7 @@ return [
         'pages' => [
             'Dashboard',
             "Browser",
-            "MyProfile"
+            // "MyProfile"
         ],
 
         'widgets' => [

@@ -142,10 +142,9 @@ class RolePolicy
      * Determine whether the user can reorder.
      *
      * @param  \App\Models\User  $user
-     * @param  \Spatie\Permission\Models\Role  $role
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user, Role $role)
+    public function reorder(User $user)
     {
         return $user->can('reorder_role');
     }

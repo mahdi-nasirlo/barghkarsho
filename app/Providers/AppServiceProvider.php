@@ -9,6 +9,7 @@ use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
 use Saade\FilamentLaravelLog\Pages\ViewLog;
 use Filament\Http\Responses\Auth\Contracts\LoginResponse as LoginResponseContract;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -48,13 +49,15 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(LoginResponseContract::class, \App\Http\Responses\LoginResponse::class);
 
-        $data = Infographic::all(['name', 'content'])
-            // ->whereIn("name", ['location'])
-            ->keyBy("name")
-            ->toArray();
+        if (Schema::hasTable("infographics")) {
+            $data = Infographic::all(['name', 'content'])
+                // ->whereIn("name", ['location'])
+                ->keyBy("name")
+                ->toArray();
 
-        view()->composer('*', function ($view) use ($data) {
-            $view->with('information', $data);
-        });
+            view()->composer('*', function ($view) use ($data) {
+                $view->with('information', $data);
+            });
+        }
     }
 }

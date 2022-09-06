@@ -142,10 +142,9 @@ class PagePolicy
      * Determine whether the user can reorder.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Page  $page
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user, Page $page)
+    public function reorder(User $user)
     {
         return $user->can('reorder_page');
     }

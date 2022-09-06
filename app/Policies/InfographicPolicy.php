@@ -142,10 +142,9 @@ class InfographicPolicy
      * Determine whether the user can reorder.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Infographic  $infographic
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user, Infographic $infographic)
+    public function reorder(User $user)
     {
         return $user->can('reorder_infographic');
     }

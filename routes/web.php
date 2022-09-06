@@ -36,7 +36,6 @@ use Jackiedo\Cart\Facades\Cart as CartShop;
 Route::get('/', function () {
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
-    dd(asset("/storage/" . Post::all()->first()->image));
     return view('welcome', ['posts' => $post]);
 })->name('home');
 

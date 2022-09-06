@@ -142,10 +142,9 @@ class CategoryPolicy
      * Determine whether the user can reorder.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Category  $category
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user, Category $category)
+    public function reorder(User $user)
     {
         return $user->can('reorder_blog::categories');
     }

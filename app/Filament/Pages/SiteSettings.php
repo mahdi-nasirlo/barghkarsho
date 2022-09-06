@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Pages\SettingsPage;
 use Filament\Forms\Components\Grid;
 use Spatie\Sitemap\SitemapGenerator;
@@ -15,30 +16,34 @@ use io3x1\FilamentSitemap\Settings\SitesSettings;
 
 class SiteSettings extends SettingsPage
 {
+    use HasPageShield;
+
     protected static ?string $navigationIcon = 'heroicon-o-map';
 
     protected static string $settings = SitesSettings::class;
 
+    protected static ?string $title = 'سایت مپ';
+
     protected static ?int $navigationSort = 10;
 
-    protected static ?string $navigationGroup = '';
+    protected static ?string $navigationGroup = 'تنظیمات';
 
     protected static function getNavigationLabel(): string
     {
-        return __('Site Map');
+        return "سایت مپ";
     }
 
     protected function getActions(): array
     {
         return [
-            ButtonAction::make('sitemap')->action('generateSitemap')->label(__('Generate Sitemap')),
+            ButtonAction::make('sitemap')->action('generateSitemap')->label("ساختن سایت مپ"),
         ];
     }
 
 
     public function generateSitemap()
     {
-        SitemapGenerator::create(config('app.url'))->writeToFile(public_path('sitemap.xml'));
+        // SitemapGenerator::create(config('app.url'))->writeToFile(public_path('sitemap.xml'));
 
         session()->flash('notification', [
             'message' => __("Sitemap Generated Success"),
@@ -50,7 +55,7 @@ class SiteSettings extends SettingsPage
     {
         return [
             Grid::make(['default' => 2])->schema([
-                TextInput::make('site_name')->label("نام سایت **")->columnSpan(["2xl" => 1])->hint('setting("site_name")'),
+                TextInput::make('site_name')->label("نام سایت")->columnSpan(["2xl" => 1])->hint('setting("site_name")'),
                 TextInput::make('site_author')->label('نویسنده سایت')->columnSpan(["2xl" => 1])->hint('setting("site_author")'),
                 TextInput::make('site_email')->label("ایمیل سایت")->columnSpan(["2xl" => 1])->hint('setting("site_email")'),
                 TextInput::make('site_phone')->label("تلفن سایت")->columnSpan(["2xl" => 1])->hint('setting("site_phone")'),

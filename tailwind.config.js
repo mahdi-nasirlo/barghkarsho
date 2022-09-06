@@ -8,6 +8,7 @@ module.exports = {
             colors: {
                 danger: colors.rose,
                 primary: colors.blue,
+                success: colors.green,
             },
         },
     },

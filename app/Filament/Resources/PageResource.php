@@ -20,7 +20,10 @@ class PageResource extends Resource
 {
     protected static ?string $model = Page::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-paper-clip';
+
+    protected static ?string $navigationGroup = 'بلاگ';
+
     public static function getModelLabel(): string
     {
         return "صفحه";

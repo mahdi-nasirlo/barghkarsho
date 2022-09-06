@@ -142,10 +142,9 @@ class ServicePolicy
      * Determine whether the user can reorder.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Service  $service
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function reorder(User $user, Service $service)
+    public function reorder(User $user)
     {
         return $user->can('reorder_service::service::request');
     }
