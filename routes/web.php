@@ -8,6 +8,8 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Livewire\Cart\Cart;
 use App\Http\Livewire\Profile\Profile;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
+use Spatie\Sitemap\SitemapGenerator;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
     return view('welcome', ['posts' => $post]);

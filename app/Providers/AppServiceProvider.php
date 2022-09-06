@@ -47,6 +47,10 @@ class AppServiceProvider extends ServiceProvider
         //     return $user->role === Role::Admin;
         // });
 
+        $this->app->bind("path.public", function () {
+            return base_path() . "\public_html";
+        });
+
         $this->app->bind(LoginResponseContract::class, \App\Http\Responses\LoginResponse::class);
 
         if (Schema::hasTable("infographics")) {
