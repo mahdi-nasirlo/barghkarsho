@@ -6,6 +6,9 @@
     --gray-600: #292f3a;
 }
 
+a {
+    font-family: "IRANSansfanum" !important;
+}
 .content {
     color: #8492a6 !important;
     direction: rtl;

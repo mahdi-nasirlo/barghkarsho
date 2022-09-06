@@ -1,10 +1,11 @@
 @include('layouts.header.topheader')
 <header id="topnav" class="defaultscroll sticky bg-white border-bottom">
-    <div class="container-xl">
+    <div class="container-xl d-flex justify-content-between">
         <!-- Logo container-->
-        <div>
+        <div class="d-flex">
             <a class="logo" href="/">
-                <img src="/theme/images/logo-dark.png" height="24" alt="">
+                <img src="http://localhost:8000/theme/4lKigFHb7apnVK4fIAijoXeoFusyhJ-metaZWxjdHJvbWFfcGFnZS0wMDAxLnBuZw==-.png"
+                    alt="Logo" height="100">
             </a>
         </div>
         <!--end login button-->
@@ -33,7 +34,7 @@
                 ->where('is_visible', true)
                 ->where('parent_id', 0);
         @endphp
-        <div style=" justify-content: end" id="navigation">
+        <div style=" justify-content: end; display: flex !important; align-items: center" id="navigation">
             <!-- Navigation Menu-->
             <ul class="navigation-menu justify-content-end">
                 @if (!request()->routeIs('home'))
@@ -65,22 +66,25 @@
                         </ul>
                     </li>
                 @endif
-                <li class="has-submenu parent-menu-item">
-                    <a href="javascript:void(0)">راهنمای
-                    </a>
-                    <span class="menu-arrow"></span>
-                    @php
-                        $pages = \App\Models\Page::all();
-                    @endphp
-                    <ul class="submenu">
-                        @foreach ($pages as $page)
-                            <li class="has-submenu parent-menu-item">
-                                <a href="{{ route('pages', $page) }}"> {{ $page->name }} </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </li>
 
+                @php
+                    $pages = \App\Models\Page::all();
+                @endphp
+                @if ($pages->count())
+                    <li class="has-submenu parent-menu-item">
+                        <a href="javascript:void(0)">لینک های مفید
+                        </a>
+                        <span class="menu-arrow"></span>
+
+                        <ul class="submenu">
+                            @foreach ($pages as $page)
+                                <li class="has-submenu parent-menu-item">
+                                    <a href="{{ route('pages', $page) }}"> {{ $page->name }} </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
                 <li class="has-submenu parent-menu-item d-flex">
                     @auth
                         <div class="dropdown dropdown-primary">

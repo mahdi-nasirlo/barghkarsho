@@ -5,7 +5,7 @@
 
 @section('content')
     <section class="container-lg">
-        <div style="margin-top: 130px">
+        <div style="margin-top: 165px">
             <div class="title-heading mt-4">
                 <h1 class="heading mb-3">مرکز تخصصی <span class="text-orange typewrite" data-period="2000"
                         data-type="[ &quot;خدمات&quot;, &quot;تعمیرات&quot;, &quot;آموزش&quot]"><span class="wrap">
@@ -27,13 +27,11 @@
                         <span class="px-2">
                             ارتباط با پشتیبانی فنی
                         </span>
-                        @foreach (\App\Models\User::all()->where('is_supperUser', true)->take(3)
-        as $admin)
-                            {{ $admin->avater }}
+                        @foreach (\Spatie\Permission\Models\Role::all()->where('name', 'super_admin')->first()->users as $admin)
                             <div class="avatar mx-auto bg-white">
                                 <a href="tel:{{ $admin->mobile }}">
                                     <img width="30"
-                                        src="{{ $admin->avatar ? $admin->avatar : asset('/theme/images/support-img.png') }}"
+                                        src="{{ $admin->avatar ? asset('/storage/' . $admin->avatar) : asset('/theme/images/support-img.png') }}"
                                         class="rounded-circle img-fluid" />
                                 </a>
                             </div>
@@ -63,8 +61,7 @@
                 <div class="col-12 col-md-6 mt-5 mt-md-0 d-flex justify-content-center flex-column">
 
                     <div class="d-flex justify-content-center">
-                        <img width="60" src="{{ asset('/theme/images/course-sertificate-icon.png') }}"
-                            class="" />
+                        <img width="60" src="{{ asset('/theme/images/course-sertificate-icon.png') }}" class="" />
                     </div>
 
                     <div class="text-center text-white font-weight-bold">آموزش برق ساختمان</div>
