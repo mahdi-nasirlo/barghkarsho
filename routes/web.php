@@ -52,3 +52,6 @@ Route::get('/payment/order/{order}', [CartController::class, 'payment'])->name('
 Route::get('/payment/callback', [CartController::class, 'callback'])->name('payment.callback');
 
 Route::get('/page/{page:slug}', [PageController::class, "index"])->name("pages");
+
+
+Route::get('/deploy', 'DeployController@deploy');
