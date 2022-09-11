@@ -92,7 +92,12 @@ class CourceResource extends Resource
                                     ->thousandsSeparator(','), // Add a separator for thousands.
                             )
                             ->label('قیمت')
-                            ->helperText(fn (Course $record) => $record->discountItem ? " قیمت دوره با اعمال تخفیف " . number_format($record->discounted_price) . " تومان می باشد. " : "")
+                            // ->helperText(function (Course $record) {
+                            //     return $record->discountItem
+                            //         ? " قیمت دوره با اعمال تخفیف " . number_format($record->discounted_price) . " تومان می باشد. "
+                            //         : "";
+                            // })
+                            // ->helperText(fn (Course $record) => $record->discountItem ? " قیمت دوره با اعمال تخفیف " . number_format($record->discounted_price) . " تومان می باشد. " : "")
                             ->numeric()
                             ->suffix('تومان')
                             ->rules(['integer', 'min:0'])

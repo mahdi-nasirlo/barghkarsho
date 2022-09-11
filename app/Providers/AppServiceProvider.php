@@ -9,6 +9,7 @@ use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
 use Saade\FilamentLaravelLog\Pages\ViewLog;
 use Filament\Http\Responses\Auth\Contracts\LoginResponse as LoginResponseContract;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,6 +31,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Artisan::call('optimize');
+        Artisan::call('config:cache');
+        Artisan::call('route:cache');
+        Artisan::call('view:cache');
+
         Filament::serving(function () {
             Filament::registerTheme(mix('css/app.css'));
             Filament::registerNavigationGroups([
