@@ -188,5 +188,8 @@ return [
         'price' => 'قیمت',
         'pic' => 'تصویر',
         'link' => 'لینک',
+        'topic' => 'موضوع',
+        'newPassword' => 'گذرواژه جدید',
+        'confirmationPassword' => 'تایید گذرواژه'
     ],
 ];

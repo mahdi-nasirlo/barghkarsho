@@ -1,6 +1,6 @@
 <div class="container mb-5">
     <div class="row">
-        <div class="col-6">
+        <div class="col-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
             <div class="card border-0 text-center features feature-clean">
                 <div class="icons text-primary text-center mx-auto">
                     <i class="uil uil-phone d-block rounded h3 mb-0"></i>

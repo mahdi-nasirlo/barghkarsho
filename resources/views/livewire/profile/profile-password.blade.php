@@ -1,5 +1,4 @@
 <div>
-    <h5 class="mt-4">تغییر رمز عبور : </h5>
     <form wire:submit.prevent='savePassword'>
         <div class="row mt-3">
             <div class="col-lg-12">
@@ -59,10 +58,11 @@
             @endif
 
             <div class="col-lg-12 mt-2 mb-0">
-                <button class="btn btn-primary">ذخیره رمز عبور </button>
+                <button type="submit" class="btn btn-primary">ذخیره رمز عبور </button>
             </div>
             <!--end col-->
         </div>
         <!--end row-->
     </form>
+
 </div>

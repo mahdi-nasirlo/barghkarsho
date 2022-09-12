@@ -11,11 +11,9 @@ class StatsOrderOverView extends BaseWidget
     protected function getCards(): array
     {
         return [
-            // totalIncome()
-            // totalView()
-            Card::make('درامد کل', "1000000"),
+            Card::make('درامد کل', totalIncome()),
             Card::make('تعداد کاربران', User::count()),
-            Card::make('بازدید مقالات + دوره ها', "0")
+            Card::make('بازدید مقالات + دوره ها', totalView())
         ];
     }
 }

@@ -10,20 +10,9 @@ class CartHeader extends Component
     protected $listeners = ['cartUpdated' => '$refresh'];
     protected $carts;
 
-    public function updateHeader()
+    public function redirectToPayment()
     {
-        // $items = Cart::getItems();
-
-        // foreach ($items as $hash => $item) {
-        //     dd($item->attributes);
-        // }
-
-        // $items = Cart::name('shopping')->getItems();
-
-        // // dd($items[0]);
-        // foreach ($items as $hash => $item) {
-        //     dd($item->getModel());
-        // }
+        $this->emit("header_payment");
     }
 
     public function render()

@@ -9,7 +9,10 @@ use Livewire\Component;
 
 class Cart extends Component
 {
-    protected $listeners = ['cartUpdated' => '$refresh'];
+    protected $listeners = [
+        'cartUpdated' => '$refresh',
+        'header_payment' => 'payment'
+    ];
 
     public function payment()
     {

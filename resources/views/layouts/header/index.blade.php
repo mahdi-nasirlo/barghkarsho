@@ -1,4 +1,20 @@
 @include('layouts.header.topheader')
+<style>
+    @media only screen and (min-width: 990px) {
+        #Mynavigation {
+            justify-content: end;
+            display: flex !important;
+            align-items: center
+        }
+    }
+
+
+    @media only screen and (max-width: 990px) {
+        #Mynavigation {
+            display: none !important;
+        }
+    }
+</style>
 <header id="topnav" class="defaultscroll sticky bg-white border-bottom">
     <div class="container-xl d-flex justify-content-between">
         <!-- Logo container-->
@@ -10,7 +26,7 @@
         </div>
         <!--end login button-->
         <!-- End Logo container-->
-        <div class="menu-extras">
+        <div style="display: flex;align-items: center" class="menu-extras">
             <div class="menu-item">
                 <!-- Mobile menu toggle-->
                 <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
@@ -34,7 +50,10 @@
                 ->where('is_visible', true)
                 ->where('parent_id', 0);
         @endphp
-        <div style=" justify-content: end; display: flex !important; align-items: center" id="navigation">
+
+        @include('layouts.header.mobile_menu')
+
+        <div id="Mynavigation">
             <!-- Navigation Menu-->
             <ul class="navigation-menu justify-content-end">
                 @if (!request()->routeIs('home'))
@@ -70,6 +89,7 @@
                 @php
                     $pages = \App\Models\Page::all();
                 @endphp
+
                 @if ($pages->count())
                     <li class="has-submenu parent-menu-item">
                         <a href="javascript:void(0)">لینک های مفید

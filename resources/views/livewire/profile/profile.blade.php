@@ -11,7 +11,6 @@
                             <h5 class="mb-0">{{ auth()->user()->name }}</h5>
                         </div>
                     </div>
-
                     @include('home.profile.sidbar')
                     <!--end nav pills-->
                 </div>
@@ -25,7 +24,11 @@
 
                         <livewire:profile.profile-address />
 
-                        <livewire:profile.profile-info />
+                        <div class="tab-pane fade bg-white shadow rounded p-4 {{ activeClassProfile('info') }}"
+                            id="account" role="tabpanel" aria-labelledby="account-details">
+
+                            <livewire:profile.profile-info />
+                        </div>
                     </div>
                 </div>
                 <!--end col-->

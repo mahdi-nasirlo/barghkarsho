@@ -1,5 +1,3 @@
-   <div class="tab-pane fade bg-white shadow rounded p-4 {{ activeClassProfile('info') }}" id="account" role="tabpanel"
-       aria-labelledby="account-details">
        <form wire:submit.prevent='saveInfo'>
            <div class="row">
                <div class="col-md-6">
@@ -44,5 +42,7 @@
            <!--end row-->
        </form>
 
-       <livewire:profile.profile-password>
-   </div>
+       <div>
+           <h5 class="mt-4">تغییر رمز عبور : </h5>
+           <livewire:profile.profile-password>
+       </div>

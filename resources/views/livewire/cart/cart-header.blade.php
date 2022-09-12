@@ -69,7 +69,7 @@
 
                     <div class="mt-3 text-center">
                         <a href="{{ route('cart.') }}" class="btn btn-primary me-2">نمایش سبد خرید </a>
-                        <a href="javascript:void(0)" class="btn btn-primary">پرداخت </a>
+                        <button wire:click='redirectToPayment' class="btn btn-primary">پرداخت </button>
                     </div>
                 @else
                     <div style=" display: flex;flex-direction: column;align-content: center;"

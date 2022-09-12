@@ -4,7 +4,7 @@
         <div id="simple-msg"></div>
         <div class="row">
             <div class="col-md-6">
-                <div class="mb-3 input-group has-validation">
+                <div style="display: block" class="mb-3 input-group has-validation">
                     <label class="form-label">نام شما <span class="text-danger">*</span></label>
                     <div class="form-icon position-relative">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -15,29 +15,25 @@
                         </svg>
                         <input aria-describedby="validationServerUsernameFeedback" value="{{ old('name') }}"
                             wire:model="name" id="name" type="text"
-                            class="form-control ps-5 @error('message') is-invalid @enderror" placeholder="نام :">
-                        @error('name')
-                            <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                            class="form-control ps-5 @error('name') is-invalid @enderror" placeholder="نام :">
+                        @if ($errors->has('name'))
+                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                        @endif
                     </div>
                 </div>
             </div>
 
             <div class="col-md-6">
-                <div class="mb-3 input-group has-validation">
+                <div style="display: block" class="mb-3 input-group has-validation">
                     <label class="form-label">موبایل شما <span class="text-danger">*</span></label>
                     <div class="form-icon position-relative">
                         <i class="uil uil-mobile-vibrate feather feather-mail fea icon-sm icons"></i>
                         <input wire:model="mobile" value="{{ old('mobile') }}" name="mobile" id="email"
-                            type="text" class="form-control ps-5 @error('message') is-invalid @enderror"
+                            type="text" class="form-control ps-5 @error('mobile') is-invalid @enderror"
                             aria-describedby="validationServerUsernameFeedbackmobiel" placeholder="موبایل :">
-                        @error('mobile')
-                            <div id="validationServerUsernameFeedbackmobiel" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        @if ($errors->has('mobile'))
+                            <span class="text-danger">{{ $errors->first('mobile') }}</span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -56,18 +52,16 @@
                         </svg>
                         <select wire:model="topic" name="item_id" id="subject"
                             aria-describedby="validationServerUsernameFeedbackitem"
-                            class="form-control w-100 ps-5 @error('message') is-invalid @enderror">
+                            class="form-control w-100 ps-5 @error('topic') is-invalid @enderror">
                             <option value="">موضوع :</option>
                             @foreach (\App\Models\ServiceItem::all() as $item)
                                 <option {{ old('item_id' == $item->id ? 'selected' : '') }} value="{{ $item->id }}">
                                     {{ $item->name }}</option>
                             @endforeach
                         </select>
-                        @error('item_id')
-                            <div id="validationServerUsernameFeedbackitem" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        @if ($errors->has('topic'))
+                            <span class="text-danger">{{ $errors->first('topic') }}</span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -84,13 +78,11 @@
                                 d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
                             </path>
                         </svg>
-                        <textarea wire:model="desc" aria-describedby="validationServerUsernameFeedbackmessage" name="message" id="comments"
-                            rows="4" class="form-control ps-5 @error('message') is-invalid @enderror" placeholder="پیام :">{{ old('message') }}</textarea>
-                        @error('message')
-                            <div id="validationServerUsernameFeedbackmessage" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <textarea wire:model="desc" aria-describedby="validationServerUsernameFeedbackmessage" name="desc" id="comments"
+                            rows="4" class="form-control ps-5 @error('desc') is-invalid @enderror" placeholder="پیام :">{{ old('desc') }}</textarea>
+                        @if ($errors->has('desc'))
+                            <span class="text-danger">{{ $errors->first('desc') }}</span>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -92,12 +92,6 @@ class CourceResource extends Resource
                                     ->thousandsSeparator(','), // Add a separator for thousands.
                             )
                             ->label('قیمت')
-                            // ->helperText(function (Course $record) {
-                            //     return $record->discountItem
-                            //         ? " قیمت دوره با اعمال تخفیف " . number_format($record->discounted_price) . " تومان می باشد. "
-                            //         : "";
-                            // })
-                            // ->helperText(fn (Course $record) => $record->discountItem ? " قیمت دوره با اعمال تخفیف " . number_format($record->discounted_price) . " تومان می باشد. " : "")
                             ->numeric()
                             ->suffix('تومان')
                             ->rules(['integer', 'min:0'])
@@ -116,8 +110,10 @@ class CourceResource extends Resource
                                             ->maxValue(100)
                                             ->minValue(0)
                                             ->suffix('%')
+                                            ->required()
                                             ->default(0),
                                         JalaliDateTimePicker::make("expired_at")
+                                            ->required()
                                             ->label("تاریخ انقضا")
                                     ])
                                     ->columns([
