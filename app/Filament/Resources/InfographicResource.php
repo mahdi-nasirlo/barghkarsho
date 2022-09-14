@@ -46,7 +46,6 @@ class InfographicResource extends Resource
                 TinyEditor::make('content')->label("محتوا")->columnSpan([
                     'sm' => 2,
                 ]),
-                TextInput::make('name')
             ]);
     }
 

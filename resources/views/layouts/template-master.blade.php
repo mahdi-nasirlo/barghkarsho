@@ -61,6 +61,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <x-livewire-alert::scripts /> --}}
+    @include('layouts.click_to_chat')
 </body>
 
 </html>

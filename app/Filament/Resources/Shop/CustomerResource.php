@@ -107,8 +107,6 @@ class CustomerResource extends Resource
                     ->label("ایمیل")
                     ->searchable()
                     ->sortable(),
-                BooleanColumn::make("is_supperUser")
-                    ->label("مدیر"),
                 JalaliDateTimeColumn::make('created_at')->dateTime()
                     ->label('تاریخ ثبت نام')
 

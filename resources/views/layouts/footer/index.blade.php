@@ -10,8 +10,8 @@
                 </p>
                 <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
 
-                    <li class="list-inline-item"><a href="{{ $information['instagram_link']['content'] }}"
-                            class="rounded">
+                    <li class="list-inline-item">
+                        <a href="{{ strip_tags($information['instagram_link']['content']) }}" class="rounded">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="feather feather-instagram fea icon-sm fea-social">
@@ -22,7 +22,7 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="list-inline-item"><a href="{{ $information['linkdin_link']['content'] }}"
+                    <li class="list-inline-item"><a href="{{ strip_tags($information['linkdin_link']['content']) }}"
                             class="rounded"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
@@ -34,7 +34,7 @@
                                 <circle cx="4" cy="4" r="2"></circle>
                             </svg></a></li>
                     <li class="list-inline-item">
-                        <a href="{{ $information['telegram_link']['content'] }}" class="rounded">
+                        <a href="{{ strip_tags($information['telegram_link']['content']) }}" class="rounded">
                             <i class="uil uil-telegram-alt"></i>
                         </a>
                     </li>
