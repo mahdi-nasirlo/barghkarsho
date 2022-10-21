@@ -42,6 +42,12 @@ class DatabaseSeeder extends Seeder
         DB::table('infographics')->insert(
             [
                 [
+                    "display_name" => "تلفن همراه واتس اپ دار",
+                    "name" => "whatsapp_mobile",
+                    "desc" => "",
+                    "content" => ""
+                ],
+                [
                     "display_name" => "توضیحات مربوط به سئو",
                     "name" => "seo_default_desc",
                     "desc" => "این توضیحات برای زمانی در نظر گرفته میشود که توضیحاتی لطاظ نشده باشد",

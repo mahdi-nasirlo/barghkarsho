@@ -1,64 +1,54 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank">
+<img src="/public_html/logo.png" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About Barghkarsho Project
 
-## About Laravel
+A website that aims to teach building electrical topics and sell educational products, as well as specialized sales of products and boards related to electrical appliances.
+This website is currently being developed for its second version after (3 months feedback).
+Some useful features of this site are listed below:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   **Monitoring website programming errors in the form of a log**
+-   Create access levels for even the most minor items
+-   Management of all users is segmented and with the details of the activities they have done on the website in the form of a log
+-   Complete management of bank orders and payments and 100% monitoring of customer orders and payments + complete observation of user behavior in using the shopping cart
+-   **Automatic sitemap creation with details that can be controlled from the admin panel**
+-   Creating a smart discount (under development)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<div style="width:100%;display: flex;justify-content: center;padding:5px 0"> 
+   <img src="/preview-gif/index.gif" style="width:60%; margin: 0 auto"></a></p>
+</div>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<div style="width:100%;display: flex;justify-content: center;padding:5px 0"> 
+   <img src="/preview-gif/Screenshot (100).png" style="width:60%; margin: 0 auto"></a></p>
+</div>
 
-## Learning Laravel
+## Blog Section Preview
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<div style="width:100%;display: flex;justify-content: center;padding:5px 0"> 
+   <img src="/preview-gif/blog-lis.gif" style="width:60%; margin: 0 auto"></a></p>
+</div>
+<div> </br> </div>
+<div style="width:100%;display: flex;justify-content: center;padding-top: 15px;"> 
+   <img src="/preview-gif/single-blog.gif" style="width:60%; margin: 0 auto"></a></p>
+</div>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Service Section Preview
 
-## Laravel Sponsors
+In this section, it is possible for users to request repair work for their work.
+In the next update, **I will address the exact problem routing and make the problem more explorable in detail**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<div style="width:100%;display: flex;justify-content: center;padding:5px 0"> 
+   <img src="/preview-gif/service-request.gif" style="width:60%; margin: 0 auto"></a></p>
+</div>
 
-### Premium Partners
+## Dynamic Page Builder
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+<div style="width:100%;display: flex;justify-content: center;padding:5px 0"> 
+   <img src="/preview-gif/dynamic-page-builder.gif" style="width:60%; margin: 0 auto"></a></p>
+</div>
 
-## Contributing
+## Ecommerce - Cart - Payment - User Account
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<div style="width:100%;display: flex;justify-content: center;padding:5px 0"> 
+   <img src="/preview-gif/store-section.gif" style="width:60%; margin: 0 auto"></a></p>
+</div>
