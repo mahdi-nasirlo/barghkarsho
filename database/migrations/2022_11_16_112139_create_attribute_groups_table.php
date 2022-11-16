@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('attributes', function (Blueprint $table) {
+        Schema::create('attribute_groups', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger("course_id");
-            $table->foreign("course_id")->on("courses")->references("id")->cascadeOnDelete();
-
-            $table->text("attribute");
-
-            $table->timestamps();
+            $table->string('name');
         });
     }
 
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('attribute_groups');
     }
 };
