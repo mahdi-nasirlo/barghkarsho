@@ -6,12 +6,12 @@
                     <h4 style="font-weight: 500" class="title mb-4">سر فصل های دوره {{ $cours->title }}</h4>
 
                     <ul class="list-unstyled text-muted mt-4 mb-0">
-                        @foreach ($cours->attributes as $attribute)
+                        @foreach ($cours->attributes as $key => $value)
                             <li class="mb-0">
                                 <span class="text-orange h5 me-2">
                                     <i class="uil uil-check-circle align-middle"></i>
                                 </span>
-                                {{ $attribute->attribute }}
+                                {{ $value['attribute'] }}
                             </li>
                         @endforeach
                     </ul>
@@ -21,19 +21,19 @@
 
             <div class="col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
                 <div class="accordion" id="accordionExample">
-                    @foreach ($cours->commonQuestions as $question)
+                    @foreach ($cours->common_questions as $question)
                         <div class="accordion-item rounded shadow mt-2">
                             <h2 class="accordion-header" id="heading-{{ $loop->index }}">
                                 <button class="accordion-button border-0 bg-white collapsed" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapse-{{ $loop->index }}"
                                     aria-expanded="true" aria-controls="collapse-{{ $loop->index }}">
-                                    {{ $question->question }}
+                                    {{ $question['question'] }}
                                 </button>
                             </h2>
                             <div id="collapse-{{ $loop->index }}" class="accordion-collapse border-0 collapse"
                                 aria-labelledby="heading-{{ $loop->index }}" data-bs-parent="#accordionExample">
                                 <div class="accordion-body text-muted bg-white">
-                                    {{ $question->answer }}
+                                    {{ $question['answer'] }}
                                 </div>
                             </div>
                         </div>

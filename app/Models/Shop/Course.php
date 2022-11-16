@@ -4,19 +4,18 @@ namespace App\Models\Shop;
 
 use App\Models\Comment;
 use App\Models\Order;
-use App\Models\User;
 use App\Models\Shop\DiscountItem;
+use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Spatie\Tags\HasTags;
-use Spatie\Tags\Tag;
+use Jackiedo\Cart\Contracts\UseCartable;
+use Jackiedo\Cart\Traits\CanUseCart;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
-
-use Jackiedo\Cart\Contracts\UseCartable; // Interface
-use Jackiedo\Cart\Traits\CanUseCart;     // Trait
+use Spatie\Tags\HasTags; // Interface
+use Spatie\Tags\Tag;
+// Trait
 
 class Course extends Model implements UseCartable
 {
@@ -26,11 +25,10 @@ class Course extends Model implements UseCartable
     use HasTags;
     use HasSEO;
 
-
-    protected $fillable = ['title', "attributes", 'short_desc', 'slug', 'desc', 'price', 'inventory', "published_at", 'view', 'image', 'user_id'];
+    protected $fillable = ['title', 'common_questions', 'attributes', "attributes", 'short_desc', 'slug', 'desc', 'price', 'inventory', "published_at", 'view', 'image', 'user_id'];
 
     protected $appends = [
-        'discounted_price'
+        'discounted_price',
     ];
 
     public function getDiscountedPriceAttribute()
@@ -43,8 +41,8 @@ class Course extends Model implements UseCartable
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 
@@ -53,13 +51,14 @@ class Course extends Model implements UseCartable
      */
     protected $casts = [
         'published_at' => 'date',
+        'attributes' => 'array',
+        'common_questions' => 'array',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
 
     public function comments(): MorphMany
     {
@@ -74,15 +73,15 @@ class Course extends Model implements UseCartable
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
-    public function commonQuestions(): HasMany
-    {
-        return $this->hasMany(CommonQuestion::class, 'course_id');
-    }
+    // public function commonQuestions(): HasMany
+    // {
+    //     return $this->hasMany(CommonQuestion::class, 'course_id');
+    // }
 
-    public function attributes(): HasMany
-    {
-        return $this->hasMany(Attribute::class, 'course_id');
-    }
+    // public function attributes(): HasMany
+    // {
+    //     return $this->hasMany(Attribute::class, 'course_id');
+    // }
 
     public function orders()
     {

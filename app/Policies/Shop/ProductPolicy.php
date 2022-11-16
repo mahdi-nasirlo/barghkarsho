@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Policies\Blog;
+namespace App\Policies\Shop;
 
 use App\Models\User;
-use App\Models\Blog\Category;
+use App\Models\Shop\Product;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CategoryPolicy
+class ProductPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class CategoryPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('view_any_blog::categories');
+        return $user->can('view_any_shop::product');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Category  $category
+     * @param  \App\Models\Shop\Product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Category $category)
+    public function view(User $user, Product $product)
     {
-        return $user->can('view_blog::categories');
+        return $user->can('view_shop::product');
     }
 
     /**
@@ -41,31 +41,31 @@ class CategoryPolicy
      */
     public function create(User $user)
     {
-        return $user->can('create_blog::categories');
+        return $user->can('create_shop::product');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Category  $category
+     * @param  \App\Models\Shop\Product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Category $category)
+    public function update(User $user, Product $product)
     {
-        return $user->can('update_blog::categories');
+        return $user->can('update_shop::product');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Category  $category
+     * @param  \App\Models\Shop\Product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Category $category)
+    public function delete(User $user, Product $product)
     {
-        return $user->can('delete_blog::categories');
+        return $user->can('delete_shop::product');
     }
 
     /**
@@ -76,19 +76,19 @@ class CategoryPolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->can('delete_any_blog::categories');
+        return $user->can('delete_any_shop::product');
     }
 
     /**
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Category  $category
+     * @param  \App\Models\Shop\Product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Category $category)
+    public function forceDelete(User $user, Product $product)
     {
-        return $user->can('force_delete_blog::categories');
+        return $user->can('force_delete_shop::product');
     }
 
     /**
@@ -99,19 +99,19 @@ class CategoryPolicy
      */
     public function forceDeleteAny(User $user)
     {
-        return $user->can('force_delete_any_blog::categories');
+        return $user->can('force_delete_any_shop::product');
     }
 
     /**
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Category  $category
+     * @param  \App\Models\Shop\Product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Category $category)
+    public function restore(User $user, Product $product)
     {
-        return $user->can('restore_blog::categories');
+        return $user->can('restore_shop::product');
     }
 
     /**
@@ -122,19 +122,19 @@ class CategoryPolicy
      */
     public function restoreAny(User $user)
     {
-        return $user->can('restore_any_blog::categories');
+        return $user->can('restore_any_shop::product');
     }
 
     /**
      * Determine whether the user can replicate.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Blog\Category  $category
+     * @param  \App\Models\Shop\Product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, Category $category)
+    public function replicate(User $user, Product $product)
     {
-        return $user->can('replicate_blog::categories');
+        return $user->can('replicate_shop::product');
     }
 
     /**
@@ -145,7 +145,7 @@ class CategoryPolicy
      */
     public function reorder(User $user)
     {
-        return $user->can('reorder_blog::categories');
+        return $user->can('reorder_shop::product');
     }
 
 }

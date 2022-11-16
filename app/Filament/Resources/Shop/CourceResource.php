@@ -161,7 +161,7 @@ class CourceResource extends Resource
                             ->content(fn (?Course $record): string => $record ? $record->updated_at->diffForHumans() : '-'),
                     ])
                     ->columnSpan(1),
-                Repeater::make('commonQuestions')
+                Repeater::make('common_questions')
                     ->schema([
                         TextInput::make('question')
                             ->label("سوال")
@@ -171,7 +171,7 @@ class CourceResource extends Resource
                             ->cols(10)
                             ->required(),
                     ])
-                    ->relationship()
+                    // ->relationship()
                     ->orderable("sort")
                     ->label("پرسش متداول")
                     ->columns([
@@ -191,7 +191,7 @@ class CourceResource extends Resource
                                     ->label("سر فصل ها")
                                     ->required(),
                             ])
-                            ->relationship()
+                            // ->relationship()
                             ->required()
                             ->label("مبحث")
                             ->columns([

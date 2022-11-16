@@ -8,6 +8,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Livewire\Cart\Cart;
 use App\Http\Livewire\Profile\Profile;
 use App\Models\Shop\Course;
+use App\Models\Shop\Product;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -55,37 +56,41 @@ Route::get('/payment/callback', [CartController::class, 'callback'])->name('paym
 Route::get('/page/{page:slug}', [PageController::class, "index"])->name("pages");
 
 
-Route::get('/clear-cache', function () {
-    $exitCode = Artisan::call('cache:clear');
-    return '<h1>Cache facade value cleared</h1>';
-});
+// Route::get('/clear-cache', function () {
+//     $exitCode = Artisan::call('cache:clear');
+//     return '<h1>Cache facade value cleared</h1>';
+// });
 
-//Reoptimized class loader:
-Route::get('/optimize', function () {
-    $exitCode = Artisan::call('optimize');
-    return '<h1>Reoptimized class loader</h1>';
-});
+// //Reoptimized class loader:
+// Route::get('/optimize', function () {
+//     $exitCode = Artisan::call('optimize');
+//     Artisan::call('migrate:fresh');
+//     Artisan::call('db:seed');
+//     Artisan::call('shield:install');
 
-//Route cache:
-Route::get('/route-cache', function () {
-    $exitCode = Artisan::call('route:cache');
-    return '<h1>Routes cached</h1>';
-});
+//     return '<h1>Reoptimized class loader</h1>';
+// });
 
-//Clear Route cache:
-Route::get('/route-clear', function () {
-    $exitCode = Artisan::call('route:clear');
-    return '<h1>Route cache cleared</h1>';
-});
+// //Route cache:
+// Route::get('/route-cache', function () {
+//     $exitCode = Artisan::call('route:cache');
+//     return '<h1>Routes cached</h1>';
+// });
 
-//Clear View cache:
-Route::get('/view-clear', function () {
-    $exitCode = Artisan::call('view:clear');
-    return '<h1>View cache cleared</h1>';
-});
+// //Clear Route cache:
+// Route::get('/route-clear', function () {
+//     $exitCode = Artisan::call('route:clear');
+//     return '<h1>Route cache cleared</h1>';
+// });
 
-//Clear Config cache:
-Route::get('/config-cache', function () {
-    $exitCode = Artisan::call('config:cache');
-    return '<h1>Clear Config cleared</h1>';
-});
+// //Clear View cache:
+// Route::get('/view-clear', function () {
+//     $exitCode = Artisan::call('view:clear');
+//     return '<h1>View cache cleared</h1>';
+// });
+
+// //Clear Config cache:
+// Route::get('/config-cache', function () {
+//     $exitCode = Artisan::call('config:cache');
+//     return '<h1>Clear Config cleared</h1>';
+// });

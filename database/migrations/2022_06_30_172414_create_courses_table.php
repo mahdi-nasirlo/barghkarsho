@@ -37,6 +37,10 @@ return new class extends Migration
 
             $table->dateTime('published_at')->useCurrent();
 
+            $table->json('common_questions');
+
+            $table->json('attributes');
+
             $table->timestamps();
         });
     }
