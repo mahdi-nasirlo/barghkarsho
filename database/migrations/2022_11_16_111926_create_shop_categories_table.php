@@ -15,16 +15,13 @@ return new class extends Migration
     {
         Schema::create('shop_categories', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string('slug');
-            $table->text("desc")->nullable();
-            $table->boolean("is_visible")->nullable()->default(0);
-            $table->string("icon")->nullable();
-            $table->text("shortInfo")->nullable()->nullable();
-            $table->enum("type", ['api', 'web', 'blog'])->default('web');
-            $table->string("cover")->nullable();
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->integer('level')->default(0);
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->unsignedBigInteger('parent_id')->nullable()->default(0);
+            $table->longText('description')->nullable();
+            $table->boolean('is_visible')->default(false);
+            $table->string('seo_title', 60)->nullable();
+            $table->string('seo_description', 160)->nullable();
             $table->timestamps();
         });
     }

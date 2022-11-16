@@ -46,9 +46,18 @@
                 ->where('inventory', '>', 0)
                 ->where('published_at', '<', now());
             
+            // FIXME product condition to display category
+            $products = \App\Models\Shop\Product::all();
+            // ->where('inventory', '>', 0)
+            // ->where('published_at', '<', now());
+            
             $categoreis = \App\Models\Blog\Category::all()
                 ->where('is_visible', true)
                 ->where('parent_id', 0);
+            
+            $shopCategoies = \App\Models\Shop\ShopCategory::all();
+            // ->where('is_visible', true)
+            // ->where('parent_id', 0);
         @endphp
 
         @include('layouts.header.mobile_menu')
@@ -82,6 +91,14 @@
                                     <a href="{{ route('cours.single', $item) }}"> {{ $item->title }} </a>
                                 </li>
                             @endforeach
+                        </ul>
+                    </li>
+                @endif
+                @if (count($products) > 0)
+                    <li class="has-submenu parent-parent-menu-item">
+                        <a href="javascript:void(0)">فروشگاه</a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            @include('layouts.header.article-sub-item', ['categoreis' => $shopCategoies])
                         </ul>
                     </li>
                 @endif

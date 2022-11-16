@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
 
 class ShopCategory extends Model
 {
     use HasFactory;
     use Sluggable;
+    use HasSEO;
 
 
     /**
@@ -51,17 +53,17 @@ class ShopCategory extends Model
 
     public function posts(): HasMany
     {
-        return $this->hasMany(Post::class, 'blog_category_id');
+        return $this->hasMany(Product::class, 'category_id');
     }
 
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'parent_id');
+        return $this->belongsTo(ShopCategory::class, 'parent_id');
     }
 
     public function children()
     {
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->hasMany(ShopCategory::class, 'parent_id');
     }
 
     public function hasPost()
