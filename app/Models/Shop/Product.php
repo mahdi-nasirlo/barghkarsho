@@ -37,6 +37,11 @@ class Product extends Model
     //     return $this->getMedia("product.gallery");
     // }
 
+    public function getCoverAttribute($value)
+    {
+        return $value ?? "/placeholder.webp";
+    }
+
     public function attributes()
     {
         return $this->belongsToMany(

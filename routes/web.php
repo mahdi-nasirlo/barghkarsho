@@ -7,8 +7,11 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Livewire\Cart\Cart;
 use App\Http\Livewire\Profile\Profile;
+use App\Http\Livewire\Shop\ProductList;
+use App\Http\Livewire\Shop\ProdutList;
 use App\Models\Shop\Course;
 use App\Models\Shop\Product;
+use App\Models\Shop\ShopCategory;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +58,7 @@ Route::get('/payment/callback', [CartController::class, 'callback'])->name('paym
 
 Route::get('/page/{page:slug}', [PageController::class, "index"])->name("pages");
 
+Route::get('/shop/products/{shopCategory:slug}', ProductList::class)->name('product.list');
 
 // Route::get('/clear-cache', function () {
 //     $exitCode = Artisan::call('cache:clear');

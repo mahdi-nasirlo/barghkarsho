@@ -35,6 +35,9 @@
     </div>
     @yield('content')
 
+    @if (isset($slot) and $slot !== null)
+        {{ $slot }}
+    @endif
 
     {{-- <div style="margin-top: 300px"> --}}
     @include('layouts.footer.index')

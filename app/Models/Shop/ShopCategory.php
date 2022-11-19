@@ -2,6 +2,7 @@
 
 namespace App\Models\Shop;
 
+use App\Models\Store\Attribute;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -51,9 +52,21 @@ class ShopCategory extends Model
 
     public $allChildren = [];
 
-    public function posts(): HasMany
+    public function products(): HasMany
     {
         return $this->hasMany(Product::class, 'category_id');
+    }
+
+
+    public function attributes()
+    {
+        return $this->belongsToMany(
+            Attribute::class,
+            'attribute_category_product',
+            'category_id',
+            'attributes_id'
+        )
+            ->withPivot('value');
     }
 
     public function parent(): BelongsTo
@@ -66,14 +79,14 @@ class ShopCategory extends Model
         return $this->hasMany(ShopCategory::class, 'parent_id');
     }
 
-    public function hasPost()
+    public function hasProduct()
     {
-        return $this->posts()->count() > 0;
+        return $this->products()->count() > 0;
     }
 
     public function categoryLink()
     {
-        return ($this->isVIsible() and $this->is_visible) ? route('article.list', $this) : "javascript:void(0)";
+        return ($this->isVIsible() and $this->is_visible) ? route('product.list', $this) : "javascript:void(0)";
     }
 
     public function hasChilde()
@@ -83,12 +96,12 @@ class ShopCategory extends Model
 
     public function isVIsible()
     {
-        if ($this->hasPost()) {
+        if ($this->hasProduct()) {
             return true;
         }
 
         foreach ($this->children as  $child) {
-            if ($child->hasPost()) {
+            if ($child->hasProduct()) {
                 return true;
             }
             foreach ($child->children as $value) {
@@ -125,11 +138,11 @@ class ShopCategory extends Model
 
     public function tags($array = null)
     {
-        $posts = $this->posts;
+        $products = $this->products;
         $tags = [];
 
-        foreach ($posts as  $post) {
-            foreach ($post->tags->toArray() as $tag) {
+        foreach ($products as  $product) {
+            foreach ($product->tags->toArray() as $tag) {
                 $tag['name'] = $tag['name']['fa'];
                 array_push($tags, $array ? $tag['name'] : $tag);
             }

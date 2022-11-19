@@ -55,9 +55,9 @@
                 ->where('is_visible', true)
                 ->where('parent_id', 0);
             
-            $shopCategoies = \App\Models\Shop\ShopCategory::all();
-            // ->where('is_visible', true)
-            // ->where('parent_id', 0);
+            $shopCategoies = \App\Models\Shop\ShopCategory::all()
+                ->where('is_visible', true)
+                ->where('parent_id', 0);
         @endphp
 
         @include('layouts.header.mobile_menu')
