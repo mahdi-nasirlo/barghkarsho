@@ -43,7 +43,6 @@ class GoogleAuthController extends Controller
                 return redirect(route('filament.pages.dashboard'));
             } else redirect(route("profile"));
         } catch (\Throwable $th) {
-            //TODO show throw $th;
 
             // Alert::error('خطایی رخ داده', 'لطفا مجددا تلاش بفرمایید');
 

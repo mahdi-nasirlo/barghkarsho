@@ -136,7 +136,6 @@
 {{-- 
     TODO get filter product with select box
     TODO pagination products
-    TODO filter product with search 
     TODO add more product sale in product list sidebar
     TODO add result number on top of product list
     TODO fix product cart 

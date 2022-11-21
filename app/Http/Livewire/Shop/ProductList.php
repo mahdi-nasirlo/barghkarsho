@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Shop;
 
 use App\Http\Filters\AttributesFilter;
+use App\Http\Filters\Search;
 use App\Models\Shop\Product;
 use App\Models\Shop\ShopCategory;
 use Illuminate\Pipeline\Pipeline;
@@ -40,7 +41,7 @@ class ProductList extends Component
                 ->with(['attributes']))
             ->through([
                 new AttributesFilter($this->filter),
-                // new PriceFilter($this->minPrice, $this->maxPrice)
+                new Search($this->search)
             ])
             ->thenReturn()
             ->get();
