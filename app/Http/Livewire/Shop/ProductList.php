@@ -14,7 +14,7 @@ class ProductList extends Component
 
     public $filter = [];
 
-    public $search = "fdsa";
+    public $search;
 
     protected $queryString = [
         'filter',

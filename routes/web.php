@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
+    // dd(ShopCategory::all()->first()->products);
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
     return view('welcome', ['posts' => $post]);

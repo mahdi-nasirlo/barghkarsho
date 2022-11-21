@@ -45,8 +45,9 @@
                     </div>
                     <!--end row-->
 
-                    <div wire:loading>
-                        loading ...
+
+                    <div wire:loading.block>
+                        @include('livewire.shop.skelton')
                     </div>
                     <div wire:loading.remove class="row">
 
@@ -81,4 +82,63 @@
         <!--end container-->
     </section>
 
+
+    <style>
+        .skeleton-loader-background {
+            width: 100%;
+            height: 15px;
+            display: block;
+            background: lightgray;
+        }
+
+        .skeleton-loader-gradient {
+            width: 100%;
+            height: 15px;
+            display: block;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 0.5) 50%,
+                    rgba(255, 255, 255, 0) 80%),
+                lightgray;
+            background-repeat: repeat-y;
+            background-size: 50px 200px;
+            background-position: 0 0;
+        }
+
+        .skeleton-loader {
+            width: 100%;
+            height: 15px;
+            display: block;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 0.5) 50%,
+                    rgba(255, 255, 255, 0) 80%),
+                rgb(240, 240, 240);
+            background-repeat: repeat-y;
+            background-size: 50px 500px;
+            background-position: 0 0;
+            animation: shine 1s infinite;
+            border-radius: 4px
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 100% 0,
+                    /* move highlight to right */
+                    0 0;
+            }
+        }
+    </style>
+
+
 </div>
+
+{{-- 
+    TODO get filter product with select box
+    TODO pagination products
+    TODO filter product with search 
+    TODO add more product sale in product list sidebar
+    TODO add result number on top of product list
+    TODO fix product cart 
+    TODO add content of category list 
+--}}
