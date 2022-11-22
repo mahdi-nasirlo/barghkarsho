@@ -3,30 +3,32 @@
 namespace App\Http\Livewire\Shop;
 
 use App\Http\Filters\AttributesFilter;
+use App\Http\Filters\Order;
 use App\Http\Filters\Search;
 use App\Models\Shop\Product;
 use App\Models\Shop\ShopCategory;
 use Illuminate\Pipeline\Pipeline;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ProductList extends Component
 {
+    use WithPagination;
+
     public ShopCategory $shopCategory;
 
     public $filter = [];
 
     public $search;
 
+    public $order = 'last';
+
     protected $queryString = [
         'filter',
-        'search'
+        'search',
+        'order'
     ];
 
-    public function test()
-    {
-
-        dd($this->filter);
-    }
     // public function mount()
     // {
     //     $this->category->load('products');
@@ -36,15 +38,20 @@ class ProductList extends Component
     {
         $products =
             app(Pipeline::class)
-            ->send(Product::query()
-                ->where('category_id', $this->shopCategory->id)
-                ->with(['attributes']))
+            ->send(
+                Product::query()
+                    ->where('category_id', $this->shopCategory->id)
+                    ->with(['attributes'])
+                // ->orderBy('price', 'desc')
+            )
             ->through([
+                new Order($this->order),
                 new AttributesFilter($this->filter),
-                new Search($this->search)
+                new Search($this->search),
             ])
             ->thenReturn()
-            ->get();
+            ->paginate(20);
+
 
         return view('livewire.shop.product-list', compact('products'))
             ->layout('layouts.template-master');

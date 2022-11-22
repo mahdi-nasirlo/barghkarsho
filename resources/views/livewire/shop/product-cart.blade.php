@@ -16,8 +16,8 @@
                 <h6 class="text-muted small fst-italic mb-0 mt-1">
                     {{ number_format($product->price) }} تومان
                     {{-- <del class="text-danger ms-2">
-                        25000 تومان
-                    </del> --}}
+                                                        25000 تومان
+                                                       </del> --}}
                 </h6>
                 <ul style="display: flex; flex-direction: row" class="list-unstyled text-warning mb-0">
                     <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
@@ -30,4 +30,3 @@
         </div>
     </div>
 </div>
-<!--

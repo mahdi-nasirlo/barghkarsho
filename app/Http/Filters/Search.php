@@ -3,6 +3,7 @@
 namespace App\Http\Filters;
 
 use Closure;
+use Illuminate\Support\Facades\Log;
 
 class Search
 {
@@ -15,10 +16,10 @@ class Search
 
     public function handle($request, Closure $next)
     {
-        if (!$this->string or $this->string = "") {
+        if (!$this->string or $this->string == "") {
             return $next($request);
         }
 
-        return $next($request)->orWhere('name', 'like', '%' . $this->string . '%');
+        return $next($request)->where('name', 'like', '%' . $this->string . '%');
     }
 }

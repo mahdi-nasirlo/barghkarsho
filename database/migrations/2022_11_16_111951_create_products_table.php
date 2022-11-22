@@ -8,6 +8,7 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * TODO change slug to unique
      *
      * @return void
      */

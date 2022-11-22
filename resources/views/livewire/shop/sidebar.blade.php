@@ -81,8 +81,6 @@
             </div>
 
 
-            <button wire:click='test'>test</button>
-
             <!-- Top Products -->
             <div class="widget mt-4 pt-2">
                 <h5 class="widget-title">محصولات برتر </h5>

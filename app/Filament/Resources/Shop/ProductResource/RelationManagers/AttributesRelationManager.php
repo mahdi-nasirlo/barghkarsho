@@ -156,3 +156,4 @@ class AttributesRelationManager extends RelationManager
             ]);
     }
 }
+// FIXME attribute dissociate not work
