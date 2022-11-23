@@ -8,6 +8,7 @@ use App\Filament\Resources\Shop\ProductResource\RelationManagers\AttributesRelat
 use App\Models\Shop\Product;
 use Filament\Forms;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -72,6 +73,27 @@ class ProductResource extends Resource
                 Forms\Components\DateTimePicker::make('published_at'),
                 Forms\Components\Textarea::make('content')
                     ->maxLength(65535),
+                Repeater::make('cover_tag')
+                    ->label('تگ های کاور')
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('نام')
+                            ->required(),
+                        Select::make('color')
+                            ->label('رنگ')
+                            ->default("bg-primary")
+                            ->options([
+                                'bg-primary' => 'آبی',
+                                'bg-success' => 'سبز',
+                                'bg-warning' => 'نارنجی',
+                                "bg-dark" => "مشکی",
+                                "bg-info" => "آبی کم رنگ",
+                                "bg-danger" => "قرمز",
+                            ])
+                            ->required(),
+                    ])
+                    ->maxItems(3)
+                    ->columns(2),
                 Select::make('category_id')
                     ->required()
                     ->searchable()
@@ -108,6 +130,7 @@ class ProductResource extends Resource
                             ->maxLength(65535),
                         Forms\Components\TextInput::make('cover')
                             ->maxLength(255),
+
                     ])
             ]);
     }

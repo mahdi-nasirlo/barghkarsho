@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('cover')->nullable();
             $table->bigInteger('price');
             $table->integer('inventory');
+            $table->json("cover_tag")->nullable();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('shop_categories');
             // $table->string("rating");

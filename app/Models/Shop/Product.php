@@ -14,6 +14,7 @@ class Product extends Model
         "content",
         "published_at",
         "inventory",
+        "cover_tag",
         "price",
         "cover",
         "gallery",
@@ -24,6 +25,7 @@ class Product extends Model
     ];
 
     protected $casts = [
+        "cover_tag" => "array",
         'published_at' => "datetime",
         "gallery" => "array"
     ];
