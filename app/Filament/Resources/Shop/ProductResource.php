@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Shop;
 
+use App\Filament\Resources\Shop\ProductResource\RelationManagers\CommentsRelationManager;
 use App\Filament\Resources\Shop\ProductResource\Pages;
 use App\Filament\Resources\Shop\ProductResource\RelationManagers;
 use App\Filament\Resources\Shop\ProductResource\RelationManagers\AttributesRelationManager;
@@ -435,7 +436,8 @@ class ProductResource extends Resource
     {
         return [
             RelationGroup::make('content', [
-                AttributesRelationManager::class
+                AttributesRelationManager::class,
+                CommentsRelationManager::class
             ])
         ];
     }

@@ -19,6 +19,7 @@ class Comment extends Model
         'commentable_id',
         'commentable_type',
         'content',
+        'rating',
         'user_id',
         'is_visible'
 

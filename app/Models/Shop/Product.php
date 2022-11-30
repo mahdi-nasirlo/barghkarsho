@@ -2,10 +2,12 @@
 
 namespace App\Models\Shop;
 
+use App\Models\Comment;
 use App\Models\Shop\Attribute;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -77,6 +79,11 @@ class Product extends Model implements HasMedia
             'attributes_id'
         )
             ->withPivot(['value', 'category_id']);
+    }
+
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     // public function category()

@@ -152,249 +152,28 @@
                         </table>
                     </div>
 
-                    <div class="card border-0 tab-pane fade" id="review" role="tabpanel"
+                    {{-- 
+    TODO make lazy load for comment
+--}}
+                    <div class="card shad p-3 rounded tab-pane fade" id="review" role="tabpanel"
                         aria-labelledby="review-comments">
                         <div class="row">
                             <div class="col-lg-6">
-                                <ul class="media-list list-unstyled mb-0">
-                                    <li>
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <a class="pe-3" href="#">
-                                                    <img src="images/client/01.jpg"
-                                                        class="img-fluid avatar avatar-md-sm rounded-circle shadow"
-                                                        alt="img">
-                                                </a>
-                                                <div class="flex-1 commentor-detail">
-                                                    <h6 class="mb-0"><a href="javascript:void(0)"
-                                                            class="text-dark media-heading">لورنزو پیترسون</a></h6>
-                                                    <small class="text-muted">اردیبهشت 1400 - ساعت 14:40 بعد
-                                                        ظهر</small>
-                                                </div>
-                                            </div>
-                                            <ul class="list-unstyled mb-0">
-                                                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="mt-3">
-                                            <p class="text-muted fst-italic p-3 bg-light rounded">" محصول عالی هست "
-                                            </p>
-                                        </div>
-                                    </li>
-
-                                    <li class="mt-4">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <a class="pe-3" href="#">
-                                                    <img src="images/client/02.jpg"
-                                                        class="img-fluid avatar avatar-md-sm rounded-circle shadow"
-                                                        alt="img">
-                                                </a>
-                                                <div class="flex-1 commentor-detail">
-                                                    <h6 class="mb-0"><a href="javascript:void(0)"
-                                                            class="media-heading text-dark">تامی کاماچو</a></h6>
-                                                    <small class="text-muted">اردیبهشت 1400 - ساعت 15:40 بعد
-                                                        ظهر</small>
-                                                </div>
-                                            </div>
-                                            <ul class="list-unstyled mb-0">
-                                                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="mdi mdi-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i
-                                                        class="mdi mdi-star-outline text-warning"></i></li>
-                                            </ul>
-                                        </div>
-                                        <div class="mt-3">
-                                            <p class="text-muted fst-italic p-3 bg-light rounded mb-0">" خوبه "</p>
-                                        </div>
-                                    </li>
+                                <ul class="media-list list-unstyled mb-0 ps-0">
+                                    @include('livewire.shop.each-comment')
                                 </ul>
                             </div>
                             <!--end col-->
-
-                            <div class="col-lg-6 mt-4 mt-lg-0 pt-2 pt-lg-0">
-                                <form class="ms-lg-4">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <h5>اضافه کردن نظر:</h5>
-                                        </div>
-                                        <div class="col-12 mt-4">
-                                            <h6 class="small fw-bold">امتیاز شما :</h6>
-                                            <a href="javascript:void(0)" class="d-inline-block me-3">
-                                                <ul class="list-unstyled mb-0 small">
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star-outline text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star-outline text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star-outline text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star-outline text-warning"></i></li>
-                                                </ul>
-                                            </a>
-
-                                            <a href="javascript:void(0)" class="d-inline-block me-3">
-                                                <ul class="list-unstyled mb-0 small">
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star-outline text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star-outline text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star-outline text-warning"></i></li>
-                                                </ul>
-                                            </a>
-
-                                            <a href="javascript:void(0)" class="d-inline-block me-3">
-                                                <ul class="list-unstyled mb-0 small">
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star-outline text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star-outline text-warning"></i></li>
-                                                </ul>
-                                            </a>
-
-                                            <a href="javascript:void(0)" class="d-inline-block me-3">
-                                                <ul class="list-unstyled mb-0 small">
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star-outline text-warning"></i></li>
-                                                </ul>
-                                            </a>
-
-                                            <a href="javascript:void(0)" class="d-inline-block">
-                                                <ul class="list-unstyled mb-0 small">
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                    <li class="list-inline-item"><i
-                                                            class="mdi mdi-star text-warning"></i></li>
-                                                </ul>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-12 mt-3">
-                                            <div class="mb-3">
-                                                <label class="form-label">نظر شما:</label>
-                                                <div class="form-icon position-relative">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        class="feather feather-message-circle fea icon-sm icons">
-                                                        <path
-                                                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
-                                                        </path>
-                                                    </svg>
-                                                    <textarea id="message" placeholder="کامنت شما" rows="5" name="message" class="form-control ps-5"
-                                                        required=""></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">نام <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="form-icon position-relative">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        class="feather feather-user fea icon-sm icons">
-                                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                                        <circle cx="12" cy="7" r="4">
-                                                        </circle>
-                                                    </svg>
-                                                    <input id="name" name="name" type="text"
-                                                        placeholder="نام" class="form-control ps-5" required="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">ایمیل شما <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="form-icon position-relative">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        class="feather feather-mail fea icon-sm icons">
-                                                        <path
-                                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                                        </path>
-                                                        <polyline points="22,6 12,13 2,6"></polyline>
-                                                    </svg>
-                                                    <input id="email" type="email" placeholder="ایمیل"
-                                                        name="email" class="form-control ps-5" required="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-md-12">
-                                            <div class="send d-grid">
-                                                <button type="submit" class="btn btn-primary">ارسال </button>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                    </div>
-                                    <!--end row-->
-                                </form>
-                                <!--end form-->
-                            </div>
-                            <!--end col-->
+                            <livewire:shop.comment :product='$product' />
+                            <!--end row-->
                         </div>
-                        <!--end row-->
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--end container-->
+        <!--end container-->
 
-    {{-- <div class="container mt-100 mt-60">
+        {{-- <div class="container mt-100 mt-60">
         <div class="row">
             <div class="col-12">
                 <h5 class="mb-0">محصولات اخیر</h5>
@@ -993,9 +772,9 @@
         </div>
         <!--end row-->
     </div> --}}
-    <!--end container-->
+        <!--end container-->
 
-    {{-- <div class="container-fluid mt-100 mt-60 px-0">
+        {{-- <div class="container-fluid mt-100 mt-60 px-0">
         <div class="py-5 bg-light">
             <div class="container">
                 <div class="row align-items-center">
