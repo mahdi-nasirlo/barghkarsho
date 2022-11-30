@@ -158,3 +158,5 @@ class AttributesRelationManager extends RelationManager
 }
 // FIXME attribute dissociate not work
 // FIXME if change category of product attributes not update
+// FIXME delete attriubtes group
+// FIXME attribute column pivot don t display

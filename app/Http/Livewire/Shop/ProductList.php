@@ -50,8 +50,8 @@ class ProductList extends Component
                 new Search($this->search),
             ])
             ->thenReturn()
+            // ->get("cover");
             ->paginate(20);
-
 
         return view('livewire.shop.product-list', compact('products'))
             ->layout('layouts.template-master');

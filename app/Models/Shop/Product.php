@@ -3,12 +3,19 @@
 namespace App\Models\Shop;
 
 use App\Models\Shop\Attribute;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Product extends Model
+class Product extends Model implements HasMedia
 {
     use HasFactory;
+    use HasSEO;
+    use Sluggable;
+    use InteractsWithMedia;
 
     protected $fillable = [
         "content",
@@ -17,6 +24,9 @@ class Product extends Model
         "cover_tag",
         "price",
         "cover",
+        "short_information",
+        "short_desc",
+        "cover_hover",
         "gallery",
         "slug",
         "name",
@@ -26,9 +36,20 @@ class Product extends Model
 
     protected $casts = [
         "cover_tag" => "array",
+        "short_information" => "array",
         'published_at' => "datetime",
         "gallery" => "array"
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
 
     // protected $attribute = [
     //     'gallery'
@@ -39,10 +60,13 @@ class Product extends Model
     //     return $this->getMedia("product.gallery");
     // }
 
-    public function getCoverAttribute($value)
-    {
-        return $value ?? "/placeholder.webp";
-    }
+    // public function getCoverAttribute($value)
+    // {
+    //     if (empty($value) or $value == "/placeholder.webp")
+    //         return "/placeholder.webp";
+    //     else
+    //         return asset("/storage/" . $value);
+    // }
 
     public function attributes()
     {

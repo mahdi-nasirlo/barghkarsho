@@ -1,16 +1,19 @@
 <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
     <div class="card shop-list border-0 position-relative">
         <ul style="padding-right: 0px; top: 5px;right: 7px" class="label list-unstyled mb-0">
-            @foreach ($product->cover_tag as $item)
-                <li>
-                    <a href="javascript:void(0)"
-                        class="badge badge-link rounded-pill {{ $item['color'] }}">{{ $item['name'] }}
-                    </a>
-                </li>
-            @endforeach
+            @if ($product->cover_tag)
+                @foreach ($product->cover_tag as $item)
+                    <li>
+                        <a href="javascript:void(0)"
+                            class="badge badge-link rounded-pill {{ $item['color'] }}">{{ $item['name'] }}
+                        </a>
+                    </li>
+                @endforeach
+            @endif
         </ul>
         <div class="shop-image position-relative overflow-hidden rounded shadow">
-            <a href="shop-product-detail.html"><img src="{{ $product->cover }}" class="img-fluid" alt=""></a>
+            <a href="{{ route('product.singe', $product) }}"><img src="{{ $product->cover }}" class="img-fluid"
+                    alt=""></a>
             @if (!$product->inventory)
                 <div class="overlay-work">
                     <div class="py-2 bg-soft-dark rounded-bottom out-stock">
@@ -40,10 +43,10 @@
         </div>
         <div style="display: flex !important;flex-direction: column;align-items: center;"
             class="card-body content pt-3 p-2">
-            <a href="shop-product-detail.html" class="text-dark product-name h6 mb-0">
+            <a href="{{ route('product.singe', $product) }}" class="text-dark product-name h6 mb-0 text-center">
                 {{ $product->name }}
             </a>
-            <div class="mt-1">
+            <div class="mt-3">
                 <h6 class="text-muted small fst-italic mb-0">
                     {{ number_format($product->price) }} <del class="text-danger ms-1">25000</del> تومان
                 </h6>
@@ -63,9 +66,9 @@
         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-success">ویژه ها </a></li>
     </ul>
     <div class="shop-image position-relative overflow-hidden rounded shadow">
-        <a href="shop-product-detail.html">
+        <a href="{{ route('product.singe', $product) }}">
             <img src="images/shop/product/s1.jpg" class="img-fluid" alt=""></a>
-        <a href="shop-product-detail.html" class="overlay-work">
+        <a href="{{ route('product.singe', $product) }}" class="overlay-work">
             <img src="images/shop/product/s-1.jpg" class="img-fluid" alt="">
         </a>
         <ul class="list-unstyled shop-icons">
@@ -96,7 +99,7 @@
         </ul>
     </div>
     <div class="card-body content pt-4 p-2">
-        <a href="shop-product-detail.html" class="text-dark product-name h6">تی شرت بردان </a>
+        <a href="{{ route('product.singe', $product) }}" class="text-dark product-name h6">تی شرت بردان </a>
         <div class="d-flex justify-content-between mt-1">
             <h6 class="text-muted small fst-italic mb-0 mt-1">16000 تومان<del class="text-danger ms-2">21000 تومان</del>
             </h6>

@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->json('gallery')->nullable();
-            $table->string('cover')->nullable();
+            $table->string('cover')->nullable()->default("/placeholder.webp");
+            $table->string('cover_hover')->nullable();
+            $table->json("short_information")->nullable();
+            $table->text("short_desc")->nullable();
             $table->bigInteger('price');
             $table->integer('inventory');
             $table->json("cover_tag")->nullable();
