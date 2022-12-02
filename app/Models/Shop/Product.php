@@ -65,13 +65,13 @@ class Product extends Model implements HasMedia, UseCartable
         return $this->getMedia("product.gallery");
     }
 
-    // public function getCoverAttribute($value)
-    // {
-    //     if (empty($value) or $value == "/placeholder.webp")
-    //         return "/placeholder.webp";
-    //     else
-    //         return asset("/storage/" . $value);
-    // }
+    public function getCoverUrl()
+    {
+        if (empty($this->cover))
+            return "/placeholder.webp";
+        else
+            return "/storage/" . $this->cover;
+    }
 
     public function attributes()
     {

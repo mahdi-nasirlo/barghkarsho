@@ -30,7 +30,7 @@ use Filament\Tables;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use RalphJSmit\Filament\SEO\SEO;
 
-// FIXME fix Spatie media 
+
 // FIXME fix cover img ratio in file upload
 
 class ProductResource extends Resource
@@ -191,7 +191,11 @@ class ProductResource extends Resource
     public static function mediaForm()
     {
         return [
-            FileUpload::make("cover"),
+            FileUpload::make("cover")
+                ->image()
+                ->imageCropAspectRatio("1:1")
+                ->maxSize(800)
+                ->label('عکس شاخص'),
             FileUpload::make('cover_hover')
                 ->label("عکس شاخص دوم")
                 ->helperText("می توانید از دو عکس شاخص برای نمایش محصول از دو زاویه استفاده کنید"),
