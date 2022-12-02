@@ -31,9 +31,6 @@ use Jackiedo\Cart\Facades\Cart as FacadesCart;
 
 Route::get('/', function () {
 
-    foreach (FacadesCart::name("shopping")->getItems() as $key => $value) {
-        dd($value->getModel(), $key);
-    }
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
     return view('welcome', ['posts' => $post]);

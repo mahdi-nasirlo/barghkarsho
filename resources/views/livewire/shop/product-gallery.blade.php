@@ -11,7 +11,7 @@
                     @foreach ($product->gallery as $gallery)
                         <div class="tiny-slide tns-item" id="tns1-item{{ $loop->index }}"
                             @if (!$loop->first) aria-hidden="true" @endif tabindex="-1">
-                            <img src="{{ asset('/storage/' . $gallery) }}" class="img-fluid rounded" alt="">
+                            <img src="{{ $gallery->getUrl() }}" class="img-fluid rounded" alt="">
                         </div>
                     @endforeach
 

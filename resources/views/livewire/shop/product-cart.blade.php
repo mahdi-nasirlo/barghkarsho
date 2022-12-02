@@ -12,8 +12,8 @@
             @endif
         </ul>
         <div class="shop-image position-relative overflow-hidden rounded shadow">
-            <a href="{{ route('product.singe', $product) }}"><img src="{{ $product->cover }}" class="img-fluid"
-                    alt=""></a>
+            <a href="{{ route('product.singe', $product) }}"><img src="{{ '/storage/' . $product->cover }}"
+                    class="img-fluid" alt=""></a>
             @if (!$product->inventory)
                 <div class="overlay-work">
                     <div class="py-2 bg-soft-dark rounded-bottom out-stock">

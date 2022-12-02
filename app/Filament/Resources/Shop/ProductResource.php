@@ -195,9 +195,11 @@ class ProductResource extends Resource
             FileUpload::make('cover_hover')
                 ->label("عکس شاخص دوم")
                 ->helperText("می توانید از دو عکس شاخص برای نمایش محصول از دو زاویه استفاده کنید"),
-            FileUpload::make("gallery")
+            SpatieMediaLibraryFileUpload::make('gallery')
                 ->label("گالری تصاویر")
+                ->collection("product.gallery")
                 ->multiple()
+                ->enableReordering()
         ];
     }
 

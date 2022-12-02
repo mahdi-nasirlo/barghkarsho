@@ -32,7 +32,7 @@ class Product extends Model implements HasMedia, UseCartable
         "short_information",
         "short_desc",
         "cover_hover",
-        "gallery",
+        // "gallery",
         "slug",
         "name",
         "rating",
@@ -43,7 +43,7 @@ class Product extends Model implements HasMedia, UseCartable
         "cover_tag" => "array",
         "short_information" => "array",
         'published_at' => "datetime",
-        "gallery" => "array"
+        // "gallery" => "array"
     ];
 
     public function sluggable(): array
@@ -56,14 +56,14 @@ class Product extends Model implements HasMedia, UseCartable
     }
 
 
-    // protected $attribute = [
-    //     'gallery'
-    // ];
+    protected $attribute = [
+        'gallery'
+    ];
 
-    // public function getGalleryAttribute()
-    // {
-    //     return $this->getMedia("product.gallery");
-    // }
+    public function getGalleryAttribute()
+    {
+        return $this->getMedia("product.gallery");
+    }
 
     // public function getCoverAttribute($value)
     // {
