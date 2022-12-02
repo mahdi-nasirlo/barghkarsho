@@ -222,6 +222,7 @@ class ProductResource extends Resource
                 ->label("ویژگی ها")
                 ->helperText("مثلا : گارانتی 12 ماهه"),
             TinyEditor::make('content')
+                ->required()
                 ->label('توضیحات')
         ];
     }

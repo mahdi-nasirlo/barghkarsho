@@ -1,4 +1,7 @@
 <div>
     @include('livewire.shop.title')
-    @include('livewire.shop.product-detail')
+    <section class="section pb-0">
+        @include('livewire.shop.product-detail')
+        @include('livewire.shop.next-and-previews-product')
+    </section>
 </div>

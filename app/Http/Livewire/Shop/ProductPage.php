@@ -51,10 +51,7 @@ class ProductPage extends Component
     }
 }
 
-// TODO fix title of page product list product single 
 // TODO fix meta tag of new page product list and product single
 
-// TODO add image cover slider 
 // TODO add zoom to img cover 
 // TODO add related product to page
-// TODO add next and previews products
