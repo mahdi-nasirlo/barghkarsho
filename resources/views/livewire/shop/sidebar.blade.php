@@ -46,7 +46,14 @@
             @endforeach --}}
 
             <div class="accordion mt-4 pt-2" id="buyingquestion">
-                @foreach ($shopCategory->attributes as $attribute)
+                @php
+                    $attributes = \App\Models\Shop\Attribute::with(['products.category'])
+                        ->whereHas('products.category', function ($q) use ($shopCategory) {
+                            $q->where('id', $shopCategory->id);
+                        })
+                        ->get();
+                @endphp
+                @foreach ($attributes as $attribute)
                     <div class="accordion-item rounded pt-2">
                         <h2 class="accordion-header" id="heading_{{ $attribute->id }}">
                             <button class="accordion-button border-0 bg-light" type="button" data-bs-toggle="collapse"

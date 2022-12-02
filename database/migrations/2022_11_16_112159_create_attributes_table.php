@@ -45,13 +45,6 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('shop_categories')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
-
             $table->string('value')->nullable();
             $table->timestamps();
         });

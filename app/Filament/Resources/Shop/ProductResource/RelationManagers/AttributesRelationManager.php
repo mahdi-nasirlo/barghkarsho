@@ -15,7 +15,6 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Actions\AttachAction;
-use Filament\Tables\Columns\BooleanColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TagsColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -46,16 +45,7 @@ class AttributesRelationManager extends RelationManager
                     ->label('نام شاخص')
                     ->required()
                     ->unique(ignoreRecord: true),
-                Select::make('attribute_group_id')
-                    ->nullable()
-                    ->label('گروه بندی')
-                    ->relationship('AttributeGroup', 'name')
-                    ->createOptionForm([
-                        Forms\Components\TextInput::make('name')
-                            ->unique(column: 'name')
-                            ->label('گروه بندی')
-                            ->required(),
-                    ]),
+
                 Select::make('type')
                     ->required()
                     ->reactive()
@@ -139,24 +129,21 @@ class AttributesRelationManager extends RelationManager
                             ->required()
                             ->label('مقدار مربوط به محصول')
                             ->options(function (Closure $get) {
+                                $attributes = Attribute::find($get('recordId'))->values;
 
-                                return Attribute::find($get('recordId'))->values ?? ['دارد' => 'دارد', 'ندارد' => 'ندارد'];
+                                return $attributes ? array_combine($attributes, $attributes) : ['دارد' => 'دارد', 'ندارد' => 'ندارد'];
                             })
                             ->hidden(fn (Closure $get) => $get('recordId') === null)
                     ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DissociateAction::make(),
+                Tables\Actions\DetachAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DissociateBulkAction::make(),
+                Tables\Actions\DetachBulkAction::make(),
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 }
-// FIXME attribute dissociate not work
-// FIXME if change category of product attributes not update
-// FIXME delete attriubtes group
-// FIXME attribute column pivot don t display

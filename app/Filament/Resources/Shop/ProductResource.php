@@ -259,10 +259,12 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationGroup::make('content', [
+            RelationGroup::make('ویژگی ها', [
                 AttributesRelationManager::class,
+            ]),
+            RelationGroup::make('کامنت ها', [
                 CommentsRelationManager::class
-            ])
+            ]),
         ];
     }
 

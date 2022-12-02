@@ -57,18 +57,6 @@ class ShopCategory extends Model
         return $this->hasMany(Product::class, 'category_id');
     }
 
-
-    public function attributes()
-    {
-        return $this->belongsToMany(
-            Attribute::class,
-            'attribute_category_product',
-            'category_id',
-            'attributes_id'
-        )
-            ->withPivot('value');
-    }
-
     public function parent(): BelongsTo
     {
         return $this->belongsTo(ShopCategory::class, 'parent_id');

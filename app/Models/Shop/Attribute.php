@@ -22,11 +22,6 @@ class Attribute extends Model
         'values' => 'array'
     ];
 
-    public function AttributeGroup()
-    {
-        return $this->belongsTo(AttributeGroup::class);
-    }
-
     public function products()
     {
         return $this->belongsToMany(
@@ -34,17 +29,6 @@ class Attribute extends Model
             'attribute_category_product',
             'attributes_id',
             'product_id',
-        )
-            ->withPivot(['value', 'category_id']);
-    }
-
-    public function category()
-    {
-        return $this->belongsToMany(
-            Product::class,
-            'attribute_category_product',
-            'attributes_id',
-            'category_id',
         )
             ->withPivot(['value', 'category_id']);
     }
