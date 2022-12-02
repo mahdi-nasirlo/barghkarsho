@@ -31,8 +31,6 @@ use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use RalphJSmit\Filament\SEO\SEO;
 
 
-// FIXME fix cover img ratio in file upload
-
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
@@ -197,6 +195,9 @@ class ProductResource extends Resource
                 ->maxSize(800)
                 ->label('عکس شاخص'),
             FileUpload::make('cover_hover')
+                ->image()
+                ->imageCropAspectRatio("1:1")
+                ->maxSize(800)
                 ->label("عکس شاخص دوم")
                 ->helperText("می توانید از دو عکس شاخص برای نمایش محصول از دو زاویه استفاده کنید"),
             SpatieMediaLibraryFileUpload::make('gallery')

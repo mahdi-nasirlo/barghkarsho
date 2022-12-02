@@ -56,7 +56,5 @@ class ProductPage extends Component
 
 // TODO add image cover slider 
 // TODO add zoom to img cover 
-// TODO add data product to page
-// TODO add button add to baskets
 // TODO add related product to page
 // TODO add next and previews products

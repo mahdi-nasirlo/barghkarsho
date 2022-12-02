@@ -14,6 +14,11 @@
         <div class="shop-image position-relative overflow-hidden rounded shadow">
             <a href="{{ route('product.singe', $product) }}">
                 <img src="{{ $product->getCoverUrl() }}" class="img-fluid" alt=""></a>
+            @if ($product->cover_hover)
+                <a href="{{ route('product.singe', $product) }}" class="overlay-work">
+                    <img src="/storage/{{ $product->cover_hover }}" class="img-fluid" alt="">
+                </a>
+            @endif
             @if (!$product->inventory)
                 <div class="overlay-work">
                     <div class="py-2 bg-soft-dark rounded-bottom out-stock">
