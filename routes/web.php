@@ -16,6 +16,7 @@ use App\Models\Shop\ShopCategory;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Jackiedo\Cart\Facades\Cart as FacadesCart;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
+    foreach (FacadesCart::name("shopping")->getItems() as $key => $value) {
+        dd($value->getModel(), $key);
+    }
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 
     return view('welcome', ['posts' => $post]);

@@ -62,7 +62,8 @@
                                 <div class="qty-icons ms-3">
                                     <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                                         class="btn btn-icon btn-soft-primary minus">-</button>
-                                    <input min="0" name="quantity" value="0" type="number"
+                                    <input wire:model='count' min="1" max="{{ $product->inventory }}"
+                                        name="quantity" value="0" type="number"
                                         class="btn btn-icon btn-soft-primary qty-btn quantity">
                                     <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
                                         class="btn btn-icon btn-soft-primary plus">+</button>
@@ -72,7 +73,9 @@
                         <div class="col-lg-6 col-12">
                             <div
                                 class="d-flex align-items-center justify-content-center justify-content-md-center mt-3">
-                                <a href="javascript:void(0)" class="btn btn-primary">اکنون بخرید </a>
+                                <a wire:click='addToCart' href="javascript:void(0)" class="btn btn-primary">
+                                    اکنون بخرید
+                                </a>
                                 <a href="shop-cart.html" class="btn btn-soft-primary ms-2">افزودن به سبد</a>
                             </div>
                         </div>
@@ -87,7 +90,7 @@
     </div>
     <!--end container-->
 
-    <div class="container mt-100 mt-60">
+    <div class="container mt-100 mt-60 mb-4">
         <div class="row">
             <div class="col-12">
                 <ul class="nav nav-pills shadow flex-column flex-sm-row d-md-inline-flex mb-0 p-1 bg-white rounded position-relative overflow-hidden"
