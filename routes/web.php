@@ -12,6 +12,7 @@ use App\Http\Livewire\Shop\ProductPage;
 use App\Http\Livewire\Shop\ProdutList;
 use App\Models\Shop\Attribute;
 use App\Models\Shop\Course;
+use App\Models\Shop\Discount;
 use App\Models\Shop\Product;
 use App\Models\Shop\ShopCategory;
 use Illuminate\Support\Facades\Artisan;
@@ -32,9 +33,6 @@ use Jackiedo\Cart\Facades\Cart as FacadesCart;
 */
 
 Route::get('/', function () {
-    // dd(Attribute::with(['products.category'])->whereHas('products.category', function ($q) {
-    //     $q->where('id', 1);
-    // })->get());
 
     $post = App\Models\Blog\Post::latest()->get()->where('published_at', '<', now())->take(4);
 

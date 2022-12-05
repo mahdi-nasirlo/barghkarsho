@@ -19,3 +19,6 @@
         @endforeach
     </tbody>
 </table>
+{{-- 
+    FIXME display product order with coont
+--}}

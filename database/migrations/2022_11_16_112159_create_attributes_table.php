@@ -18,9 +18,6 @@ return new class extends Migration
 
             $table->string('name');
 
-            $table->unsignedBigInteger('attribute_group_id')->nullable();
-            $table->foreign('attribute_group_id')->references('id')->on('attribute_groups')->cascadeOnDelete()->cascadeOnUpdate();
-
             $table->string('type')->default('string');
             $table->boolean('is_searchable')->default(false);
             $table->json('values')->nullable();
@@ -28,7 +25,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('attribute_category_product', function (Blueprint $table) {
+        Schema::create('attribute_product', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('attributes_id');

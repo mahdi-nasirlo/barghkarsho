@@ -53,7 +53,9 @@
 
                         <div class="row">
                             @foreach ($products as $product)
-                                @include('livewire.shop.product-cart', ['product' => $product])
+                                <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
+                                    @include('livewire.shop.product-cart', ['product' => $product])
+                                </div>
                             @endforeach
                         </div>
 

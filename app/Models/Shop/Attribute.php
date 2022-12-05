@@ -26,7 +26,7 @@ class Attribute extends Model
     {
         return $this->belongsToMany(
             Product::class,
-            'attribute_category_product',
+            'attribute_product',
             'attributes_id',
             'product_id',
         )

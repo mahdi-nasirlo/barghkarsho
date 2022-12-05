@@ -225,7 +225,7 @@
                     <thead>
                         <tr>
                             <th class="border-bottom py-3"></th>
-                            <th class="border-bottom py-3">عکس شاخص </th>
+                            <th class="border-bottom py-3">عکس محصول </th>
                             <th class="border-bottom ps-6">محصول </th>
                             <th class="border-bottom text-center py-3">قیمت </th>
                         </tr>
@@ -249,8 +249,8 @@
                                     <td>
                                         <div class="d-flex align-items-start">
                                             <h6 class="mb-0 me-3">
-                                                <a href="{{ route('cours.single', $cartItem->getModel()) }}">
-                                                    {{ $cartItem->getModel()->title }}
+                                                <a href="{{ route('product.singe', $cartItem->getModel()) }}">
+                                                    {{ $cartItem->getModel()->name }}
                                                 </a>
                                             </h6>
                                         </div>

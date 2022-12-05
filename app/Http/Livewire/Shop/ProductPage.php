@@ -9,49 +9,64 @@ use Livewire\Component;
 class ProductPage extends Component
 {
     public Product $product;
-    public $count = 0;
+    public $count = 1;
+
+    public function mount()
+    {
+        // $cartItems = collect(Cart::name('shopping')->getItems([
+        //     'id' => $this->product->id
+        // ]));
+
+        // $this->cartItems = $cartItems;
+
+        // if (!$this->cartItems->isEmpty())
+        //     $this->count = $this->cartItems->first()->getQuantity();
+        // else
+        //     $this->count = 1;
+    }
 
     public function addToCart()
     {
-        // dd($this->count);
+        $cart = collect(Cart::name("shopping")->getItems([
+            'associated_class' => 'App\Models\Shop\Product',
+            'id' => $this->product->id
+        ]));
 
-        if (empty(Cart::name("shopping")->getItems(['id' => $this->product->id]))) {
-
+        if ($cart->isEmpty()) {
             $cart = $this->product->addToCart(
                 'shopping',
                 [
                     "id" => $this->product->id,
                     'title' => $this->product->name,
                     "price" => $this->product->price,
-                    'quantity' => 1
+                    'quantity' => $this->count
                 ]
             );
-
-            // if ($this->course->discountItem) {
-            //     $cart = Cart::name('shopping');
-
-            //     $action = $cart->applyAction([
-            //         'id' => $this->course->id,
-            //         'title' => 'Discount 10%',
-            //         'value' => '-18%'
-            //     ]);
-            // }
+        } else {
+            $cart->updateItem($this->cartItems->first()->getHash, [
+                'quantity' => $this->count
+            ]);
         }
 
-        // $this->btnText = 'ثبت و نهایی سازی خرید     <span style="font-size: 18px">&#10003;</span>';
-        // $this->link = route("cart.");
+        //     // if ($this->course->discountItem) {
+        //     //     $cart = Cart::name('shopping');
+
+        //     //     $action = $cart->applyAction([
+        //     //         'id' => $this->course->id,
+        //     //         'title' => 'Discount 10%',
+        //     //         'value' => '-18%'
+        //     //     ]);
+        //     // }
 
         $this->emit('cartUpdated');
     }
 
     public function render()
     {
-        // dd($this->product->attributes[0]->value);
+
+        // dd(Cart::name("shopping")->getItems());
         return view('livewire.shop.product-page');
     }
 }
 
 // TODO fix meta tag of new page product list and product single
-
-// TODO add zoom to img cover 
-// TODO add related product to page

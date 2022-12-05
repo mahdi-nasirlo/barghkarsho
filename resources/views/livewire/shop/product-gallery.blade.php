@@ -42,7 +42,5 @@
 @endif
 
 {{-- 
-    FIXME orderable gallery img
-    FIXME condition for add assets
     FIXME fix shop categoryes in admin
 --}}

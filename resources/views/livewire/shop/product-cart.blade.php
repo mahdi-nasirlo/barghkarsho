@@ -1,4 +1,3 @@
-<div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
     <div class="card shop-list border-0 position-relative">
         <ul style="padding-right: 0px; top: 5px;right: 7px" class="label list-unstyled mb-0">
             @if ($product->cover_tag)
@@ -65,8 +64,7 @@
             </div>
         </div>
     </div>
-</div>
-{{-- <div class="card shop-list border-0 position-relative">
+    {{-- <div class="card shop-list border-0 position-relative">
     <ul class="label list-unstyled mb-0">
         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-success">ویژه ها </a></li>
     </ul>
@@ -118,9 +116,3 @@
         </div>
     </div>
 </div> --}}
-
-{{--
-    TODO check links for img and name
-    TODO fix img tag button
-    TODO add befor and after to cover
---}}

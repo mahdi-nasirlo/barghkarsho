@@ -63,7 +63,7 @@
                                     <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                                         class="btn btn-icon btn-soft-primary minus">-</button>
                                     <input wire:model='count' min="1" max="{{ $product->inventory }}"
-                                        name="quantity" value="0" type="number"
+                                        name="quantity" value="1" type="number"
                                         class="btn btn-icon btn-soft-primary qty-btn quantity">
                                     <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
                                         class="btn btn-icon btn-soft-primary plus">+</button>
@@ -73,10 +73,10 @@
                         <div class="col-lg-6 col-12">
                             <div
                                 class="d-flex align-items-center justify-content-center justify-content-md-center mt-3">
-                                <a wire:click='addToCart' href="javascript:void(0)" class="btn btn-primary">
+                                <a href="javascript:void(0)" class="btn btn-primary">
                                     اکنون بخرید
                                 </a>
-                                <a href="shop-cart.html" class="btn btn-soft-primary ms-2">افزودن به سبد</a>
+                                <a wire:click='addToCart' class="btn btn-soft-primary ms-2">افزودن به سبد</a>
                             </div>
                         </div>
                         <!--end col-->

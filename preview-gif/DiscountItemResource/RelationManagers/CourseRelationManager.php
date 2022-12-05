@@ -248,7 +248,8 @@ class CourseRelationManager extends RelationManager
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
-                Tables\Actions\AssociateAction::make(),
+                Tables\Actions\AssociateAction::make()
+                // ->preloadRecordSelect(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
