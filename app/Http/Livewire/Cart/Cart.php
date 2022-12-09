@@ -21,15 +21,15 @@ class Cart extends Component
             'status' => 'unpaid'
         ]);
 
-        $cartItems = FacadesCart::name("shopping")->getItems();
-        $dataAttach = [];
+        $cartItems = collect(FacadesCart::name("shopping")->getItems())->map(function ($item) {
+            return [
+                'orderable_id' => $item->get('id'),
+                'orderable_type' => get_class($item->getModel()),
+                'price' => $item->getModel()->price
+            ];
+        })->toArray();
 
-        foreach ($cartItems as $hash => $item) {
-
-            $dataAttach[$item->getModel()->id] = ['price' => $item->getModel()->price];
-        }
-
-        $order->courses()->attach($dataAttach);
+        $order->orderItems()->createMany($cartItems);
 
         FacadesCart::clearItems();
 

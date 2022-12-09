@@ -23,7 +23,7 @@ class Order extends Model
 
     protected $appends = [
         'price_without_delivery',
-        'amount_of_discount',
+        // 'amount_of_discount',
         'total_price',
     ];
 
@@ -37,15 +37,15 @@ class Order extends Model
         return $this->attributes['price'] - env("DELIVERY_PRICE");
     }
 
-    public function getAmountOfDiscountAttribute()
-    {
+    // public function getAmountOfDiscountAttribute()
+    // {
 
-        $percent = $this->attributes['discount_percent'] === null
-            ? 0
-            : $this->attributes['discount_percent'] / 100;
+    //     $percent = $this->attributes['discount_percent'] === null
+    //         ? 0
+    //         : $this->attributes['discount_percent'] / 100;
 
-        return $percent * $this->price_without_delivery;
-    }
+    //     return $percent * $this->price_without_delivery;
+    // }
 
     public function user()
     {
@@ -75,5 +75,15 @@ class Order extends Model
     public function discount()
     {
         return $this->belongsTo(Discount::class);
+    }
+
+    public function orderables()
+    {
+        return $this->morphTo();
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class, 'order_id');
     }
 }

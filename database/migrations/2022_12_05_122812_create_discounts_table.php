@@ -38,7 +38,7 @@ return new class extends Migration
             $table->foreign("discount_id")->references("id")->on("discounts");
 
             $table->unsignedBigInteger("category_id");
-            $table->foreign("category_id")->references("id")->on("shop_categories");
+            $table->foreign("category_id")->references("id")->on("shop_categories")->cascadeOnDelete()->cascadeOnUpdate();
 
             $table->primary(['category_id', 'discount_id']);
         });
@@ -81,6 +81,9 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('course_discount');
+        Schema::dropIfExists('discount_product');
+        Schema::dropIfExists('discount_user');
         Schema::dropIfExists('discount');
     }
 };

@@ -89,7 +89,7 @@ class Product extends Model implements HasMedia, UseCartable
             'product_id',
             'attributes_id'
         )
-            ->withPivot(['value', 'category_id']);
+            ->withPivot(['value']);
     }
 
     public function comments(): MorphMany

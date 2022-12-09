@@ -30,6 +30,7 @@ use Filament\Tables;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use RalphJSmit\Filament\SEO\SEO;
 
+// FIXME fix create category    
 
 class ProductResource extends Resource
 {

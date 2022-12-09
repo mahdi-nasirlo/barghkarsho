@@ -42,7 +42,6 @@ class ProductList extends Component
                 Product::query()
                     ->where('category_id', $this->shopCategory->id)
                     ->with(['attributes'])
-                // ->orderBy('price', 'desc')
             )
             ->through([
                 new Order($this->order),
@@ -50,10 +49,8 @@ class ProductList extends Component
                 new Search($this->search),
             ])
             ->thenReturn()
-            // ->get("cover");
             ->paginate(20);
 
-        return view('livewire.shop.product-list', compact('products'))
-            ->layout('layouts.template-master');
+        return view('livewire.shop.product-list', compact('products'));
     }
 }

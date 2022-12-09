@@ -60,12 +60,12 @@
                             @endswitch
                         </td>
                         <td>
-                            @if ($order->discount_percent)
+                            {{-- @if ($order->discount_percent)
                                 <del class="text-danger text-sm">{{ number_format($order->price) }}</del>
                                 {{ number_format($order->total_price) }} هزار تومان
                             @else
                                 {{ number_format($order->total_price) }} هزار تومان
-                            @endif
+                            @endif --}}
                             <span class="text-muted">برای
                                 {{ $order->courses()->count() }} موارد</span>
                         </td>

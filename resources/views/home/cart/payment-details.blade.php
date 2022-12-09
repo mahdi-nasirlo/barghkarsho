@@ -1,7 +1,7 @@
 <div class="col-lg-5 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
     <div class="rounded shadow-lg p-4">
         <div class="d-flex mb-4 justify-content-between">
-            <h5> آیتم {{ $order->courses->count() }}</h5>
+            <h5> آیتم {{ $order->orderItems->count() }}</h5>
             <a href="{{ route('profile', ['tab' => 'order']) }}" class="text-muted h6">نمایش جزئیات</a>
         </div>
         <div class="table-responsive">

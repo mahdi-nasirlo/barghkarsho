@@ -28,16 +28,29 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create("course_order", function (Blueprint $table) {
+        Schema::create("orderables", function (Blueprint $table) {
 
-            $table->unsignedBigInteger('course_id');
-            $table->foreign('course_id')->references('id')->on('courses')->cascadeOnDelete();
+            $table->morphs('orderable');
+            $table->bigInteger('price');
+            // $table->unsignedBigInteger('course_id');
+            // $table->foreign('course_id')->references('id')->on('courses')->cascadeOnDelete();
 
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete();
 
-            $table->bigInteger("price");
+            // $table->bigInteger("price");
         });
+
+        // Schema::create("course_order", function (Blueprint $table) {
+
+        //     $table->unsignedBigInteger('course_id');
+        //     $table->foreign('course_id')->references('id')->on('courses')->cascadeOnDelete();
+
+        //     $table->unsignedBigInteger('order_id');
+        //     $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete();
+
+        //     $table->bigInteger("price");
+        // });
     }
 
     /**

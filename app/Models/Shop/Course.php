@@ -85,11 +85,11 @@ class Course extends Model implements UseCartable
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class);
+        return $this->morphToMany(Order::class, 'orderable', "orderables");
     }
 
-    public function discountItem()
-    {
-        return $this->belongsTo(DiscountItem::class, "discount_id");
-    }
+    // public function discountItem()
+    // {
+    //     return $this->belongsTo(DiscountItem::class, "discount_id");
+    // }
 }

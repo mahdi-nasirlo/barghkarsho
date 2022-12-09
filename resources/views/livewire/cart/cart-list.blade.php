@@ -241,9 +241,8 @@
                                     </td>
                                     <td class="d-flex">
                                         <a href="{{ route('product.singe', $cartItem->getModel()) }}">
-                                            <img src="{{ asset('/storage/' . $cartItem->getModel()->cover) }}"
-                                                class="shadow rounded" style="max-width: 200px;"
-                                                alt="{{ $cartItem->getModel()->name }}">
+                                            <img src="{{ $cartItem->getModel()->getCoverUrl() }}" class="shadow rounded"
+                                                style="max-width: 200px;" alt="{{ $cartItem->getModel()->name }}">
                                         </a>
                                     </td>
                                     <td>
