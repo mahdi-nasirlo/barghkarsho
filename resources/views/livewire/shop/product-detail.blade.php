@@ -60,12 +60,14 @@
                                 class="d-flex shop-list align-items-center justify-content-center justify-content-md-center mt-3">
                                 <h6 class="mb-0">تعداد: </h6>
                                 <div class="qty-icons ms-3">
-                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                    <button wire:click='decrement'
+                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                                         class="btn btn-icon btn-soft-primary minus">-</button>
                                     <input wire:model='count' min="1" max="{{ $product->inventory }}"
                                         name="quantity" value="1" type="number"
                                         class="btn btn-icon btn-soft-primary qty-btn quantity">
-                                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                    <button wire:click='increment'
+                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
                                         class="btn btn-icon btn-soft-primary plus">+</button>
                                 </div>
                             </div>

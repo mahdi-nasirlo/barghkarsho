@@ -13,16 +13,29 @@ class ProductPage extends Component
 
     public function mount()
     {
-        // $cartItems = collect(Cart::name('shopping')->getItems([
-        //     'id' => $this->product->id
-        // ]));
+        $cartItems = collect(Cart::name("shopping")->getItems([
+            'associated_class' => 'App\Models\Shop\Product',
+            'id' => $this->product->id
+        ]));
 
-        // $this->cartItems = $cartItems;
+        if ($cartItems->isEmpty())
+            $this->count = 1;
+        else
+            $this->count = $cartItems->first()->get('quantity');
+    }
 
-        // if (!$this->cartItems->isEmpty())
-        //     $this->count = $this->cartItems->first()->getQuantity();
-        // else
-        //     $this->count = 1;
+    public function increment()
+    {
+        if ($this->product->inventory > $this->count) {
+            $this->count++;
+        }
+    }
+
+    public function decrement()
+    {
+        if ($this->count > 1) {
+            $this->count--;
+        }
     }
 
     public function addToCart()
@@ -33,7 +46,7 @@ class ProductPage extends Component
         ]));
 
         if ($cart->isEmpty()) {
-            $cart = $this->product->addToCart(
+            $this->product->addToCart(
                 'shopping',
                 [
                     "id" => $this->product->id,
@@ -43,7 +56,7 @@ class ProductPage extends Component
                 ]
             );
         } else {
-            $cart->updateItem($this->cartItems->first()->getHash, [
+            Cart::name("shopping")->updateItem($cart->first()->getHash(), [
                 'quantity' => $this->count
             ]);
         }

@@ -11,7 +11,7 @@
             @endif --}}
         </div>
         <h6 class="text-dark mb-0">
-            {{ number_format((int) $cart->getModel()->discounted_price) }} تومان
+            {{ number_format((int) $cart->getModel()->discounted_price) }} × {{ $cart->get('quantity') }} تومان
         </h6>
     </a>
 @else
