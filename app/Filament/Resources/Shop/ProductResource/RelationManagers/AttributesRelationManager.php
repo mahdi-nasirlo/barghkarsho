@@ -63,11 +63,6 @@ class AttributesRelationManager extends RelationManager
                         'boolean' => 'دارد یا ندارد'
                     ]),
 
-                Hidden::make('category_id')
-                    ->default(function (RelationManager $livewire) {
-                        return $livewire->ownerRecord->category_id;
-                    }),
-
                 TagsInput::make('values')
                     ->label('مقادیر')
                     ->reactive()
@@ -75,6 +70,7 @@ class AttributesRelationManager extends RelationManager
                     ->hidden(fn (Closure $get) => $get('type') !== 'string'),
 
                 Select::make('value')
+                    ->hidden(fn (Closure $get) => $get('type') == null)
                     ->label('مقدار مربوط به محصول')
                     ->options(function (Closure $get) {
                         if ($get('type') ==  'boolean') {

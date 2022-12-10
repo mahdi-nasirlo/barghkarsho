@@ -18,7 +18,7 @@ class DiscountItemPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('view_any_shop::discount::item');
+        return $user->can('view_any_test');
     }
 
     /**
@@ -30,7 +30,7 @@ class DiscountItemPolicy
      */
     public function view(User $user, DiscountItem $discountItem)
     {
-        return $user->can('view_shop::discount::item');
+        return $user->can('view_test');
     }
 
     /**
@@ -41,7 +41,7 @@ class DiscountItemPolicy
      */
     public function create(User $user)
     {
-        return $user->can('create_shop::discount::item');
+        return $user->can('create_test');
     }
 
     /**
@@ -53,7 +53,7 @@ class DiscountItemPolicy
      */
     public function update(User $user, DiscountItem $discountItem)
     {
-        return $user->can('update_shop::discount::item');
+        return $user->can('update_test');
     }
 
     /**
@@ -65,7 +65,7 @@ class DiscountItemPolicy
      */
     public function delete(User $user, DiscountItem $discountItem)
     {
-        return $user->can('delete_shop::discount::item');
+        return $user->can('delete_test');
     }
 
     /**
@@ -76,7 +76,7 @@ class DiscountItemPolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->can('delete_any_shop::discount::item');
+        return $user->can('delete_any_test');
     }
 
     /**
@@ -88,7 +88,7 @@ class DiscountItemPolicy
      */
     public function forceDelete(User $user, DiscountItem $discountItem)
     {
-        return $user->can('force_delete_shop::discount::item');
+        return $user->can('force_delete_test');
     }
 
     /**
@@ -99,7 +99,7 @@ class DiscountItemPolicy
      */
     public function forceDeleteAny(User $user)
     {
-        return $user->can('force_delete_any_shop::discount::item');
+        return $user->can('force_delete_any_test');
     }
 
     /**
@@ -111,7 +111,7 @@ class DiscountItemPolicy
      */
     public function restore(User $user, DiscountItem $discountItem)
     {
-        return $user->can('restore_shop::discount::item');
+        return $user->can('restore_test');
     }
 
     /**
@@ -122,7 +122,7 @@ class DiscountItemPolicy
      */
     public function restoreAny(User $user)
     {
-        return $user->can('restore_any_shop::discount::item');
+        return $user->can('restore_any_test');
     }
 
     /**
@@ -134,7 +134,7 @@ class DiscountItemPolicy
      */
     public function replicate(User $user, DiscountItem $discountItem)
     {
-        return $user->can('replicate_shop::discount::item');
+        return $user->can('replicate_test');
     }
 
     /**
@@ -145,7 +145,7 @@ class DiscountItemPolicy
      */
     public function reorder(User $user)
     {
-        return $user->can('reorder_shop::discount::item');
+        return $user->can('reorder_test');
     }
 
 }

@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->integer("discount_percent")->nullable();
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreignId("discount_id")->nullable()->references("id")->on("discount_items");
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            //
+        Schema::table('products', function (Blueprint $table) {
+            $table->removeColumn('discount_id');
         });
     }
 };

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer('inventory');
             $table->json("cover_tag")->nullable();
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('shop_categories');
+            $table->foreign('category_id')->references('id')->on('shop_categories')->cascadeOnDelete()->cascadeOnUpdate();
             // $table->string("rating");
             $table->dateTime('published_at')->nullable();
             $table->text('content')->nullable();

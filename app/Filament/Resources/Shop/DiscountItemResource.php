@@ -4,7 +4,7 @@ namespace App\Filament\Resources\Shop;
 
 use App\Filament\Resources\Shop\DiscountItemResource\Pages;
 use App\Filament\Resources\Shop\DiscountItemResource\RelationManagers;
-use App\Filament\Resources\Shop\DiscountItemResource\RelationManagers\CourseRelationManager;
+use App\Models\Order;
 use App\Models\Shop\DiscountItem;
 use Ariaieboy\FilamentJalaliDatetime\JalaliDateTimeColumn;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDateTimePicker;
@@ -15,31 +15,31 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class DiscountItemResource extends Resource
 {
     protected static ?string $model = DiscountItem::class;
 
+    protected static ?string $slug = "shop/discount_item";
 
-
-    protected static ?string $recordTitleAttribute = 'percent';
+    protected static ?string $recordTitleAttribute = 'code';
 
     protected static ?string $navigationGroup = 'تخفیف %';
 
-    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
+    protected static ?string $navigationIcon = 'heroicon-o-gift';
+
 
 
     public static function getModelLabel(): string
     {
-        return "تخفیف";
+        return "تخفیف موردی";
     }
 
     public static function getPluralModelLabel(): string
     {
         return "تخفیفات موردی";
     }
+
 
     public static function form(Form $form): Form
     {
@@ -80,6 +80,9 @@ class DiscountItemResource extends Resource
                     ->label('تاریخ انقضا')
                     ->sortable()
             ])
+            ->filters([
+                //
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -87,10 +90,11 @@ class DiscountItemResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
+
     public static function getRelations(): array
     {
         return [
-            CourseRelationManager::class
+            //
         ];
     }
 

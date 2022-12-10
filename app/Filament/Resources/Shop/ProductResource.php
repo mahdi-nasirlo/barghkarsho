@@ -7,6 +7,8 @@ use App\Filament\Resources\Shop\ProductResource\Pages;
 use App\Filament\Resources\Shop\ProductResource\RelationManagers;
 use App\Filament\Resources\Shop\ProductResource\RelationManagers\AttributesRelationManager;
 use App\Models\Shop\Product;
+use App\Models\Shop\ShopCategory;
+use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDateTimePicker;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
@@ -27,6 +29,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use RalphJSmit\Filament\SEO\SEO;
 
@@ -146,6 +149,32 @@ class ProductResource extends Resource
                 ->suffix('تومان')
                 ->rules(['integer', 'min:0'])
                 ->required(),
+            Forms\Components\Select::make('discount_id')
+                ->label("تخفیف")
+                ->relationship('discountItem', 'percent')
+                ->nullable()
+                ->createOptionForm([
+                    Forms\Components\Grid::make()
+                        ->schema([
+                            TextInput::make("percent")
+                                ->label("درصد")
+                                ->numeric()
+                                ->maxValue(100)
+                                ->minValue(0)
+                                ->suffix('%')
+                                ->required()
+                                ->default(0),
+                            JalaliDateTimePicker::make("expired_at")
+                                ->required()
+                                ->label("تاریخ انقضا")
+                        ])
+                        ->columns([
+                            'sm' => 2,
+                        ])
+                        ->columnSpan([
+                            'sm' => 2,
+                        ]),
+                ]),
             Select::make('category_id')
                 ->label('دسته بندی')
                 ->required()
@@ -153,19 +182,45 @@ class ProductResource extends Resource
                 ->preload()
                 ->relationship('category', 'name')
                 ->createOptionForm([
-                    Forms\Components\TextInput::make('name')
-                        ->required()
-                        ->maxLength(255),
-                    Hidden::make('slug')->default("laskjdflk" . rand(0, 1000000)),
-                    Forms\Components\Textarea::make('desc')
-                        ->maxLength(65535),
-                    Select::make('type')
-                        ->options([
-                            'api' => 'api',
-                            'web' => 'web',
-                            'blog' => 'blog'
+                    Forms\Components\Grid::make()
+                        ->schema([
+                            Forms\Components\TextInput::make('name')
+                                ->label('عنوان')
+                                ->required()
+                                ->reactive()
+                                ->afterStateUpdated(fn ($state, callable $set) => $set('slug', SlugService::createSlug(ShopCategory::class, 'slug', $state == null ? "" : $state))),
+                            Forms\Components\TextInput::make('slug')
+                                ->label('نامک')
+                                ->disabled()
+                                ->required()
+                                ->unique(ShopCategory::class, 'slug', fn ($record) => $record),
                         ]),
-                    TextInput::make('level')->default(0),
+                    Forms\Components\Select::make('parent_id')
+                        ->label('دسته بندی پدر')
+                        ->relationship('parent', 'name', fn (Builder $query, ?ShopCategory $record) => $query->whereNot('id', $record ? $record->id : null)),
+                    Forms\Components\Toggle::make('is_visible')
+                        ->label('قابل نمایش برای کاربران.')
+                        ->onIcon('heroicon-s-eye')
+                        ->offIcon('heroicon-s-eye-off')
+                        ->default(true),
+                    TinyEditor::make('description')
+                        ->label("محتوا")
+                        ->columnSpan([
+                            'sm' => 2,
+                        ]),
+                    // Forms\Components\TextInput::make('name')
+                    //     ->required()
+                    //     ->maxLength(255),
+                    // Hidden::make('slug')->default("laskjdflk" . rand(0, 1000000)),
+                    // Forms\Components\Textarea::make('desc')
+                    //     ->maxLength(65535),
+                    // Select::make('type')
+                    //     ->options([
+                    //         'api' => 'api',
+                    //         'web' => 'web',
+                    //         'blog' => 'blog'
+                    //     ]),
+                    // TextInput::make('level')->default(0),
                     // Forms\Components\Select::make('parent_id')
                     //     ->label('دسته بندی پدر')
                     //     ->reactive()
@@ -177,12 +232,12 @@ class ProductResource extends Resource
                     //             $set('level', 0);
                     //     })
                     //     ->relationship('parent', 'name', fn (Builder $query, ?Category $record) => $query->whereNot('id', $record ? $record->id : null)),
-                    Forms\Components\Toggle::make('is_visible'),
-                    // IconPicker::make('icon'),
-                    Forms\Components\Textarea::make('shortInfo')
-                        ->maxLength(65535),
-                    Forms\Components\TextInput::make('cover')
-                        ->maxLength(255),
+                    // Forms\Components\Toggle::make('is_visible'),
+                    // // IconPicker::make('icon'),
+                    // Forms\Components\Textarea::make('shortInfo')
+                    //     ->maxLength(65535),
+                    // Forms\Components\TextInput::make('cover')
+                    //     ->maxLength(255),
                 ]),
         ];
     }

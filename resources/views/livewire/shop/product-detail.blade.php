@@ -41,7 +41,7 @@
                     @endif
 
                     <ul class="list-unstyled text-muted">
-                        @if ($product->short_information)
+                        {{-- @if ($product->short_information)
                             @foreach ($product->short_information as $attribute)
                                 <li class="mb-0"><span class="text-primary h5 me-2">
                                         <i class="uil uil-check-circle align-middle">
@@ -50,7 +50,7 @@
                                     {{ $attribute['name'] }}
                                 </li>
                             @endforeach
-                        @endif
+                        @endif --}}
                     </ul>
 
                     <div class="row mt-4 pt-2">
@@ -145,14 +145,14 @@
                         aria-labelledby="additional-info">
                         <table class="table">
                             <tbody>
-                                @if ($product->attributes()->count())
+                                {{-- @if ($product->attributes()->count())
                                     @foreach ($product->attributes as $attribute)
                                         <tr>
                                             <td style="width: 100px;">{{ $attribute->name }}</td>
                                             <td class="text-muted">{{ $attribute->pivot->value }}</td>
                                         </tr>
                                     @endforeach
-                                @endif
+                                @endif --}}
                             </tbody>
                         </table>
                     </div>

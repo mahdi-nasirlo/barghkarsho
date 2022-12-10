@@ -33,8 +33,8 @@ class Course extends Model implements UseCartable
 
     public function getDiscountedPriceAttribute()
     {
-        return $this->discountItem ? $this->attributes['price'] : 0;
-        // return $this->discountItem ? (int) $this->attributes['price'] - ($this->attributes['price'] *  ($this->discountItem->percent / 100)) : $this->attributes['price'];
+        // return $this->discountItem ? $this->attributes['price'] : 0;
+        return $this->discountItem ? (int) $this->attributes['price'] - ($this->attributes['price'] *  ($this->discountItem->percent / 100)) : $this->attributes['price'];
     }
 
     public function sluggable(): array
@@ -88,8 +88,8 @@ class Course extends Model implements UseCartable
         return $this->morphToMany(Order::class, 'orderable', "orderables");
     }
 
-    // public function discountItem()
-    // {
-    //     return $this->belongsTo(DiscountItem::class, "discount_id");
-    // }
+    public function discountItem()
+    {
+        return $this->belongsTo(DiscountItem::class, "discount_id");
+    }
 }

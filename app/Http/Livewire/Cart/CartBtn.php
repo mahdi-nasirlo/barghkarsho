@@ -24,7 +24,6 @@ class CartBtn extends Component
 
     public function addToCart()
     {
-
         if (empty(Cart::name("shopping")->getItems(['id' => $this->course->id]))) {
 
             $cart = $this->course->addToCart(
@@ -42,7 +41,7 @@ class CartBtn extends Component
                 $action = $cart->applyAction([
                     'id' => $this->course->id,
                     'title' => 'Discount 10%',
-                    'value' => '-18%'
+                    'value' => '-' . $this->course->discountItem->percent . '%'
                 ]);
             }
         }

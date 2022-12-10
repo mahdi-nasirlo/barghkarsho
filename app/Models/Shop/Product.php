@@ -109,4 +109,9 @@ class Product extends Model implements HasMedia, UseCartable
     {
         return $this->belongsTo(ShopCategory::class);
     }
+
+    public function discountItem()
+    {
+        return $this->belongsTo(DiscountItem::class, "discount_id");
+    }
 }

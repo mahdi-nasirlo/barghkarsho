@@ -56,17 +56,20 @@
                 @foreach ($attributes as $attribute)
                     <div class="accordion-item rounded pt-2">
                         <h2 class="accordion-header" id="heading_{{ $attribute->id }}">
-                            <button class="accordion-button border-0 bg-light" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse_{{ $attribute->id }}" aria-expanded="true"
-                                aria-controls="collapse_{{ $attribute->id }}">
+                            <button class="accordion-button border-0 bg-light collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapse_{{ $attribute->id }}"
+                                aria-expanded="false" aria-controls="collapse_{{ $attribute->id }}">
                                 {{ $attribute->name }}
                             </button>
                         </h2>
-                        <div id="collapse_{{ $attribute->id }}" class="accordion-collapse border-0 collapse show"
+                        <div id="collapse_{{ $attribute->id }}" class="accordion-collapse border-0 collapse"
                             aria-labelledby="heading_{{ $attribute->id }}" data-bs-parent="#buyingquestion"
                             style="">
                             <div class="accordion-body text-muted bg-white d-flex flex-column">
-                                @foreach ($attribute->values as $item)
+                                @php
+                                    $attributeValue = $attribute->values ?? ['دارد', 'ندارد'];
+                                @endphp
+                                @foreach ($attributeValue as $item)
                                     <div class="form-check form-check-inline">
                                         <div class="mb-0">
                                             <div class="form-check">

@@ -15,7 +15,6 @@ class Attribute extends Model
         'is_searchable',
         'values',
         'type',
-        'attribute_group_id'
     ];
 
     protected $casts = [
@@ -30,6 +29,6 @@ class Attribute extends Model
             'attributes_id',
             'product_id',
         )
-            ->withPivot(['value', 'category_id']);
+            ->withPivot(['value']);
     }
 }

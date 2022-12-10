@@ -38,7 +38,6 @@ class DiscountResource extends Resource
 {
     protected static ?string $model = Discount::class;
 
-
     protected static ?string $recordTitleAttribute = 'code';
 
     protected static ?string $navigationGroup = 'تخفیف %';
