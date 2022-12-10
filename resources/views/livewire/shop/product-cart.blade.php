@@ -1,5 +1,12 @@
     <div class="card shop-list border-0 position-relative">
         <ul style="padding-right: 0px; top: 5px;right: 7px" class="label list-unstyled mb-0">
+            @if ($product->discountItem)
+                <li>
+                    <a href="javascript:void(0)" class="badge badge-link rounded-pill bg-soft-danger">
+                        - {{ $product->discountItem->percent }}%
+                    </a>
+                </li>
+            @endif
             @if ($product->cover_tag)
                 @foreach ($product->cover_tag as $item)
                     <li>
@@ -47,12 +54,17 @@
         </div>
         <div style="display: flex !important;flex-direction: column;align-items: center;"
             class="card-body content pt-3 p-2">
-            <a href="{{ route('product.singe', $product) }}" class="text-dark product-name h6 mb-0 text-center">
+            <a href="{{ route('product.singe', $product) }}" class="text-warning product-name h6 mb-0 text-center">
                 {{ $product->name }}
             </a>
             <div class="mt-3">
                 <h6 class="text-muted small fst-italic mb-0">
-                    {{ number_format($product->price) }} <del class="text-danger ms-1">25000</del> تومان
+                    @if ($product->discountItem)
+                        {{ number_format($product->discounted_price) }} <del
+                            class="text-danger ms-1">{{ number_format($product->price) }}</del> تومان
+                    @else
+                        {{ number_format($product->price) }} تومان
+                    @endif
                 </h6>
                 <ul style="display: flex; flex-direction: row" class="list-unstyled text-warning mb-0">
                     <li class="list-inline-item"><i class="mdi mdi-star"></i></li>

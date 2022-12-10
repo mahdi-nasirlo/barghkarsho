@@ -22,8 +22,13 @@
                     <h4 class="title mt-3">
                         {{ $product->name }}
                     </h4>
-                    <h5 class="text-muted">{{ number_format($product->price) }} تومان <del class="text-danger ms-2">25000
-                            تومان</del>
+                    <h5 class="text-muted">
+                        @if ($product->discountItem)
+                            {{ number_format($product->discounted_price) }} <del
+                                class="text-danger ms-1">{{ number_format($product->price) }}</del> تومان
+                        @else
+                            {{ number_format($product->price) }} تومان
+                        @endif
                     </h5>
                     <ul class="list-unstyled text-warning h5 mb-0">
                         <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
@@ -41,7 +46,7 @@
                     @endif
 
                     <ul class="list-unstyled text-muted">
-                        {{-- @if ($product->short_information)
+                        @if ($product->short_information)
                             @foreach ($product->short_information as $attribute)
                                 <li class="mb-0"><span class="text-primary h5 me-2">
                                         <i class="uil uil-check-circle align-middle">
@@ -50,7 +55,7 @@
                                     {{ $attribute['name'] }}
                                 </li>
                             @endforeach
-                        @endif --}}
+                        @endif
                     </ul>
 
                     <div class="row mt-4 pt-2">
@@ -145,14 +150,14 @@
                         aria-labelledby="additional-info">
                         <table class="table">
                             <tbody>
-                                {{-- @if ($product->attributes()->count())
+                                @if ($product->attributes()->count())
                                     @foreach ($product->attributes as $attribute)
                                         <tr>
-                                            <td style="width: 100px;">{{ $attribute->name }}</td>
+                                            <td style="width: 30%;">{{ $attribute->name }}</td>
                                             <td class="text-muted">{{ $attribute->pivot->value }}</td>
                                         </tr>
                                     @endforeach
-                                @endif --}}
+                                @endif
                             </tbody>
                         </table>
                     </div>

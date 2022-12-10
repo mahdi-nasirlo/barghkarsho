@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->foreignId("discount_id")->nullable()->references("id")->on("discount_items");
+            $table->foreignId("discount_id")->nullable()->references("id")->on("discount_items")->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('courses', function (Blueprint $table) {
-            //
+            $table->removeColumn("discount_id");
         });
     }
 };

@@ -55,21 +55,21 @@ class ProductPage extends Component
                     'quantity' => $this->count
                 ]
             );
+
+            if ($this->product->discountItem) {
+                $cart = Cart::name('shopping');
+
+                $action = $cart->applyAction([
+                    'id' => $this->product->id,
+                    'title' => 'Discount 10%',
+                    'value' => '-' . $this->product->discountItem->percent . '%'
+                ]);
+            }
         } else {
             Cart::name("shopping")->updateItem($cart->first()->getHash(), [
                 'quantity' => $this->count
             ]);
         }
-
-        //     // if ($this->course->discountItem) {
-        //     //     $cart = Cart::name('shopping');
-
-        //     //     $action = $cart->applyAction([
-        //     //         'id' => $this->course->id,
-        //     //         'title' => 'Discount 10%',
-        //     //         'value' => '-18%'
-        //     //     ]);
-        //     // }
 
         $this->emit('cartUpdated');
     }

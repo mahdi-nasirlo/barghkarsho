@@ -61,6 +61,10 @@ class Product extends Model implements HasMedia, UseCartable
         'discounted_price'
     ];
 
+    protected $appends = [
+        'discounted_price',
+    ];
+
     public function getGalleryAttribute()
     {
         return $this->getMedia("product.gallery");
@@ -68,9 +72,9 @@ class Product extends Model implements HasMedia, UseCartable
 
     public function getDiscountedPriceAttribute()
     {
-        return $this->attributes['price'];
+        // return $this->attributes['price'];
         // return $this->discountItem ? $this->attributes['price'] : 0;
-        // return $this->discountItem ? (int) $this->attributes['price'] - ($this->attributes['price'] *  ($this->discountItem->percent / 100)) : $this->attributes['price'];
+        return $this->discountItem ? (int) $this->attributes['price'] - ($this->attributes['price'] *  ($this->discountItem->percent / 100)) : $this->attributes['price'];
     }
 
     public function getCoverUrl()

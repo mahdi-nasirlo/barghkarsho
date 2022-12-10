@@ -255,6 +255,10 @@
                                         </div>
                                     </td>
                                     <td class="text-center fw-bold">
+                                        <small style="color: gray">
+                                            {{ $cartItem->get('quantity') }} عدد
+                                        </small>
+
                                         <del class="text-danger">{{ number_format($cartItem->getModel()->price) }}</del>
                                         {{ number_format($cartItem->getModel()->discounted_price) }} تومان
                                     </td>
