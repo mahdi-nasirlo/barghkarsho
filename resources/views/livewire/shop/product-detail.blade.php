@@ -30,13 +30,19 @@
                             {{ number_format($product->price) }} تومان
                         @endif
                     </h5>
-                    <ul class="list-unstyled text-warning h5 mb-0">
-                        <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
-                        <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
-                        <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
-                        <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
-                        <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
-                    </ul>
+                    @if ($product->rate())
+                        <div class="d-flex justify-content-between">
+                            <ul class="list-unstyled text-warning h5 mb-0 d-flex p-0">
+                                @for ($i = 0; $i < 5; $i++)
+                                    <li class="list-inline-item"><i
+                                            class="mdi mdi-star @if ($i > $product->rate() - 1) mdi-star-outline @endif"></i>
+                                    </li>
+                                @endfor
+                            </ul>
+
+                            (از {{ $product->comments()->count() }} نظر)
+                        </div>
+                    @endif
 
                     @if ($product->short_desc)
                         <h5 class="mt-4 py-2">بررسی:</h5>
@@ -45,7 +51,8 @@
                         </p>
                     @endif
 
-                    <ul class="list-unstyled text-muted">
+                    <ul class="list-unstyled
+                                        text-muted">
                         @if ($product->short_information)
                             @foreach ($product->short_information as $attribute)
                                 <li class="mb-0"><span class="text-primary h5 me-2">

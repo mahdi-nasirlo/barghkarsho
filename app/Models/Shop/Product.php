@@ -76,6 +76,7 @@ class Product extends Model implements HasMedia, UseCartable
         // return $this->discountItem ? $this->attributes['price'] : 0;
         return $this->discountItem ? (int) $this->attributes['price'] - ($this->attributes['price'] *  ($this->discountItem->percent / 100)) : $this->attributes['price'];
     }
+    // FIXME check discord item percent if expierd is past
 
     public function getCoverUrl()
     {
@@ -99,6 +100,15 @@ class Product extends Model implements HasMedia, UseCartable
     public function comments(): MorphMany
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function rate()
+    {
+        if (!$this->comments()->count()) {
+            return 0;
+        }
+
+        return ($this->comments()->sum('rating') / $this->comments()->count());
     }
 
     // public function category()
