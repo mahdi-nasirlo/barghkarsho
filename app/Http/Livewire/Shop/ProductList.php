@@ -10,6 +10,7 @@ use App\Models\Shop\ShopCategory;
 use Illuminate\Pipeline\Pipeline;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Str;
 
 class ProductList extends Component
 {
@@ -52,5 +53,12 @@ class ProductList extends Component
             ->paginate(20);
 
         return view('livewire.shop.product-list', compact('products'));
+    }
+
+    public function filterIsEnable($filterName)
+    {
+        return collect($this->filter)->filter(function ($item) use ($filterName) {
+            return Str::contains($item, $filterName);
+        })->count() > 0;
     }
 }
