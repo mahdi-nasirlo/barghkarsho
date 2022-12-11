@@ -64,7 +64,7 @@ Route::get('/payment/callback', [CartController::class, 'callback'])->name('paym
 Route::get('/page/{page:slug}', [PageController::class, "index"])->name("pages");
 
 Route::get('/shop/products/{shopCategory:slug}', ProductList::class)->name('product.list');
-Route::get('shop/product/{product:slug}', ProductPage::class)->name("product.singe");
+Route::get('shop/product/{product:slug}', ProductPage::class)->name("product.single");
 
 // Route::get('/clear-cache', function () {
 //     $exitCode = Artisan::call('cache:clear');

@@ -24,13 +24,19 @@
                                     </tr>
                                     <tr>
                                         <td class="h6">هزینه پست </td>
-                                        <td class="text-center fw-bold">{{ number_format(env('DELIVERY_PRICE')) }} تومان
+                                        <td class="text-center fw-bold">
+                                            @if ($cartTotalPrice > env('DELIVERY_PRICE_MIN_CON'))
+                                                رایگان
+                                            @else
+                                                {{ number_format(env('DELIVERY_PRICE')) }} تومان
+                                            @endif
                                         </td>
                                     </tr>
                                     <tr class="bg-light">
                                         <td class="h6">مجموع </td>
                                         <td class="text-center fw-bold">
-                                            {{ number_format($cartTotalPrice + env('DELIVERY_PRICE')) }} تومان</td>
+                                            {{ number_format($cartTotalPrice + (int) ($cartTotalPrice > env('DELIVERY_PRICE_MIN_CON') ? 0 : env('DELIVERY_PRICE'))) }}
+                                            تومان</td>
                                     </tr>
                                 </tbody>
                             </table>

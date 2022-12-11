@@ -240,7 +240,7 @@
                                             class="text-danger">X</a>
                                     </td>
                                     <td class="d-flex">
-                                        <a href="{{ route('product.singe', $cartItem->getModel()) }}">
+                                        <a href="{{ route('product.single', $cartItem->getModel()) }}">
                                             <img src="{{ $cartItem->getModel()->getCoverUrl() }}" class="shadow rounded"
                                                 style="max-width: 200px;" alt="{{ $cartItem->getModel()->name }}">
                                         </a>
@@ -248,7 +248,7 @@
                                     <td>
                                         <div class="d-flex align-items-start">
                                             <h6 class="mb-0 me-3">
-                                                <a href="{{ route('product.singe', $cartItem->getModel()) }}">
+                                                <a href="{{ route('product.single', $cartItem->getModel()) }}">
                                                     {{ $cartItem->getModel()->name }}
                                                 </a>
                                             </h6>

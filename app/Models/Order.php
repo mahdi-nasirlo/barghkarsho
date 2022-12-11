@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Shop\Course;
 use App\Models\Shop\Discount;
+use App\Models\Shop\Product;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -54,7 +55,12 @@ class Order extends Model
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class);
+        return $this->morphedByMany(Course::class, 'orderable');
+    }
+
+    public function products()
+    {
+        return $this->morphedByMany(Product::class, 'orderable');
     }
 
     public function payments()

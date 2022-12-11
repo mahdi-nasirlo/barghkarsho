@@ -13,6 +13,13 @@
                 <div class="row">
                     <div class="col-lg-7 col-md-6">
                         <div class="rounded shadow-lg p-4">
+                            @php
+                                $cart = Jackiedo\Cart\Facades\Cart::name('shopping');
+                                $cartTotalPrice = $cart->getDetails()->total;
+                            @endphp
+                            @if ($cartTotalPrice > env('DELIVERY_PRICE_MIN_CON'))
+                                <div class="alert alert-light" role="alert"> یک هشدار نور ساده - آن را بررسی کنید!</div>
+                            @endif
                             <h5 class="mb-0">جزئیات صورتحساب :</h5>
 
                             <livewire:cart.cart-address />

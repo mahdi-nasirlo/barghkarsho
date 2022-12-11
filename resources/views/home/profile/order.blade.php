@@ -95,6 +95,26 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="bg-white p-3 rounded box-shadow">
+                                                @foreach ($order->products as $product)
+                                                    <a href="{{ route('product.single', $product) }}"
+                                                        class="d-flex align-items-center">
+                                                        <img src="{{ $product->getCoverUrl() }}" class="shadow rounded"
+                                                            style="max-height: 100px;" alt="">
+                                                        <div class="flex-1 text-start ms-3">
+                                                            <h6 class="text-dark mb-0">{{ $product->name }}
+                                                            </h6>
+                                                            @if ($product->discountItem)
+                                                                <p class="text-muted mb-0">
+                                                                    {{ number_format((int) $product->price) }}
+                                                                    هزار
+                                                                    تومان</p>
+                                                            @endif
+                                                        </div>
+                                                        <h6 class="text-dark mb-0">
+                                                            {{ number_format((int) $product->discounted_price) }} تومان
+                                                        </h6>
+                                                    </a>
+                                                @endforeach
                                                 @foreach ($order->courses as $course)
                                                     <a href="{{ route('cours.single', $course) }}"
                                                         class="d-flex align-items-center">
@@ -102,7 +122,8 @@
                                                             class="shadow rounded" style="max-height: 100px;"
                                                             alt="">
                                                         <div class="flex-1 text-start ms-3">
-                                                            <h6 class="text-dark mb-0">{{ $course->title }}
+                                                            <h6 class="text-dark mb-0">
+                                                                دوره {{ $course->title }}
                                                             </h6>
                                                             @if ($course->discountItem)
                                                                 <p class="text-muted mb-0">

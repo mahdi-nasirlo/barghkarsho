@@ -18,10 +18,10 @@
             @endif
         </ul>
         <div class="shop-image position-relative overflow-hidden rounded shadow">
-            <a href="{{ route('product.singe', $product) }}">
+            <a href="{{ route('product.single', $product) }}">
                 <img src="{{ $product->getCoverUrl() }}" class="img-fluid" alt=""></a>
             @if ($product->cover_hover)
-                <a href="{{ route('product.singe', $product) }}" class="overlay-work">
+                <a href="{{ route('product.single', $product) }}" class="overlay-work">
                     <img src="/storage/{{ $product->cover_hover }}" class="img-fluid" alt="">
                 </a>
             @endif
@@ -54,7 +54,7 @@
         </div>
         <div style="display: flex !important;flex-direction: column;align-items: center;"
             class="card-body content pt-3 p-2">
-            <a href="{{ route('product.singe', $product) }}" class="text-warning product-name h6 mb-0 text-center">
+            <a href="{{ route('product.single', $product) }}" class="text-warning product-name h6 mb-0 text-center">
                 {{ $product->name }}
             </a>
             <div class="mt-3">
@@ -81,9 +81,9 @@
         <li><a href="javascript:void(0)" class="badge badge-link rounded-pill bg-success">ویژه ها </a></li>
     </ul>
     <div class="shop-image position-relative overflow-hidden rounded shadow">
-        <a href="{{ route('product.singe', $product) }}">
+        <a href="{{ route('product.single', $product) }}">
             <img src="images/shop/product/s1.jpg" class="img-fluid" alt=""></a>
-        <a href="{{ route('product.singe', $product) }}" class="overlay-work">
+        <a href="{{ route('product.single', $product) }}" class="overlay-work">
             <img src="images/shop/product/s-1.jpg" class="img-fluid" alt="">
         </a>
         <ul class="list-unstyled shop-icons">
@@ -114,7 +114,7 @@
         </ul>
     </div>
     <div class="card-body content pt-4 p-2">
-        <a href="{{ route('product.singe', $product) }}" class="text-dark product-name h6">تی شرت بردان </a>
+        <a href="{{ route('product.single', $product) }}" class="text-dark product-name h6">تی شرت بردان </a>
         <div class="d-flex justify-content-between mt-1">
             <h6 class="text-muted small fst-italic mb-0 mt-1">16000 تومان<del class="text-danger ms-2">21000 تومان</del>
             </h6>

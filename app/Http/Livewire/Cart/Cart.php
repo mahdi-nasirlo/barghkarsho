@@ -16,8 +16,12 @@ class Cart extends Component
 
     public function payment()
     {
+        $totalPrice = FacadesCart::name("shopping")->getDetails()->total;
+        $deliveryPrice = $totalPrice >  env('DELIVERY_PRICE_MIN_CON') ? 0 : $totalPrice;
+        $totalPriceWithDelivery = $totalPrice + $deliveryPrice;
+
         $order =  auth()->user()->orders()->create([
-            'price' => FacadesCart::name("shopping")->getDetails()->total + env("DELIVERY_PRICE"),
+            'price' => $totalPriceWithDelivery,
             'status' => 'unpaid'
         ]);
 
