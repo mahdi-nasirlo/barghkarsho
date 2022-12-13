@@ -30,12 +30,12 @@
                             {{ number_format($product->price) }} تومان
                         @endif
                     </h5>
-                    @if ($product->rate())
+                    @if ($product->rate)
                         <div class="d-flex justify-content-between">
                             <ul class="list-unstyled text-warning h5 mb-0 d-flex p-0">
                                 @for ($i = 0; $i < 5; $i++)
                                     <li class="list-inline-item"><i
-                                            class="mdi mdi-star @if ($i > $product->rate() - 1) mdi-star-outline @endif"></i>
+                                            class="mdi mdi-star @if ($i > $product->rate - 1) mdi-star-outline @endif"></i>
                                     </li>
                                 @endfor
                             </ul>

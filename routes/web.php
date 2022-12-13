@@ -10,6 +10,7 @@ use App\Http\Livewire\Profile\Profile;
 use App\Http\Livewire\Shop\ProductList;
 use App\Http\Livewire\Shop\ProductPage;
 use App\Http\Livewire\Shop\ProdutList;
+use App\Models\Order;
 use App\Models\Shop\Attribute;
 use App\Models\Shop\Course;
 use App\Models\Shop\Discount;

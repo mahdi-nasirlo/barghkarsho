@@ -22,7 +22,7 @@ class ProductList extends Component
 
     public $search;
 
-    public $order = 'last';
+    public $order;
 
     protected $queryString = [
         'filter',
@@ -50,6 +50,7 @@ class ProductList extends Component
                 new Search($this->search),
             ])
             ->thenReturn()
+            // ->get();
             ->paginate(20);
 
         return view('livewire.shop.product-list', compact('products'));

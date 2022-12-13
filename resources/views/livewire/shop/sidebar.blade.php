@@ -48,57 +48,53 @@
 
             @include('livewire.shop.sidbar-attribute-items')
 
-            <!-- Top Products -->
-            <div class="widget mt-4 pt-2">
-                <h5 class="widget-title">محصولات برتر </h5>
-                <ul class="list-unstyled mt-4 mb-0">
-                    <li class="d-flex align-items-center">
-                        <a href="javascript:void(0)">
-                            <img src="images/shop/product/s1.jpg" class="img-fluid avatar avatar-small rounded shadow"
-                                style="height:auto;" alt="">
-                        </a>
-                        <div class="flex-1 content ms-3">
-                            <a href="javascript:void(0)" class="text-dark h6">تی شرت </a>
-                            <h6 class="text-muted small fst-italic mb-0 mt-1">18000 تومان <del
-                                    class="text-danger ms-2">22000 تومان</del> </h6>
-                        </div>
-                    </li>
-                    <li class="d-flex align-items-center mt-2">
-                        <a href="javascript:void(0)">
-                            <img src="images/shop/product/s3.jpg" class="img-fluid avatar avatar-small rounded shadow"
-                                style="height:auto;" alt="">
-                        </a>
-                        <div class="flex-1 content ms-3">
-                            <a href="javascript:void(0)" class="text-dark h6">ساعت </a>
-                            <h6 class="text-muted small fst-italic mb-0 mt-1">18000 تومان <del
-                                    class="text-danger ms-2">22000 تومان</del> </h6>
-                        </div>
-                    </li>
-                    <li class="d-flex align-items-center mt-2">
-                        <a href="javascript:void(0)">
-                            <img src="images/shop/product/s6.jpg" class="img-fluid avatar avatar-small rounded shadow"
-                                style="height:auto;" alt="">
-                        </a>
-                        <div class="flex-1 content ms-3">
-                            <a href="javascript:void(0)" class="text-dark h6">فنجان قهوه </a>
-                            <h6 class="text-muted small fst-italic mb-0 mt-1">18000 تومان <del
-                                    class="text-danger ms-2">22000 تومان</del> </h6>
-                        </div>
-                    </li>
-                    <li class="d-flex align-items-center mt-2">
-                        <a href="javascript:void(0)">
-                            <img src="images/shop/product/s8.jpg" class="img-fluid avatar avatar-small rounded shadow"
-                                style="height:auto;" alt="">
-                        </a>
-                        <div class="flex-1 content ms-3">
-                            <a href="javascript:void(0)" class="text-dark h6">چهارپایه چوبی</a>
-                            <h6 class="text-muted small fst-italic mb-0 mt-1">18000 تومان <del
-                                    class="text-danger ms-2">22000 تومان</del> </h6>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+
+            @php
+                $topProducts = \App\Models\Shop\Product::withCount('orders')
+                    ->orderBy('orders_count', 'DESC')
+                    ->take(4)
+                    ->get();
+            @endphp
+
+            @if (\App\Models\Order::count())
+                <!-- Top Products -->
+                <div class="widget mt-4 pt-2">
+                    <h5 class="widget-title">محصولات برتر </h5>
+                    <ul class="list-unstyled mb-0 p-0">
+                        @foreach ($topProducts as $product)
+                            <li class="d-flex align-items-center">
+                                <a href="{{ route('product.single', $product) }}">
+                                    <img src="{{ $product->getCoverUrl() }}"
+                                        class="img-fluid avatar avatar-small rounded shadow" style="height:auto;"
+                                        alt="">
+                                </a>
+                                <div class="flex-1 content ms-3">
+                                    <a href="{{ route('product.single', $product) }}" class="text-dark h6">
+                                        {{ $product->name }}
+                                    </a>
+                                    <h6 class="text-muted small fst-italic mb-0 mt-1">
+                                        @if ($product->discountItem)
+                                            <del class="text-danger ms-2">{{ number_format($product->price) }}</del>
+                                            {{ number_format($product->discountedPrice) }}
+                                            تومان
+                                        @else
+                                            {{ $product->price }}
+                                        @endif
+
+                                    </h6>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
         </div>
     </div>
 </div>
 <!--end col-->
+
+<!--
+    FIXME product related category list of link
+    TODO make limit for display to product with order count
+-->

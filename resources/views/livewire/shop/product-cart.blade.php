@@ -67,12 +67,12 @@
                     @endif
                 </h6>
 
-                @if ($product->rate())
+                @if ($product->rate)
                     <ul style="display: flex; flex-direction: row" class="list-unstyled text-warning mb-0">
 
                         @for ($i = 0; $i < 5; $i++)
                             <li class="list-inline-item"><i
-                                    class="mdi mdi-star @if ($i > $product->rate() - 1) mdi-star-outline @endif"></i>
+                                    class="mdi mdi-star @if ($i > $product->rate - 1) mdi-star-outline @endif"></i>
                             </li>
                         @endfor
                     </ul>

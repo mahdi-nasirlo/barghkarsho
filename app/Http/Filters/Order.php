@@ -2,6 +2,7 @@
 
 namespace App\Http\Filters;
 
+use App\Models\Shop\Product;
 use Closure;
 use Illuminate\Support\Facades\Log;
 
@@ -34,6 +35,13 @@ class Order
             case 'priceDEC':
                 return $next($request)->orderBy('price', 'desc');
                 break;
+
+                // case 'popular':
+                //     return $next($request)->orderBy(function ($product) use ($request) {
+                //         $request->price;
+                //         return $product->price;
+                //     });
+                //     break;
 
             default:
                 return $next($request);

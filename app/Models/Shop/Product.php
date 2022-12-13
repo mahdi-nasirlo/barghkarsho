@@ -3,6 +3,7 @@
 namespace App\Models\Shop;
 
 use App\Models\Comment;
+use App\Models\Order;
 use App\Models\Shop\Attribute;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -35,7 +36,6 @@ class Product extends Model implements HasMedia, UseCartable
         // "gallery",
         "slug",
         "name",
-        "rating",
         "category_id"
     ];
 
@@ -58,12 +58,23 @@ class Product extends Model implements HasMedia, UseCartable
 
     protected $attribute = [
         'gallery',
-        'discounted_price'
+        'discounted_price',
+        // 'rate'
     ];
 
     protected $appends = [
         'discounted_price',
+        'rate'
     ];
+
+    public function getRateAttribute()
+    {
+        if (!$this->comments()->count()) {
+            return 0;
+        }
+
+        return ($this->comments()->sum('rating') / $this->comments()->count());
+    }
 
     public function getGalleryAttribute()
     {
@@ -102,15 +113,6 @@ class Product extends Model implements HasMedia, UseCartable
         return $this->morphMany(Comment::class, 'commentable');
     }
 
-    public function rate()
-    {
-        if (!$this->comments()->count()) {
-            return 0;
-        }
-
-        return ($this->comments()->sum('rating') / $this->comments()->count());
-    }
-
     // public function category()
     // {
     //     return $this->morphToMany(
@@ -118,6 +120,12 @@ class Product extends Model implements HasMedia, UseCartable
     //         "categoryable",
     //     );
     // }
+
+
+    public function orders()
+    {
+        return $this->morphToMany(Order::class, 'orderable');
+    }
 
     public function category()
     {
