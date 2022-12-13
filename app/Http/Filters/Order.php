@@ -36,12 +36,15 @@ class Order
                 return $next($request)->orderBy('price', 'desc');
                 break;
 
-                // case 'popular':
-                //     return $next($request)->orderBy(function ($product) use ($request) {
-                //         $request->price;
-                //         return $product->price;
-                //     });
-                //     break;
+            case 'popular':
+                return $next($request)->withCount('orders')
+                    ->orderBy('orders_count', 'DESC');
+                break;
+
+            case 'rating':
+                return $next($request)->withCount('comments')
+                    ->orderBy('comments_count', 'DESC');
+                break;
 
             default:
                 return $next($request);
