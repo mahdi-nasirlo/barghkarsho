@@ -14,6 +14,11 @@ class DiscountItem extends Model
         'expired_at'
     ];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'discount_id');
+    }
+
     public function courses()
     {
         return $this->hasMany(Course::class, "discount_id");

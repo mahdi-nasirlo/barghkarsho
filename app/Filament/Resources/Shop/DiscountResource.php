@@ -44,8 +44,6 @@ class DiscountResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-gift';
 
-
-
     public static function getModelLabel(): string
     {
         return "کد تخفیف";

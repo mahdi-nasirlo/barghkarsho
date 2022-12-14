@@ -17,5 +17,8 @@
         "postcss": "^8.1.14",
         "tailwindcss": "^3.1.4",
         "tippy.js": "^6.3.7"
+    },
+    "dependencies": {
+        "zeynepjs": "^2.2.0"
     }
 }

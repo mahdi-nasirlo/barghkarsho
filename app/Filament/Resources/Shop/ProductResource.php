@@ -29,6 +29,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use RalphJSmit\Filament\SEO\SEO;
@@ -287,7 +288,13 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\ImageColumn::make('cover')
+                    ->label('عکس شاخص'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('نام محصول')
+                    ->sortable()
+                    ->url(fn (Product $record) => route("product.single", $record))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('slug'),
                 Tables\Columns\TextColumn::make('gallery'),
                 Tables\Columns\TextColumn::make('cover'),

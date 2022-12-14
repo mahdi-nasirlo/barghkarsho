@@ -14,6 +14,7 @@ use App\Models\Order;
 use App\Models\Shop\Attribute;
 use App\Models\Shop\Course;
 use App\Models\Shop\Discount;
+use App\Models\Shop\DiscountItem;
 use App\Models\Shop\Product;
 use App\Models\Shop\ShopCategory;
 use Illuminate\Support\Facades\Artisan;

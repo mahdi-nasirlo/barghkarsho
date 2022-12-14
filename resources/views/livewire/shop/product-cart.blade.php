@@ -19,7 +19,8 @@
         </ul>
         <div class="shop-image position-relative overflow-hidden rounded shadow">
             <a href="{{ route('product.single', $product) }}">
-                <img src="{{ $product->getCoverUrl() }}" class="img-fluid" alt=""></a>
+                <img src="{{ $product->getCoverUrl() }}" class="img-fluid" alt="">
+            </a>
             @if ($product->cover_hover)
                 <a href="{{ route('product.single', $product) }}" class="overlay-work">
                     <img src="/storage/{{ $product->cover_hover }}" class="img-fluid" alt="">
@@ -33,22 +34,28 @@
                 </div>
             @else
                 <ul class="list-unstyled shop-icons">
-                    <li><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#productview"
-                            class="btn btn-icon btn-pills btn-soft-primary"><svg xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="feather feather-eye icons">
+                    <li>
+                        <a href="{{ route('product.single', $product) }}" data-bs-toggle="modal"
+                            data-bs-target="#productview" class="btn btn-icon btn-pills btn-soft-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-eye icons">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
-                            </svg></a></li>
-                    <li class="mt-2"><a href="shop-cart.html" class="btn btn-icon btn-pills btn-soft-warning"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="mt-2">
+                        <a href="{{ route('cart.') }}" class="btn btn-icon btn-pills btn-soft-warning">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="feather feather-shopping-cart icons">
                                 <circle cx="9" cy="21" r="1"></circle>
                                 <circle cx="20" cy="21" r="1"></circle>
                                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                            </svg></a></li>
+                            </svg>
+                        </a>
+                    </li>
                 </ul>
             @endif
         </div>
