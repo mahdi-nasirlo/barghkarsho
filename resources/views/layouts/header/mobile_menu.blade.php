@@ -1,4 +1,4 @@
- <style>
+ {{-- <style>
      /* (A) LIST TO MENU */
      .tree,
      .headersection ul {
@@ -202,4 +202,129 @@
              </a>
          </li>
      </ul>
+ </div> --}}
+
+ <div class="zeynep right">
+     <div class="d-flex">
+         <a class="logo" href="/">
+             <img src="http://localhost:8000/theme/4lKigFHb7apnVK4fIAijoXeoFusyhJ-metaZWxjdHJvbWFfcGFnZS0wMDAxLnBuZw==-.png"
+                 alt="Logo" height="100">
+         </a>
+     </div>
+
+     <ul>
+         @auth
+             @if (auth()->user()->canAccessFilament())
+                 <li>
+                     <a href="{{ route('filament.pages.dashboard') }}">
+                         <i class="text-danger uil uil-user align-middle me-1">
+                         </i>
+                         پنل مدیریت
+                     </a>
+                 </li>
+             @endif
+             <li class="has-submenu">
+                 <a href="#" data-submenu="panel">پنل کاربری</a>
+
+                 <div id="panel" class="submenu">
+                     <div class="submenu-header">
+                         <a href="#" data-submenu-close="panel">منو اصلی</a>
+                     </div>
+
+                     <label>پنل کاربری</label>
+
+                     <ul>
+                         <li>
+                             <a class="dropdown-item text-dark" href="{{ route('profile', ['tab' => 'dashboard']) }}"><i
+                                     class="uil uil-user align-middle me-1"></i> حساب کاربری</a>
+                         </li>
+
+                         <li>
+                             <a class="dropdown-item text-dark" href="{{ route('profile', ['tab' => 'order']) }}"><i
+                                     class="uil uil-clipboard-notes align-middle me-1"></i> سفارشات من </a>
+                         </li>
+
+                         <li>
+                             <a class="dropdown-item text-dark" href="{{ route('profile', ['tab' => 'address']) }}">
+                                 <i class="uil uil-map-marker h5 align-middle me-2 mb-0"></i> آدرس </a>
+                         </li>
+                     </ul>
+                 </div>
+             </li>
+         @endauth
+         @guest
+             <li>
+                 <a class="px-1 d-flex justify-content-between bg-soft-warning" href="{{ route('filament.auth.login') }}">
+                     ورود / ثبت نام
+                     <i class="uil uil-arrow-left d-flex align-items-center"></i>
+                 </a>
+             </li>
+         @endguest
+         <livewire:cart.cart-header />
+         @if (!request()->routeIs('home'))
+             <li>
+                 <a class="text-warning " href="{{ route('service') }}">
+                     <img width="25px" src="\theme\images\Repairs-icon.png" alt="">
+                     درخواست تعمیر کار
+                 </a>
+             </li>
+         @endif
+
+         @if (count($shopCategoies) > 0)
+             @include('layouts.header.mobile_menu_item', [
+                 'categoreis' => $shopCategoies,
+                 'parentName' => 'منو اصلی',
+                 'title' => 'فروشگاه',
+                 'id' => 'products',
+             ])
+         @endif
+
+         @if (count($categoreis) > 0)
+             @include('layouts.header.mobile_menu_item', [
+                 'categoreis' => $categoreis,
+                 'parentName' => 'منو اصلی',
+                 'title' => 'مجله تخصصی تعمیرات',
+                 'id' => 'articles',
+             ])
+         @endif
+
+         @if ($pages->count())
+             <li class="has-submenu">
+                 <a href="#" data-submenu="pages">لینک های مفید</a>
+
+                 <div id="pages" class="submenu">
+                     <div class="submenu-header">
+                         <a href="#" data-submenu-close="pages">منو اصلی</a>
+                     </div>
+
+                     <label>لینک های مفید</label>
+
+                     <ul>
+                         @foreach ($pages as $page)
+                             <li>
+                                 <a href="{{ route('pages', $page) }}">
+                                     {{ $page->name }}
+                                 </a>
+                             </li>
+                         @endforeach
+                     </ul>
+                 </div>
+             </li>
+         @endif
+         @auth
+             <li class="d-flex justify-content-between bg-soft-blue py-2" style="position: absolute;bottom: 0;width: 100%">
+                 <span>
+                     {{ auth()->user()->name }} خوش آمدید
+                 </span>
+                 <button style="width: 24%" class="dropdown-item text-dark p-0 w-10"
+                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+                         class="uil uil-sign-out-alt align-middle me-1"></i> خروج </button>
+                 <form id="logout-form" action="{{ route('filament.auth.logout') }}" method="POST" style="display: none;">
+                     @csrf
+                 </form>
+             </li>
+         @endauth
+     </ul>
  </div>
+
+ <div class="zeynep-overlay"></div>

@@ -1,4 +1,4 @@
-@foreach ($categoreis as $category)
+{{-- @foreach ($categoreis as $category)
     @if ($category->is_visible and $category->isVisible())
         @if ($category->childIsVisible())
             <li class="headersection">
@@ -20,4 +20,81 @@
             </li>
         @endif
     @endif
-@endforeach
+@endforeach --}}
+
+
+{{-- 
+@if ($title)
+    @if ($categoreis->isEmpty())
+        <li>
+            <a href="#">
+                {{ $title }}
+            </a>
+        </li>
+    @else
+        @foreach ($categoreis as $category)
+            <li class="has-submenu">
+                <a href="#" data-submenu="{{ $category->id }}">{{ $category->name }}</a>
+
+                <div id="{{ $category->id }}" class="submenu">
+                    <div class="submenu-header">
+                        <a href="#" data-submenu-close="{{ $category->id }}">{{ $parentName }}</a>
+                    </div>
+
+                    <label>{{ $category->name }}</label>
+
+                    <ul>
+                        @foreach ($categoreis as $category)
+                            @if ($category->is_visible and $category->isVisible())
+                                @include('layouts.header.mobile_menu_item', [
+                                    'categoreis' => $category->children,
+                                    'title' => $category->name,
+                                    'parentName' => $title,
+                                    'id' => 'products_' . $category->id,
+                                ])
+                            @endif
+                        @endforeach
+                    </ul>
+                </div>
+            </li>
+        @endforeach
+    @endif
+@else
+@endif --}}
+
+@if ($title)
+    @if ($categoreis->isEmpty())
+        <li>
+            <a href="#">
+                {{ $title }}
+            </a>
+        </li>
+    @else
+        <li class="has-submenu">
+            <a href="#" data-submenu="{{ $id }}">{{ $title }}</a>
+
+            <div id="{{ $id }}" class="submenu">
+                <div class="submenu-header">
+                    <a href="#" data-submenu-close="{{ $id }}">{{ $parentName }}</a>
+                </div>
+
+                <label>{{ $title }}</label>
+
+                <ul>
+
+                    @foreach ($categoreis as $category)
+                        {{-- TODO FIX DISPLY CONDITION --}}
+                        {{-- @if ($category->is_visible and $category->isVisible()) --}}
+                        @include('layouts.header.mobile_menu_item', [
+                            'categoreis' => $category->children,
+                            'title' => $category->name,
+                            'parentName' => $title,
+                            'id' => 'products_' . $category->id,
+                        ])
+                        {{-- @endif --}}
+                    @endforeach
+                </ul>
+            </div>
+        </li>
+    @endif
+@endif

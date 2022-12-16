@@ -24,6 +24,8 @@
     <!-- Main Css -->
     <link href="/theme/css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt" />
     <link href="/theme/css/colors/default.css" rel="stylesheet" id="color-opt">
+    <link rel="stylesheet" href="/theme/css/zeynep-right.css">
+    <link rel="stylesheet" href="/theme/css/zeynep.css">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     @livewireStyles
 
@@ -53,6 +55,9 @@
     <script src="/theme/js/plugins.init.js"></script>
     <!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
     <script src="/theme/js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/theme/js/zeynep.js"></script>
+    <script src="/theme/js/zeynep-right.js"></script>
     <script src="{{ asset('/js/home.js') }}"></script>
     <!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
     {{-- @include('sweetalert::alert') --}}
