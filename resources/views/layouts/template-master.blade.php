@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     @livewireStyles
 
+    @yield('head')
 </head>
 
 <body>
@@ -69,6 +70,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <x-livewire-alert::scripts /> --}}
+    @yield('script')
     @include('layouts.click_to_chat')
 </body>
 

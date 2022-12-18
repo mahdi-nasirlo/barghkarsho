@@ -10,6 +10,7 @@ use App\Http\Livewire\Profile\Profile;
 use App\Http\Livewire\Shop\ProductList;
 use App\Http\Livewire\Shop\ProductPage;
 use App\Http\Livewire\Shop\ProdutList;
+use App\Models\Banner;
 use App\Models\Order;
 use App\Models\Shop\Attribute;
 use App\Models\Shop\Course;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Jackiedo\Cart\Facades\Cart as FacadesCart;
+use PhpParser\Node\Expr\Instanceof_;
 
 /*
 |--------------------------------------------------------------------------
