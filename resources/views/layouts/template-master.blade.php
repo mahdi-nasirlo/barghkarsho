@@ -33,6 +33,16 @@
 </head>
 
 <body>
+    <!-- Loader -->
+    {{-- <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+    </div> --}}
+    <!-- Loader -->
     <div class="mb-5">
         @include('layouts.header.index')
     </div>
@@ -56,7 +66,7 @@
     <script src="/theme/js/plugins.init.js"></script>
     <!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
     <script src="/theme/js/app.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
     <script src="/theme/js/zeynep.js"></script>
     <script src="/theme/js/zeynep-right.js"></script>
     <script src="{{ asset('/js/home.js') }}"></script>

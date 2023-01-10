@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Shop;
 use App\Http\Filters\AttributesFilter;
 use App\Http\Filters\Order;
 use App\Http\Filters\Search;
+use App\Models\Blog\Category;
 use App\Models\Shop\Product;
 use App\Models\Shop\ShopCategory;
 use Illuminate\Pipeline\Pipeline;
@@ -37,11 +38,18 @@ class ProductList extends Component
 
     public function render()
     {
+        $category = $this->shopCategory;
+
+        $array = array();
+        $this->shopCategory->getChildrenIds($array);
+        // dd($array);
+
         $products =
             app(Pipeline::class)
             ->send(
                 Product::query()
-                    ->where('category_id', $this->shopCategory->id)
+                    ->whereIn("category_id", $array)
+                    ->orWhere('category_id', $this->shopCategory->id)
                     ->with(['attributes'])
             )
             ->through([
@@ -50,8 +58,9 @@ class ProductList extends Component
                 new Search($this->search),
             ])
             ->thenReturn()
-            // ->get();
+            // ->get()
             ->paginate(20);
+
 
         return view('livewire.shop.product-list', compact('products'));
     }

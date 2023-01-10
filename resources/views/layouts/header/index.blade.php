@@ -14,13 +14,51 @@
             display: none !important;
         }
     }
+
+    #topnav .menu-tow>li>a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        min-height: 15px
+    }
+
+    #topnav .menu-tow .has-submenu .menu-arrow {
+        top: 12px !important;
+    }
+
+    #topnav .menu-tow>.has-submenu:hover .menu-arrow {
+        top: 16px !important;
+    }
 </style>
+@php
+    
+    $courses = \App\Models\Shop\Course::all()
+        ->where('inventory', '>', 0)
+        ->where('published_at', '<', now());
+    
+    // FIXME product condition to display category
+    $products = \App\Models\Shop\Product::all();
+    // ->where('inventory', '>', 0)
+    // ->where('published_at', '<', now());
+    
+    $categoreis = \App\Models\Blog\Category::all()
+        ->where('is_visible', true)
+        ->where('parent_id', 0);
+    
+    $shopCategoies = \App\Models\Shop\ShopCategory::all()
+        ->where('is_visible', true)
+        ->where('parent_id', null);
+    
+    $pages = \App\Models\Page::all();
+    
+@endphp
+
 <header id="topnav" class="defaultscroll sticky bg-white border-bottom">
     <div class="container-xl d-flex justify-content-between">
         <!-- Logo container-->
         <div class="d-flex">
             <a class="logo" href="/">
-                <img src="http://localhost:8000/theme/4lKigFHb7apnVK4fIAijoXeoFusyhJ-metaZWxjdHJvbWFfcGFnZS0wMDAxLnBuZw==-.png"
+                <img style="width: 30%;height: auto;"
+                    src="http://localhost:8000/theme/4lKigFHb7apnVK4fIAijoXeoFusyhJ-metaZWxjdHJvbWFfcGFnZS0wMDAxLnBuZw==-.png"
                     alt="Logo" height="100">
             </a>
         </div>
@@ -46,92 +84,21 @@
             </div>
         </div>
 
-        @php
-            
-            $courses = \App\Models\Shop\Course::all()
-                ->where('inventory', '>', 0)
-                ->where('published_at', '<', now());
-            
-            // FIXME product condition to display category
-            $products = \App\Models\Shop\Product::all();
-            // ->where('inventory', '>', 0)
-            // ->where('published_at', '<', now());
-            
-            $categoreis = \App\Models\Blog\Category::all()
-                ->where('is_visible', true)
-                ->where('parent_id', 0);
-            
-            $shopCategoies = \App\Models\Shop\ShopCategory::all()
-                ->where('is_visible', true)
-                ->where('parent_id', null);
-            
-            $pages = \App\Models\Page::all();
-            
-        @endphp
-
         @include('layouts.header.mobile_menu')
 
-        <div id="Mynavigation">
+        <div id="Mynavigation" class="w-50">
             <!-- Navigation Menu-->
-            <ul class="navigation-menu justify-content-end">
-                @if (!request()->routeIs('home'))
-                    <li class="has-submenu parent-parent-menu-item">
-                        <a class="px-0" href="{{ route('service') }}">
-                            <span class="border px-2 py-1 rounded">
-                                درخواست تعمیرکار
-                            </span>
-                        </a>
-                    </li>
-                @endif
-                @if (count($categoreis) > 0)
-                    <li class="has-submenu parent-parent-menu-item">
-                        <a href="javascript:void(0)">مجله تخصصی تعمیرات </a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            @include('layouts.header.article-sub-item', ['categoreis' => $categoreis])
-                        </ul>
-                    </li>
-                @endif
-                @if (count($courses) > 0)
-                    <li class="has-submenu parent-parent-menu-item">
-                        <a href="javascript:void(0)">دوره های آموزشی </a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            @foreach ($courses as $item)
-                                <li class="has-submenu parent-menu-item">
-                                    <a href="{{ route('cours.single', $item) }}"> {{ $item->title }} </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                @endif
-                @if (count($products) > 0)
-                    <li class="has-submenu parent-parent-menu-item">
-                        <a href="javascript:void(0)">فروشگاه</a><span class="menu-arrow"></span>
-                        <ul class="submenu">
-                            @include('layouts.header.article-sub-item', ['categoreis' => $shopCategoies])
-                        </ul>
-                    </li>
-                @endif
+            <ul class="navigation-menu justify-content-end w-100">
 
-                @if ($pages->count())
-                    <li class="has-submenu parent-menu-item">
-                        <a href="javascript:void(0)">لینک های مفید
-                        </a>
-                        <span class="menu-arrow"></span>
+                <li style="margin: 13px 0" class="w-100">
+                    <livewire:search />
+                </li>
 
-                        <ul class="submenu">
-                            @foreach ($pages as $page)
-                                <li class="has-submenu parent-menu-item">
-                                    <a href="{{ route('pages', $page) }}"> {{ $page->name }} </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                @endif
                 <li class="has-submenu parent-menu-item d-flex">
                     @auth
                         <div class="dropdown dropdown-primary">
-                            <button type="button" class="btn my-3 btn-soft-primary px-3 py-1" data-bs-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn my-3 btn-soft-primary px-3 py-1 shadow-none"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="uil uil-user align-middle icons"></i>
                             </button>
                             <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3"
@@ -173,6 +140,72 @@
             </ul>
 
         </div>
+        <!--end navigation-->
+    </div>
+    <div class="container-xl d-flex justify-content-between">
+
+        <div id="Mynavigation">
+            <!-- Navigation Menu-->
+            <ul style="margin-right: -22px" class="navigation-menu menu-tow justify-content-end">
+
+                @include('layouts.header.mega-sub-menu')
+
+                @if (count($categoreis) > 0)
+                    <li class="has-submenu parent-parent-menu-item">
+                        <a href="javascript:void(0)">مجله تخصصی تعمیرات </a>
+                        <span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            @include('layouts.header.article-sub-item', ['categoreis' => $categoreis])
+                        </ul>
+                    </li>
+                @endif
+                @if (count($courses) > 0)
+                    <li class="has-submenu parent-parent-menu-item">
+                        <a href="javascript:void(0)">دوره های آموزشی </a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            @foreach ($courses as $item)
+                                <li class="has-submenu parent-menu-item">
+                                    <a href="{{ route('cours.single', $item) }}"> {{ $item->title }} </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
+                @if (count($products) > 0)
+                    <li class="has-submenu parent-parent-menu-item">
+                        <a href="javascript:void(0)">فروشگاه</a><span class="menu-arrow"></span>
+                        <ul class="submenu">
+                            @include('layouts.header.article-sub-item', ['categoreis' => $shopCategoies])
+                        </ul>
+                    </li>
+                @endif
+
+                @if ($pages->count())
+                    <li class="has-submenu parent-menu-item">
+                        <a href="javascript:void(0)">لینک های مفید
+                        </a>
+                        <span class="menu-arrow"></span>
+
+                        <ul class="submenu">
+                            @foreach ($pages as $page)
+                                <li class="has-submenu parent-menu-item">
+                                    <a href="{{ route('pages', $page) }}"> {{ $page->name }} </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
+            </ul>
+        </div>
+
+
+        @if (!request()->routeIs('home'))
+            <a class="px-0" href="{{ route('service') }}">
+                <span class="bg-soft-warning px-2 py-1 rounded">
+                    درخواست تعمیرکار
+                </span>
+            </a>
+        @endif
         <!--end navigation-->
     </div>
     <!--end container-->

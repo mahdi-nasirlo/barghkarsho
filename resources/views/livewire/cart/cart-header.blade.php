@@ -31,15 +31,15 @@
     </style>
     <li class="has-submenu parent-menu-item d-flex ms-1">
         <div class="dropdown">
-            <button type="button" class="btn px-3 py-1 mt-3 btn-soft-primary cartBtn" data-bs-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            <button style="box-shadow: none" type="button" class="btn px-3 py-1 mt-3 btn-soft-primary cartBtn"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="uil uil-shopping-cart align-middle icons"></i>
 
                 @if ($countOfCart)
                     <span class="badge">{{ $countOfCart }}</span>
                 @endif
             </button>
-            <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow-sm rounded border-0 mt-3 p-4"
+            <div class="dropdown-menu dd-menu dropdown-menu-end bg-white rounded border-0 mt-3 p-4"
                 style="width: 350px; margin: 0px;">
                 @if ($countOfCart)
                     <div class="pb-4">

@@ -197,6 +197,8 @@ class ProductResource extends Resource
                                 ->unique(ShopCategory::class, 'slug', fn ($record) => $record),
                         ]),
                     Forms\Components\Select::make('parent_id')
+                        ->preload()
+                        ->searchable()
                         ->label('دسته بندی پدر')
                         ->relationship('parent', 'name', fn (Builder $query, ?ShopCategory $record) => $query->whereNot('id', $record ? $record->id : null)),
                     Forms\Components\Toggle::make('is_visible')

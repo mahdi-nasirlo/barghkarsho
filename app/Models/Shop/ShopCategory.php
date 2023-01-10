@@ -62,6 +62,12 @@ class ShopCategory extends Model
         return $this->belongsTo(ShopCategory::class, 'parent_id');
     }
 
+    public function childrenRecursive()
+    {
+        return $this->children()->with('childrenRecursive');
+    }
+
+
     public function children()
     {
         return $this->hasMany(ShopCategory::class, 'parent_id');

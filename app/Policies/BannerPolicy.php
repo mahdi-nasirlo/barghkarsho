@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Policies\Shop;
+namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Shop\DiscountItem;
+use App\Models\Banner;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class DiscountItemPolicy
+class BannerPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class DiscountItemPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('view_any_shop::discount::item');
+        return $user->can('view_any_banner');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Shop\DiscountItem  $discountItem
+     * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, DiscountItem $discountItem)
+    public function view(User $user, Banner $banner)
     {
-        return $user->can('view_shop::discount::item');
+        return $user->can('view_banner');
     }
 
     /**
@@ -41,31 +41,31 @@ class DiscountItemPolicy
      */
     public function create(User $user)
     {
-        return $user->can('create_shop::discount::item');
+        return $user->can('create_banner');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Shop\DiscountItem  $discountItem
+     * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, DiscountItem $discountItem)
+    public function update(User $user, Banner $banner)
     {
-        return $user->can('update_shop::discount::item');
+        return $user->can('update_banner');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Shop\DiscountItem  $discountItem
+     * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, DiscountItem $discountItem)
+    public function delete(User $user, Banner $banner)
     {
-        return $user->can('delete_shop::discount::item');
+        return $user->can('delete_banner');
     }
 
     /**
@@ -76,19 +76,19 @@ class DiscountItemPolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->can('delete_any_shop::discount::item');
+        return $user->can('delete_any_banner');
     }
 
     /**
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Shop\DiscountItem  $discountItem
+     * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, DiscountItem $discountItem)
+    public function forceDelete(User $user, Banner $banner)
     {
-        return $user->can('force_delete_shop::discount::item');
+        return $user->can('force_delete_banner');
     }
 
     /**
@@ -99,19 +99,19 @@ class DiscountItemPolicy
      */
     public function forceDeleteAny(User $user)
     {
-        return $user->can('force_delete_any_shop::discount::item');
+        return $user->can('force_delete_any_banner');
     }
 
     /**
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Shop\DiscountItem  $discountItem
+     * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, DiscountItem $discountItem)
+    public function restore(User $user, Banner $banner)
     {
-        return $user->can('restore_shop::discount::item');
+        return $user->can('restore_banner');
     }
 
     /**
@@ -122,19 +122,19 @@ class DiscountItemPolicy
      */
     public function restoreAny(User $user)
     {
-        return $user->can('restore_any_shop::discount::item');
+        return $user->can('restore_any_banner');
     }
 
     /**
      * Determine whether the user can replicate.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Shop\DiscountItem  $discountItem
+     * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, DiscountItem $discountItem)
+    public function replicate(User $user, Banner $banner)
     {
-        return $user->can('replicate_shop::discount::item');
+        return $user->can('replicate_banner');
     }
 
     /**
@@ -145,7 +145,7 @@ class DiscountItemPolicy
      */
     public function reorder(User $user)
     {
-        return $user->can('reorder_shop::discount::item');
+        return $user->can('reorder_banner');
     }
 
 }
